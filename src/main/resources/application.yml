@@ -1,0 +1,65 @@
+server:
+  port: 8989
+  tomcat:
+    protocol-header: x-forwarded-proto
+    remote-ip-header: x-forwarded-for
+    port-header: X-Forwarded-Port
+  use-forward-headers: true
+
+spring:
+  application:
+    name: accounting
+  datasource:
+    druid:
+      url: jdbc:mysql://127.0.0.1:3306/accounting?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      username: root
+      password: root
+
+  #jpa配置
+  jpa:
+    database: MYSQL
+    database-platform: org.hibernate.dialect.MySQL57Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    open-in-view: true
+  data:
+    jpa:
+      repositories:
+        enabled: true
+
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/
+
+# freemarker
+  freemarker:
+    template-loader-path: classpath:/templates/
+    suffix: .ftl
+    charset: utf-8
+    request-context-attribute: request
+
+  # aop
+  aop:
+    auto: true
+
+
+
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+
+  #shiro
+  shiro:
+    login-url: /login
+    success-url: /
+    unauthorized-url: /403
+    filter-chain-definition-map:
+      anon: /static/**,/login,/BJUI/**,/favicon.ico,/timeout,/login/**,/js/**,/captcha/captchaImage,/plug/**,/swagger-ui.html,/error/**
+      logout: /logout #退出
+      #需要认证的路径
+      authc: /authc
+      user: /**
+logging:
+  file: ./log/${spring.application.name}.log
