@@ -1,4 +1,4 @@
-package cn.mauth.account.common.domain;
+package cn.mauth.account.common.domain.sys;
 
 import cn.mauth.account.common.base.BaseEntity;
 

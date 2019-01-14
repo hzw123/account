@@ -1,7 +1,7 @@
 package cn.mauth.account.server;
 
-import cn.mauth.account.common.domain.SysRole;
-import cn.mauth.account.common.domain.SysRoleUser;
+import cn.mauth.account.common.domain.sys.SysRole;
+import cn.mauth.account.common.domain.sys.SysRoleUser;
 import cn.mauth.account.common.util.PageInfo;
 import cn.mauth.account.common.util.PageUtil;
 import cn.mauth.account.dao.SysRoleDao;

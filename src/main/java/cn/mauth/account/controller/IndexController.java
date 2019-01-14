@@ -2,7 +2,7 @@ package cn.mauth.account.controller;
 
 import java.util.List;
 
-import cn.mauth.account.common.domain.SysMenu;
+import cn.mauth.account.common.domain.sys.SysMenu;
 import cn.mauth.account.common.util.SessionUtils;
 import cn.mauth.account.server.SysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class IndexController {
 			throw new Exception("没权限");
 		}
 		modelMap.put("menuList", menuList);
-		SessionUtils.setMenuAndRole(menuList);
+		SessionUtils.setMenu(menuList);
 	}
 
 	@RequestMapping("/context")

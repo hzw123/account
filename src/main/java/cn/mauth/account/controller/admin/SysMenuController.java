@@ -1,7 +1,7 @@
 package cn.mauth.account.controller.admin;
 
 import cn.mauth.account.common.base.BaseController;
-import cn.mauth.account.common.domain.SysMenu;
+import cn.mauth.account.common.domain.sys.SysMenu;
 import cn.mauth.account.enums.StatusIdEnum;
 import cn.mauth.account.server.SysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class SysMenuController extends BaseController {
 	 */
 	@RequestMapping("/list")
 	public void list(@ModelAttribute SysMenu qo, ModelMap modelMap) {
-		modelMap.put("list", service.toTreeNode(service.findAll()));
+		modelMap.put("list", service.findAll());
 		modelMap.put("bean", qo);
 	}
 

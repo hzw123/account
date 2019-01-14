@@ -1,7 +1,7 @@
 package cn.mauth.account.controller.admin;
 
 import cn.mauth.account.common.base.BaseController;
-import cn.mauth.account.common.domain.SysRole;
+import cn.mauth.account.common.domain.sys.SysRole;
 import cn.mauth.account.enums.StatusIdEnum;
 import cn.mauth.account.server.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;

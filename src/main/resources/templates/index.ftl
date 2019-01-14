@@ -1,5 +1,5 @@
-<#include "/macro/base.ftl" />
-<#include "/macro/nav.ftl" />
+<#include "macro/base.ftl" />
+<#include "macro/nav.ftl" />
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -7,10 +7,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>会计管理平台</title>
-    <meta name="Keywords" content="会计管理平台" />
-    <meta name="Description" content="会计管理平台" />
+    <meta name="Keywords" content="会计管理平台"/>
+    <meta name="Description" content="会计管理平台"/>
 
-    <link href="${base}/plug/images/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="${base}/plug/images/favicon.ico" rel="icon" type="image/x-icon"/>
 
     <!-- bootstrap - css -->
     <link href="BJUI/themes/css/bootstrap.css" rel="stylesheet">
@@ -24,18 +24,18 @@
     <link href="BJUI/plugins/bootstrapSelect/bootstrap-select.css" rel="stylesheet">
     <link href="BJUI/themes/css/FA/css/font-awesome.min.css" rel="stylesheet">
     <!--[if lte IE 7]>
-	<link href="BJUI/themes/css/ie7.css" rel="stylesheet">
+    <link href="BJUI/themes/css/ie7.css" rel="stylesheet">
     <![endif]-->
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lte IE 9]>
-	<script src="BJUI/other/html5shiv.min.js"></script>
-	<script src="BJUI/other/respond.min.js"></script>
+    <script src="BJUI/other/html5shiv.min.js"></script>
+    <script src="BJUI/other/respond.min.js"></script>
     <![endif]-->
     <!-- jquery -->
     <script src="BJUI/js/jquery-1.7.2.min.js"></script>
     <script src="BJUI/js/jquery.cookie.js"></script>
     <!--[if lte IE 9]>
-	<script src="BJUI/other/jquery.iframe-transport.js"></script>
+    <script src="BJUI/other/jquery.iframe-transport.js"></script>
     <![endif]-->
 
     <!-- BJUI.all 分模块压缩版 -->
@@ -75,58 +75,58 @@
     <script src="BJUI/plugins/download/jquery.fileDownload.js"></script>
     <!-- init -->
     <script type="text/javascript">
-        $(function() {
+        $(function () {
             BJUI.init({
-                JSPATH : 'BJUI/', //[可选]框架路径
-                PLUGINPATH : 'BJUI/plugins/', //[可选]插件路径
-                loginInfo : {
-                    url : '${base}/timeout',
-                    title : '登录',
-                    width : 400,
-                    height : 200
+                JSPATH: 'BJUI/', //[可选]框架路径
+                PLUGINPATH: 'BJUI/plugins/', //[可选]插件路径
+                loginInfo: {
+                    url: '${base}/timeout',
+                    title: '登录',
+                    width: 400,
+                    height: 200
                 }, // 会话超时后弹出登录对话框
-                statusCode : {
-                    ok : 200,
-                    error : 300,
-                    timeout : 301
+                statusCode: {
+                    ok: 200,
+                    error: 300,
+                    timeout: 301
                 }, //[可选]
-                ajaxTimeout : 50000, //[可选]全局Ajax请求超时时间(毫秒)
-                pageInfo : {
-                    total : 'total',
-                    pageCurrent : 'pageCurrent',
-                    pageSize : 'pageSize',
-                    orderField : 'orderField',
-                    orderDirection : 'orderDirection'
+                ajaxTimeout: 50000, //[可选]全局Ajax请求超时时间(毫秒)
+                pageInfo: {
+                    total: 'total',
+                    pageCurrent: 'pageCurrent',
+                    pageSize: 'pageSize',
+                    orderField: 'orderField',
+                    orderDirection: 'orderDirection'
                 }, //[可选]分页参数
-                alertMsg : {
-                    displayPosition : 'topcenter',
-                    displayMode : 'slide',
-                    alertTimeout : 3000
+                alertMsg: {
+                    displayPosition: 'topcenter',
+                    displayMode: 'slide',
+                    alertTimeout: 3000
                 }, //[可选]信息提示的显示位置，显隐方式，及[info/correct]方式时自动关闭延时(毫秒)
-                keys : {
-                    statusCode : 'statusCode',
-                    message : 'message'
+                keys: {
+                    statusCode: 'statusCode',
+                    message: 'message'
                 }, //[可选]
-                ui : {
-                    windowWidth : 0, //框架可视宽度，0=100%宽，> 600为则居中显示
-                    showSlidebar : true, //[可选]左侧导航栏锁定/隐藏
-                    clientPaging : true, //[可选]是否在客户端响应分页及排序参数
-                    overwriteHomeTab : false
+                ui: {
+                    windowWidth: 0, //框架可视宽度，0=100%宽，> 600为则居中显示
+                    showSlidebar: true, //[可选]左侧导航栏锁定/隐藏
+                    clientPaging: true, //[可选]是否在客户端响应分页及排序参数
+                    overwriteHomeTab: false
                     //[可选]当打开一个未定义id的navtab时，是否可以覆盖主navtab(我的主页)
                 },
-                debug : true, // [可选]调试模式 [true|false，默认false]
-                theme : 'sky' // 若有Cookie['bjui_theme'],优先选择Cookie['bjui_theme']。皮肤[五种皮肤:default, orange, purple, blue, red, green]
+                debug: true, // [可选]调试模式 [true|false，默认false]
+                theme: 'sky' // 若有Cookie['bjui_theme'],优先选择Cookie['bjui_theme']。皮肤[五种皮肤:default, orange, purple, blue, red, green]
             })
             // main - menu
             $('#bjui-accordionmenu').collapse().on('hidden.bs.collapse',
-                    function(e) {
-                        $(this).find('> .panel > .panel-heading').each(function() {
+                    function (e) {
+                        $(this).find('> .panel > .panel-heading').each(function () {
                             var $heading = $(this), $a = $heading.find('> h4 > a')
                             if ($a.hasClass('collapsed'))
                                 $heading.removeClass('active')
                         })
-                    }).on('shown.bs.collapse', function(e) {
-                $(this).find('> .panel > .panel-heading').each(function() {
+                    }).on('shown.bs.collapse', function (e) {
+                $(this).find('> .panel > .panel-heading').each(function () {
                     var $heading = $(this), $a = $heading.find('> h4 > a')
                     if (!$a.hasClass('collapsed'))
                         $heading.addClass('active')
@@ -135,13 +135,13 @@
             $(document).on(
                     'click',
                     'ul.menu-items > li > a',
-                    function(e) {
+                    function (e) {
                         var $a = $(this), $li = $a.parent(), options = $a.data(
                                 'options').toObj()
-                        var onClose = function() {
+                        var onClose = function () {
                             $li.removeClass('active')
                         }
-                        var onSwitch = function() {
+                        var onSwitch = function () {
                             $('#bjui-accordionmenu').find('ul.menu-items > li')
                                     .removeClass('switch')
                             $li.addClass('switch')
@@ -163,11 +163,12 @@
             //时钟
             var today = new Date(), time = today.getTime()
             $('#bjui-date').html(today.formatDate('yyyy/MM/dd'))
-            setInterval(function() {
+            setInterval(function () {
                 today = new Date(today.setSeconds(today.getSeconds() + 1))
                 $('#bjui-clock').html(today.formatDate('HH:mm:ss'))
             }, 1000)
         })
+
         //菜单-事件
         function MainMenuClick(event, treeId, treeNode) {
             event.preventDefault()
@@ -178,17 +179,17 @@
             }
             if (treeNode.target && treeNode.target == 'dialog')
                 $(event.target).dialog({
-                    id : treeNode.tabid,
-                    url : treeNode.url,
-                    title : treeNode.name
+                    id: treeNode.tabid,
+                    url: treeNode.url,
+                    title: treeNode.name
                 })
             else
                 $(event.target).navtab({
-                    id : treeNode.tabid,
-                    url : treeNode.url,
-                    title : treeNode.name,
-                    fresh : treeNode.fresh,
-                    external : treeNode.external
+                    id: treeNode.tabid,
+                    url: treeNode.url,
+                    title: treeNode.name,
+                    fresh: treeNode.fresh,
+                    external: treeNode.external
                 })
         }
     </script>
@@ -196,12 +197,17 @@
 </head>
 <body>
 <!--[if lte IE 7]>
-<div id="errorie"><div>您还在使用老掉牙的IE，正常使用系统前请升级您的浏览器到 IE8以上版本 <a target="_blank" href="http://windows.microsoft.com/zh-cn/internet-explorer/ie-8-worldwide-languages">点击升级</a>&nbsp;&nbsp;强烈建议您更改换浏览器：<a href="http://down.tech.sina.com.cn/content/40975.html" target="_blank">谷歌 Chrome</a></div></div>
+<div id="errorie">
+    <div>您还在使用老掉牙的IE，正常使用系统前请升级您的浏览器到 IE8以上版本 <a target="_blank"
+                                                 href="http://windows.microsoft.com/zh-cn/internet-explorer/ie-8-worldwide-languages">点击升级</a>&nbsp;&nbsp;强烈建议您更改换浏览器：<a
+            href="http://down.tech.sina.com.cn/content/40975.html" target="_blank">谷歌 Chrome</a></div>
+</div>
 <![endif]-->
 <div id="bjui-window">
     <header id="bjui-header">
         <div class="bjui-navbar-header">
-            <button type="button" class="bjui-navbar-toggle btn-default" data-toggle="collapse" data-target="#bjui-navbar-collapse">
+            <button type="button" class="bjui-navbar-toggle btn-default" data-toggle="collapse"
+                    data-target="#bjui-navbar-collapse">
                 <i class="fa fa-bars"></i>
             </button>
             <span class="bjui-navbar-logo" style="color:#fff;"><h4>储值卡管理平台</h4></span>
@@ -220,12 +226,14 @@
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li>
-                            <a href="${base}/admin/sysUserInfo/password" data-toggle="dialog" data-id="password" data-mask="true">
+                            <a href="${base}/admin/sysUserInfo/password" data-toggle="dialog" data-id="password"
+                               data-mask="true">
                                 &nbsp;<span class="glyphicon glyphicon-lock"></span> 修改密码&nbsp;
                             </a>
                         </li>
                         <li>
-                            <a href="${base}/admin/sysUserInfo/info" data-toggle="navtab" data-id="info" data-mask="true">
+                            <a href="${base}/admin/sysUserInfo/info" data-toggle="navtab" data-id="info"
+                               data-mask="true">
                                 &nbsp;<span class="glyphicon glyphicon-user"></span> 我的信息
                             </a>
                         </li>
@@ -299,7 +307,8 @@
                         <i class="fa fa-lock"></i>
                     </a>
                 </div>
-                <div class="panel-group panel-main" data-toggle="accordion" id="bjui-accordionmenu" data-heightbox="#bjui-sidebar" data-offsety="26"></div>
+                <div class="panel-group panel-main" data-toggle="accordion" id="bjui-accordionmenu"
+                     data-heightbox="#bjui-sidebar" data-offsety="26"></div>
             </div>
         </div>
         <div id="bjui-navtab" class="tabsPage">
@@ -336,7 +345,7 @@
         </div>
     </div>
     <footer id="bjui-footer">
-        Copyright &copy;  <span id="y"></span> <a href="https://issue.happypoints.cn" target="_blank">会计管理平台</a>
+        Copyright &copy; <span id="y"></span> <a href="https://issue.happypoints.cn" target="_blank">会计管理平台</a>
         <script language="javascript">document.getElementById("y").innerHTML = new Date().getFullYear();</script>
     </footer>
 </div>

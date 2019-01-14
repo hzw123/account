@@ -17,13 +17,14 @@
                     <option value="200"<#if page.pageSize == 200>selected="selected"</#if>>200</option>
                     <option value="500"<#if page.pageSize == 500>selected="selected"</#if>>500</option>
                     <option value="1000"<#if page.pageSize == 1000>selected="selected"</#if>>1000</option>
-				<#else>
+                <#else>
 				<option value="0">0</option>
-				</#if>
+                </#if>
             </select>
         </div>
         <span>&nbsp;条，共 ${(page.totalCount)!'0'}条，当前第${(page.pageCurrent)!'0'}页</span>
     </div>
-    <div class="pagination-box" data-toggle="pagination" data-total="${(page.totalCount)!}" data-page-size="${(page.pageSize)!}" data-page-current="${(page.pageCurrent)!}"></div>
+    <div class="pagination-box" data-toggle="pagination" data-total="${(page.totalCount)!}"
+         data-page-size="${(page.pageSize)!}" data-page-current="${(page.pageCurrent)!}"></div>
 </div>
 </#macro>

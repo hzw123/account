@@ -1,8 +1,8 @@
 package cn.mauth.account.shiro.service;
 
 import cn.mauth.account.SpringContextUtil;
-import cn.mauth.account.common.domain.SysLogLogin;
-import cn.mauth.account.common.domain.SysUserInfo;
+import cn.mauth.account.common.domain.sys.SysLogLogin;
+import cn.mauth.account.common.domain.sys.SysUserInfo;
 import cn.mauth.account.common.util.Constants;
 import cn.mauth.account.common.util.HttpUtils;
 import cn.mauth.account.common.util.SessionUtils;

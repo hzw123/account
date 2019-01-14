@@ -11,7 +11,7 @@
             <#if list??>
             <ul id="privilege" class="ztree" data-toggle="ztree" data-options="{expandAll:false,onClick:'ZtreeClick',maxAddLevel:5}" data-add-hover-dom="edit" data-remove-hover-dom="edit" data-on-remove="M_NodeRemove" >
                 <#list list as bean>
-                    <li data-id="${bean.id}" data-pid="${bean.parentId}" data-url="${bean.menuUrl}" data-targetname="${bean.targetName!}" data-menuicon="${bean.menuIcon!}" data-sort="${bean.sort!}" data-remark="${bean.remark!}">${bean.menuName}</li>
+                    <li data-id="${bean.id}" data-pid="${bean.parentId!}" data-url="${bean.menuUrl!}" data-targetname="${bean.targetName!}" data-menuicon="${bean.menuIcon!}" data-sort="${bean.sort!}" data-remark="${bean.remark!}">${bean.menuName!}</li>
                 </#list>
             </ul>
             </#if>

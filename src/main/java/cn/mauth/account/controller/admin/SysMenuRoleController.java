@@ -3,14 +3,12 @@ package cn.mauth.account.controller.admin;
 import java.util.List;
 
 import cn.mauth.account.common.base.BaseController;
-import cn.mauth.account.common.domain.SysMenu;
-import cn.mauth.account.common.domain.SysMenuRole;
-import cn.mauth.account.common.util.SessionUtils;
+import cn.mauth.account.common.domain.sys.SysMenu;
+import cn.mauth.account.common.domain.sys.SysMenuRole;
 import cn.mauth.account.server.SysMenuRoleService;
 import cn.mauth.account.server.SysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,8 +35,7 @@ public class SysMenuRoleController extends BaseController {
 	@RequestMapping(value = "/set", method = RequestMethod.GET)
 	public void setGet(@ModelAttribute SysMenuRole qo, ModelMap modelMap) {
 		List<SysMenuRole> list = service.findByRoleId(qo.getRoleId());
-		List<SysMenu> menus=sysMenuService.loadAll();
-		SessionUtils.setMenuAndRole(menus);
+		List<SysMenu> menus=sysMenuService.loadAllIsShow(list);
 		modelMap.put("bean", qo);
 		modelMap.put("ids", this.getIds(list));
 		modelMap.put("menus", menus);

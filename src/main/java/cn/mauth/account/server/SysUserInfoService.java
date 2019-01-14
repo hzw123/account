@@ -1,11 +1,10 @@
 package cn.mauth.account.server;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import cn.mauth.account.common.domain.SysService;
-import cn.mauth.account.common.domain.SysUserInfo;
+import cn.mauth.account.common.domain.sys.SysService;
+import cn.mauth.account.common.domain.sys.SysUserInfo;
 import cn.mauth.account.common.util.Constants;
 import cn.mauth.account.common.util.PageInfo;
 import cn.mauth.account.common.util.PageUtil;
@@ -22,6 +21,7 @@ import org.springframework.stereotype.Component;
 import com.xiaoleilu.hutool.crypto.DigestUtil;
 import com.xiaoleilu.hutool.crypto.SecureUtil;
 import com.xiaoleilu.hutool.util.ObjectUtil;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.Predicate;
 
@@ -124,6 +124,7 @@ public class SysUserInfoService {
 		return this.getById(userInfoId);
 	}
 
+	@Transactional
 	public int updatePassword(String oldPwd, String newPwd, String rePwd) {
 		Long userInfoId = Long.valueOf(SessionUtils.getAttribute(Constants.Session.USER_ID).toString());
 		SysUserInfo sysUserInfo = dao.findById(userInfoId).get();

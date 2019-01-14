@@ -3,7 +3,7 @@ package cn.mauth.account.controller.admin;
 import java.util.List;
 
 import cn.mauth.account.common.base.BaseController;
-import cn.mauth.account.common.domain.SysRoleUser;
+import cn.mauth.account.common.domain.sys.SysRoleUser;
 import cn.mauth.account.enums.StatusIdEnum;
 import cn.mauth.account.server.SysRoleService;
 import cn.mauth.account.server.SysRoleUserService;

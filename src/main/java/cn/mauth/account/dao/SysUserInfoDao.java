@@ -1,7 +1,7 @@
 package cn.mauth.account.dao;
 
 import cn.mauth.account.common.base.BaseDao;
-import cn.mauth.account.common.domain.SysUserInfo;
+import cn.mauth.account.common.domain.sys.SysUserInfo;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;

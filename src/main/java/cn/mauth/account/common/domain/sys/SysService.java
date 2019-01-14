@@ -1,4 +1,4 @@
-package cn.mauth.account.common.domain;
+package cn.mauth.account.common.domain.sys;
 
 import cn.mauth.account.common.base.BaseEntity;
 
@@ -14,6 +14,7 @@ public class SysService extends BaseEntity {
     private String clientSecret;
     @Column(nullable = false)
     private Long userInfoId;
+    private int srot;
 
     public Long getClientId() {
         return clientId;
@@ -37,5 +38,13 @@ public class SysService extends BaseEntity {
 
     public void setUserInfoId(Long userInfoId) {
         this.userInfoId = userInfoId;
+    }
+
+    public int getSrot() {
+        return srot;
+    }
+
+    public void setSrot(int srot) {
+        this.srot = srot;
     }
 }

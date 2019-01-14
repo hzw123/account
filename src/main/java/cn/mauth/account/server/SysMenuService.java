@@ -5,12 +5,13 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import cn.mauth.account.common.domain.SysMenu;
+import cn.mauth.account.common.domain.sys.SysMenu;
+import cn.mauth.account.common.domain.sys.SysMenuRole;
 import cn.mauth.account.common.util.Constants;
 import cn.mauth.account.common.util.SessionUtils;
 import cn.mauth.account.dao.SysMenuDao;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 
@@ -40,44 +41,45 @@ public class SysMenuService {
 	}
 
 	public SysMenu getById(Long id) {
-		SysMenu vo = new SysMenu();
-		SysMenu record = this.dao.findById(id).get();
-		BeanUtils.copyProperties(record, vo);
-		return vo;
+		return this.dao.findById(id).get();
 	}
 
 	public int updateById(SysMenu qo) {
-		SysMenu record = new SysMenu();
-		BeanUtils.copyProperties(qo, record);
-		this.dao.save(record);
+		this.dao.save(qo);
 		return 1;
 	}
 
 	public List<SysMenu> findAll() {
-		return this.dao.findAll();
+		List<SysMenu> list=dao.findAll(Sort.by(Sort.Direction.DESC,"sort","id"));
+		return list;
 	}
 
-
-	public List<SysMenu> loadAll() {
-
-		List<SysMenu> menuList = this.dao.findAll();
-
-		return this.toTreeNode(menuList);
+	public List<SysMenu> loadAllIsShow(List<SysMenuRole> list){
+		List<SysMenu> menuList=this.findAll();
+		menuList.forEach(r->{
+			list.forEach(t->{
+				if(r.getId()==t.getMenuId())
+					r.setIsShow(1);
+			});
+		});
+		return menuList;
 	}
 
 
 	public List<SysMenu> loadMenus(){
 		Long userInfoId = Long.valueOf(SessionUtils.getAttribute(Constants.Session.USER_ID).toString());
-		return this.toTreeNode(this.dao.loadmenus(userInfoId));
+		return this.toTreeNode(this.dao.loadmenus(userInfoId),true);
 	}
+
 
 	/**
 	 * 递归获取菜单(角色关联菜单)
 	 */
-	public List<SysMenu> toTreeNode(List<SysMenu> menus){
+	public List<SysMenu> toTreeNode(List<SysMenu> menus,boolean flag){
 		Map<Long,List<SysMenu>> map=new LinkedHashMap<>();
 		menus.forEach(r->{
-			r.setIsShow(1);
+			if(flag)
+				r.setIsShow(1);
 			List<SysMenu> list=null;
 			if(map.get(r.getParentId())==null){
 				list=new ArrayList<>();

@@ -1,4 +1,4 @@
-package cn.mauth.account.common.domain;
+package cn.mauth.account.common.domain.sys;
 
 import cn.mauth.account.common.base.BaseEntity;
 
@@ -12,9 +12,9 @@ public class SysMenu extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    private Integer sort;
+    private int sort;
 
-    private Integer statusId;
+    private int statusId;
 
     @Column(nullable = false)
     private Long parentId;
@@ -28,24 +28,24 @@ public class SysMenu extends BaseEntity {
 
     private String remark;
 
-    public Integer getSort() {
-        return sort;
-    }
-
     @Transient
     private List<SysMenu> list;
     @Transient
-    private Integer isShow;
+    private int isShow;
 
-    public void setSort(Integer sort) {
+    public int getSort() {
+        return sort;
+    }
+
+    public void setSort(int sort) {
         this.sort = sort;
     }
 
-    public Integer getStatusId() {
+    public int getStatusId() {
         return statusId;
     }
 
-    public void setStatusId(Integer statusId) {
+    public void setStatusId(int statusId) {
         this.statusId = statusId;
     }
 
@@ -62,7 +62,7 @@ public class SysMenu extends BaseEntity {
     }
 
     public void setMenuName(String menuName) {
-        this.menuName = menuName == null ? null : menuName.trim();
+        this.menuName = menuName;
     }
 
     public String getMenuUrl() {
@@ -70,7 +70,7 @@ public class SysMenu extends BaseEntity {
     }
 
     public void setMenuUrl(String menuUrl) {
-        this.menuUrl = menuUrl == null ? null : menuUrl.trim();
+        this.menuUrl = menuUrl;
     }
 
     public String getTargetName() {
@@ -78,7 +78,7 @@ public class SysMenu extends BaseEntity {
     }
 
     public void setTargetName(String targetName) {
-        this.targetName = targetName == null ? null : targetName.trim();
+        this.targetName = targetName;
     }
 
     public String getMenuIcon() {
@@ -86,7 +86,7 @@ public class SysMenu extends BaseEntity {
     }
 
     public void setMenuIcon(String menuIcon) {
-        this.menuIcon = menuIcon == null ? null : menuIcon.trim();
+        this.menuIcon = menuIcon;
     }
 
     public String getRemark() {
@@ -94,7 +94,7 @@ public class SysMenu extends BaseEntity {
     }
 
     public void setRemark(String remark) {
-        this.remark = remark == null ? null : remark.trim();
+        this.remark = remark;
     }
 
     public List<SysMenu> getList() {
@@ -105,11 +105,11 @@ public class SysMenu extends BaseEntity {
         this.list = list;
     }
 
-    public Integer getIsShow() {
+    public int getIsShow() {
         return isShow;
     }
 
-    public void setIsShow(Integer isShow) {
+    public void setIsShow(int isShow) {
         this.isShow = isShow;
     }
 }

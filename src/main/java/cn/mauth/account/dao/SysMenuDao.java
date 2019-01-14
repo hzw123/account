@@ -1,7 +1,7 @@
 package cn.mauth.account.dao;
 
 import cn.mauth.account.common.base.BaseDao;
-import cn.mauth.account.common.domain.SysMenu;
+import cn.mauth.account.common.domain.sys.SysMenu;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -29,4 +29,5 @@ public interface SysMenuDao extends BaseDao<SysMenu,Long>{
             "select menu_id from sys_menu_role " +
             "where role_id=:roleId)",nativeQuery = true)
     List<SysMenu> loadByRoleId(@Param("roleId") long roleId);
+
 }

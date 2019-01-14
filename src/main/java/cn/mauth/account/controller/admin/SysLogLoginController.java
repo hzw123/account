@@ -1,7 +1,7 @@
 package cn.mauth.account.controller.admin;
 
 import cn.mauth.account.common.base.BaseController;
-import cn.mauth.account.common.domain.SysLogLogin;
+import cn.mauth.account.common.domain.sys.SysLogLogin;
 import cn.mauth.account.server.SysLogLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

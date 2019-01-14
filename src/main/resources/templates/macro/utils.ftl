@@ -3,6 +3,7 @@
 <#macro head>
     <meta content="text/html;charset=UTF-8"/>
     <title>会计管理平台</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" href="${base}/plug/images/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -40,13 +41,13 @@
         <div class="container-fluid">
             <!-- 手机端的和切换分组，以更好的移动显示 -->
             <div class="navbar-header">
-                <button data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" class="navbar-toggle" type="button">
+                <button data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" class="navbar-toggle"
+                        type="button">
                     <span class="entypo-menu"></span>
                 </button>
                 <button class="navbar-toggle toggle-menu-mobile toggle-left" type="button">
                     <span class="entypo-list-add"></span>
                 </button>
-
 
                 <div id="logo-mobile" class="visible-xs">
                     <h1>会计管理<span>平台</span></h1>
@@ -54,41 +55,48 @@
 
             </div>
 
-
             <!-- 右侧顶部-->
             <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <!-- 消息通知栏 -->
                     <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:20px;" class="icon-conversation"></i><div class="noft-red">23</div></a>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:20px;"
+                                                                                      class="icon-conversation"></i>
+                            <div class="noft-red">23</div>
+                        </a>
                         <ul style="margin: 11px 0 0 9px;" role="menu" class="dropdown-menu dropdown-wrap">
                             <li>
                                 <a href="#">
-                                    <img alt="" class="img-msg img-circle" src="${base}/plug/portraits/thumb/men/1.jpg">Jhon Doe <b>Just Now</b>
+                                    <img alt="" class="img-msg img-circle" src="${base}/plug/portraits/thumb/men/1.jpg">Jhon
+                                    Doe <b>Just Now</b>
                                 </a>
                             </li>
                             <li class="divider"></li>
                             <li>
                                 <a href="#">
-                                    <img alt="" class="img-msg img-circle" src="${base}/plug/portraits/thumb/women/1.jpg">Jeniffer <b>3 Min Ago</b>
+                                    <img alt="" class="img-msg img-circle"
+                                         src="${base}/plug/portraits/thumb/women/1.jpg">Jeniffer <b>3 Min Ago</b>
                                 </a>
                             </li>
                             <li class="divider"></li>
                             <li>
                                 <a href="#">
-                                    <img alt="" class="img-msg img-circle" src="${base}/plug/portraits/thumb/men/2.jpg">Dave <b>2 Hours Ago</b>
+                                    <img alt="" class="img-msg img-circle" src="${base}/plug/portraits/thumb/men/2.jpg">Dave
+                                    <b>2 Hours Ago</b>
                                 </a>
                             </li>
                             <li class="divider"></li>
                             <li>
                                 <a href="#">
-                                    <img alt="" class="img-msg img-circle" src="${base}/plug/portraits/thumb/men/3.jpg"><i>Keanu</i>  <b>1 Day Ago</b>
+                                    <img alt="" class="img-msg img-circle" src="${base}/plug/portraits/thumb/men/3.jpg"><i>Keanu</i>
+                                    <b>1 Day Ago</b>
                                 </a>
                             </li>
                             <li class="divider"></li>
                             <li>
                                 <a href="#">
-                                    <img alt="" class="img-msg img-circle" src="${base}/plug/portraits/thumb/men/4.jpg"><i>Masashi</i>  <b>2 Mounth Ago</b>
+                                    <img alt="" class="img-msg img-circle" src="${base}/plug/portraits/thumb/men/4.jpg"><i>Masashi</i>
+                                    <b>2 Mounth Ago</b>
                                 </a>
                             </li>
                             <li class="divider"></li>
@@ -97,39 +105,45 @@
                             </li>
                         </ul>
                     </li>
-                    <!-- END消息通知栏 -->
+
                     <!-- 右边警告图标通知栏 -->
                     <li>
-
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:19px;" class="icon-warning tooltitle"></i><div class="noft-green">5</div></a>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:19px;" class="icon-warning tooltitle"></i>
+                            <div class="noft-green">5</div>
+                        </a>
                         <ul style="margin: 12px 0 0 0;" role="menu" class="dropdown-menu dropdown-wrap">
                             <li>
                                 <a href="#">
-                                    <span style="background:#DF2135" class="noft-icon maki-bus"></span><i>From Station</i>  <b>01B</b>
+                                    <span style="background:#DF2135" class="noft-icon maki-bus"></span><i>From
+                                    Station</i> <b>01B</b>
                                 </a>
                             </li>
                             <li class="divider"></li>
                             <li>
                                 <a href="#">
-                                    <span style="background:#AB6DB0" class="noft-icon maki-ferry"></span><i>Departing at</i>  <b>9:00 AM</b>
+                                    <span style="background:#AB6DB0" class="noft-icon maki-ferry"></span><i>Departing
+                                    at</i> <b>9:00 AM</b>
                                 </a>
                             </li>
                             <li class="divider"></li>
                             <li>
                                 <a href="#">
-                                    <span style="background:#FFA200" class="noft-icon maki-aboveground-rail"></span><i>Delay for</i>  <b>09 Min</b>
+                                    <span style="background:#FFA200" class="noft-icon maki-aboveground-rail"></span><i>Delay
+                                    for</i> <b>09 Min</b>
                                 </a>
                             </li>
                             <li class="divider"></li>
                             <li>
                                 <a href="#">
-                                    <span style="background:#86C440" class="noft-icon maki-airport"></span><i>Take of</i>  <b>08:30 AM</b>
+                                    <span style="background:#86C440" class="noft-icon maki-airport"></span><i>Take
+                                    of</i> <b>08:30 AM</b>
                                 </a>
                             </li>
                             <li class="divider"></li>
                             <li>
                                 <a href="#">
-                                    <span style="background:#0DB8DF" class="noft-icon maki-bicycle"></span><i>Take of</i>  <b>08:30 AM</b>
+                                    <span style="background:#0DB8DF" class="noft-icon maki-bicycle"></span><i>Take
+                                    of</i> <b>08:30 AM</b>
                                 </a>
                             </li>
                             <li class="divider"></li>
@@ -138,13 +152,14 @@
                             </li>
                         </ul>
                     </li>
-                    <!--END 右边警告图标通知栏 -->
 
                     <!-- 右边帮助图标通知栏  -->
-                    <li><a href="#"><i data-toggle="tooltip" data-placement="bottom" title="Help" style="font-size:20px;" class="icon-help tooltitle"></i></a>
+                    <li><a href="#"><i data-toggle="tooltip" data-placement="bottom" title="Help"
+                                       style="font-size:20px;" class="icon-help tooltitle"></i></a>
                     </li>
-                    <!-- END右边帮助图标通知栏  -->
+
                 </ul>
+
                 <!-- 右侧顶部 日期 时间  天气预报  div-->
                 <div id="nt-title-container" class="navbar-left running-text visible-lg">
                     <!-- 日期空间 -->
@@ -152,7 +167,7 @@
                         <li class="entypo-calendar" style="margin-right:5px"></li>
                         <li id="Date"></li>
                     </ul>
-                    <!--end 日期空间 -->
+
                     <!-- 时间DIV -->
                     <ul id="digital-clock" class="digital">
                         <li class="entypo-clock" style="margin-right:5px"></li>
@@ -163,7 +178,7 @@
                         <li class="sec"></li>
                         <li class="meridiem"></li>
                     </ul>
-                    <!--end 时间DIV -->
+
                     <!-- 天气预报div -->
                     <ul id="nt-title">
                         <li><i class="wi-day-lightning"></i>&#160;&#160;Berlin&#160;
@@ -195,24 +210,33 @@
                     <!-- 头像设置 -->
                     <li>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <img alt="" class="admin-pic img-circle" src="${base}/plug/portraits/thumb/men/10.jpg">Hi, Dave Mattew <b class="caret"></b>
+                            <img alt="" class="admin-pic img-circle" src="${base}/plug/portraits/thumb/men/10.jpg">Hi,
+                            Dave Mattew <b class="caret"></b>
                         </a>
                         <ul style="margin-top:14px;" role="menu" class="dropdown-setting dropdown-menu">
                             <li>
-                                <a href="#">
-                                    <span class="entypo-user"></span>&#160;&#160;My Profile</a>
+                                <a href="${base}/admin/sysUserInfo/info" data-toggle="navtab" data-id="info"
+                                   data-mask="true">
+                                    <span class="entypo-user"></span>&#160;&#160;我的资料</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    <span class="entypo-vcard"></span>&#160;&#160;帐户设置</a>
+                            </li>
+                            <li>
+                                <a href="${base}/admin/sysUserInfo/password"
+                                   data-toggle="dialog"
+                                   data-id="password"
+                                   data-mask="true">
+                                    <span class="entypo-vcard"></span>&#160;&#160;修改密码</a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <span class="entypo-vcard"></span>&#160;&#160;Account Setting</a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="entypo-lifebuoy"></span>&#160;&#160;Help</a>
+                                    <span class="entypo-lifebuoy"></span>&#160;&#160;帮助</a>
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="${base}/Loginout">
+                                <a href="${base}/logout">
                                     <span class="entypo-basket"></span>&#160;&#160; 退出</a>
                             </li>
                         </ul>
@@ -252,10 +276,8 @@
                 </ul>
                 <!-- end 右侧顶部 头像设置-->
             </div>
-            <!-- end 右侧顶部 -->
         </div>
     </nav>
-	<!-- /结束顶部导航条 -->
 </#macro>
 
 <#--左边菜单-->
@@ -277,7 +299,8 @@
         <div class="dark">
             <form action="#">
 	            <span>
-					<input type="text" name="search" value="" class="search rounded id_search" placeholder="菜单搜索" autofocus />
+					<input type="text" name="search" value="" class="search rounded id_search" placeholder="菜单搜索"
+                           autofocus/>
 	            </span>
             </form>
         </div>
@@ -289,126 +312,125 @@
         </div>
 
 
-
         <!-- 左侧菜单栏 -->
         <div class="skin-part">
             <div id="tree-wrap">
                 <div class="side-bar">
-                    <#--<ul class="topnav menu-left-nest">-->
-                        <#--<li>-->
-                            <#--<a href="#" style="border-left:0px solid!important;" class="title-menu-left">-->
+                <#--<ul class="topnav menu-left-nest">-->
+                <#--<li>-->
+                <#--<a href="#" style="border-left:0px solid!important;" class="title-menu-left">-->
 
-                                <#--<span class="widget-menu"></span>-->
-                                <#--<i data-toggle="tooltip" class="entypo-cog pull-right config-wrap"></i>-->
+                <#--<span class="widget-menu"></span>-->
+                <#--<i data-toggle="tooltip" class="entypo-cog pull-right config-wrap"></i>-->
 
-                            <#--</a>-->
-                        <#--</li>-->
+                <#--</a>-->
+                <#--</li>-->
 
-                        <#--<li>-->
-                            <#--<a class="tooltip-tip ajax-load" href="#" title="Blog App">-->
-                                <#--<i class="icon-document-edit"></i>-->
-                                <#--<span>Blog App</span>-->
+                <#--<li>-->
+                <#--<a class="tooltip-tip ajax-load" href="#" title="Blog App">-->
+                <#--<i class="icon-document-edit"></i>-->
+                <#--<span>Blog App</span>-->
 
-                            <#--</a>-->
-                            <#--<ul>-->
-                                <#--<li>-->
-                                    <#--<a class="tooltip-tip2 ajax-load" href="blog-list.html" title="Blog List"><i class="entypo-doc-text"></i><span>Blog List</span></a>-->
-                                <#--</li>-->
-                                <#--<li>-->
-                                    <#--<a class="tooltip-tip2 ajax-load" href="blog-detail.html" title="Blog Detail"><i class="entypo-newspaper"></i><span>Blog Details</span></a>-->
-                                <#--</li>-->
-                            <#--</ul>-->
-                        <#--</li>-->
-                        <#--<li>-->
-                            <#--<a class="tooltip-tip ajax-load" href="social.html" title="Social">-->
-                                <#--<i class="icon-feed"></i>-->
-                                <#--<span>Social</span>-->
+                <#--</a>-->
+                <#--<ul>-->
+                <#--<li>-->
+                <#--<a class="tooltip-tip2 ajax-load" href="blog-list.html" title="Blog List"><i class="entypo-doc-text"></i><span>Blog List</span></a>-->
+                <#--</li>-->
+                <#--<li>-->
+                <#--<a class="tooltip-tip2 ajax-load" href="blog-detail.html" title="Blog Detail"><i class="entypo-newspaper"></i><span>Blog Details</span></a>-->
+                <#--</li>-->
+                <#--</ul>-->
+                <#--</li>-->
+                <#--<li>-->
+                <#--<a class="tooltip-tip ajax-load" href="social.html" title="Social">-->
+                <#--<i class="icon-feed"></i>-->
+                <#--<span>Social</span>-->
 
-                            <#--</a>-->
-                        <#--</li>-->
-                        <#--<li>-->
-                            <#--<a class="tooltip-tip ajax-load" href="media.html" title="Media">-->
-                                <#--<i class="icon-camera"></i>-->
-                                <#--<span>Media</span>-->
+                <#--</a>-->
+                <#--</li>-->
+                <#--<li>-->
+                <#--<a class="tooltip-tip ajax-load" href="media.html" title="Media">-->
+                <#--<i class="icon-camera"></i>-->
+                <#--<span>Media</span>-->
 
-                            <#--</a>-->
-                        <#--</li>-->
-                    <#--</ul>-->
+                <#--</a>-->
+                <#--</li>-->
+                <#--</ul>-->
 
-                    <#--<ul class="topnav menu-left-nest">-->
-                        <#--<li>-->
-                            <#--<a href="#" style="border-left:0px solid!important;" class="title-menu-left">-->
+                <#--<ul class="topnav menu-left-nest">-->
+                <#--<li>-->
+                <#--<a href="#" style="border-left:0px solid!important;" class="title-menu-left">-->
 
-                                <#--<span class="design-kit"></span>-->
-                                <#--<i data-toggle="tooltip" class="entypo-cog pull-right config-wrap"></i>-->
+                <#--<span class="design-kit"></span>-->
+                <#--<i data-toggle="tooltip" class="entypo-cog pull-right config-wrap"></i>-->
 
-                            <#--</a>-->
-                        <#--</li>-->
+                <#--</a>-->
+                <#--</li>-->
 
-                        <#--<li>-->
-                            <#--<a class="tooltip-tip ajax-load" href="index-2.html" title="Dashboard">-->
-                                <#--<i class="icon-window"></i>-->
-                                <#--<span>Dashboard</span>-->
+                <#--<li>-->
+                <#--<a class="tooltip-tip ajax-load" href="index-2.html" title="Dashboard">-->
+                <#--<i class="icon-window"></i>-->
+                <#--<span>Dashboard</span>-->
 
-                            <#--</a>-->
-                        <#--</li>-->
-                        <#--<li>-->
-                            <#--<a class="tooltip-tip ajax-load" href="mail.html" title="Mail">-->
-                                <#--<i class="icon-mail"></i>-->
-                                <#--<span>mail</span>-->
-                                <#--<div class="noft-blue">289</div>-->
-                            <#--</a>-->
-                        <#--</li>-->
+                <#--</a>-->
+                <#--</li>-->
+                <#--<li>-->
+                <#--<a class="tooltip-tip ajax-load" href="mail.html" title="Mail">-->
+                <#--<i class="icon-mail"></i>-->
+                <#--<span>mail</span>-->
+                <#--<div class="noft-blue">289</div>-->
+                <#--</a>-->
+                <#--</li>-->
 
-                        <#--<li>-->
-                            <#--<a class="tooltip-tip ajax-load" href="icon.html" title="Icons">-->
-                                <#--<i class="icon-preview"></i>-->
-                                <#--<span>Icons</span>-->
-                                <#--<div class="noft-blue" style="display: inline-block; float: none;">New</div>-->
-                            <#--</a>-->
-                        <#--</li>-->
+                <#--<li>-->
+                <#--<a class="tooltip-tip ajax-load" href="icon.html" title="Icons">-->
+                <#--<i class="icon-preview"></i>-->
+                <#--<span>Icons</span>-->
+                <#--<div class="noft-blue" style="display: inline-block; float: none;">New</div>-->
+                <#--</a>-->
+                <#--</li>-->
 
-                        <#--<li>-->
-                            <#--<a class="tooltip-tip" href="#" title="Extra Pages">-->
-                                <#--<i class="icon-document-new"></i>-->
-                                <#--<span>Extra Page</span>-->
-                            <#--</a>-->
-                            <#--<ul>-->
-                                <#--<li>-->
-                                    <#--<a class="tooltip-tip2 ajax-load" href="blank_page.html" title="Blank Page"><i class="icon-media-record"></i><span>Blank Page</span></a>-->
-                                <#--</li>-->
-                                <#--<li>-->
-                                    <#--<a class="tooltip-tip2 ajax-load" href="profile.html" title="Profile Page"><i class="icon-user"></i><span>Profile Page</span></a>-->
-                                <#--</li>-->
-                                <#--<li>-->
-                                    <#--<a class="tooltip-tip2 ajax-load" href="invoice.html" title="Invoice"><i class="entypo-newspaper"></i><span>Invoice</span></a>-->
-                                <#--</li>-->
-                                <#--<li>-->
-                                    <#--<a class="tooltip-tip2 ajax-load" href="pricing_table.html" title="Pricing Table"><i class="fontawesome-money"></i><span>Pricing Table</span></a>-->
-                                <#--</li>-->
-                                <#--<li>-->
-                                    <#--<a class="tooltip-tip2 ajax-load" href="time-line.html" title="Time Line"><i class="entypo-clock"></i><span>Time Line</span></a>-->
-                                <#--</li>-->
-                                <#--<li>-->
-                                    <#--<a class="tooltip-tip2" href="404.html" title="404 Error Page"><i class="icon-thumbs-down"></i><span>404 Error Page</span></a>-->
-                                <#--</li>-->
-                                <#--<li>-->
-                                    <#--<a class="tooltip-tip2" href="500.html" title="500 Error Page"><i class="icon-thumbs-down"></i><span>500 Error Page</span></a>-->
-                                <#--</li>-->
-                                <#--<li>-->
-                                    <#--<a class="tooltip-tip2" href="lock-screen.html" title="Lock Screen"><i class="icon-lock"></i><span>Lock Screen</span></a>-->
-                                <#--</li>-->
-                            <#--</ul>-->
-                        <#--</li>-->
+                <#--<li>-->
+                <#--<a class="tooltip-tip" href="#" title="Extra Pages">-->
+                <#--<i class="icon-document-new"></i>-->
+                <#--<span>Extra Page</span>-->
+                <#--</a>-->
+                <#--<ul>-->
+                <#--<li>-->
+                <#--<a class="tooltip-tip2 ajax-load" href="blank_page.html" title="Blank Page"><i class="icon-media-record"></i><span>Blank Page</span></a>-->
+                <#--</li>-->
+                <#--<li>-->
+                <#--<a class="tooltip-tip2 ajax-load" href="profile.html" title="Profile Page"><i class="icon-user"></i><span>Profile Page</span></a>-->
+                <#--</li>-->
+                <#--<li>-->
+                <#--<a class="tooltip-tip2 ajax-load" href="invoice.html" title="Invoice"><i class="entypo-newspaper"></i><span>Invoice</span></a>-->
+                <#--</li>-->
+                <#--<li>-->
+                <#--<a class="tooltip-tip2 ajax-load" href="pricing_table.html" title="Pricing Table"><i class="fontawesome-money"></i><span>Pricing Table</span></a>-->
+                <#--</li>-->
+                <#--<li>-->
+                <#--<a class="tooltip-tip2 ajax-load" href="time-line.html" title="Time Line"><i class="entypo-clock"></i><span>Time Line</span></a>-->
+                <#--</li>-->
+                <#--<li>-->
+                <#--<a class="tooltip-tip2" href="404.html" title="404 Error Page"><i class="icon-thumbs-down"></i><span>404 Error Page</span></a>-->
+                <#--</li>-->
+                <#--<li>-->
+                <#--<a class="tooltip-tip2" href="500.html" title="500 Error Page"><i class="icon-thumbs-down"></i><span>500 Error Page</span></a>-->
+                <#--</li>-->
+                <#--<li>-->
+                <#--<a class="tooltip-tip2" href="lock-screen.html" title="Lock Screen"><i class="icon-lock"></i><span>Lock Screen</span></a>-->
+                <#--</li>-->
+                <#--</ul>-->
+                <#--</li>-->
 
-                        <#--<li>-->
-                            <#--<a class="tooltip-tip " href="login.html" title="login">-->
-                                <#--<i class="icon-download"></i>-->
-                                <#--<span>Login</span>-->
-                            <#--</a>-->
-                        <#--</li>-->
+                <#--<li>-->
+                <#--<a class="tooltip-tip " href="login.html" title="login">-->
+                <#--<i class="icon-download"></i>-->
+                <#--<span>Login</span>-->
+                <#--</a>-->
+                <#--</li>-->
 
-                    <#--</ul>-->
+                <#--</ul>-->
 
                     <!-- 系统设置 -->
                     <ul id="menu-showhide" class="topnav menu-left-nest">
@@ -457,43 +479,43 @@
                     </ul>
                     <!-- 结束系统设置 -->
 
-                    <#--<div class="side-dash">-->
-                        <#--<h3>-->
-                            <#--<span>设备</span>-->
-                        <#--</h3>-->
-                        <#--<ul class="side-dashh-list">-->
-                            <#--<li>Avg. Traffic-->
-                                <#--<span>25k<i style="color:#44BBC1;" class="fa fa-arrow-circle-up"></i>-->
-	                            <#--</span>-->
-                            <#--</li>-->
-                            <#--<li>Visitors-->
-                                <#--<span>80%<i style="color:#AB6DB0;" class="fa fa-arrow-circle-down"></i>-->
-	                            <#--</span>-->
-                            <#--</li>-->
-                            <#--<li>Convertion Rate-->
-                                <#--<span>13m<i style="color:#19A1F9;" class="fa fa-arrow-circle-up"></i>-->
-	                            <#--</span>-->
-                            <#--</li>-->
-                        <#--</ul>-->
-                        <#--<h3>-->
-                            <#--<span>交通</span>-->
-                        <#--</h3>-->
-                        <#--<ul class="side-bar-list">-->
-                            <#--<li>Avg. Traffic-->
-                                <#--<div class="linebar">5,20,30</div>-->
-                            <#--</li>-->
-                            <#--<li>Visitors-->
-                                <#--<div class="linebar2">9,7,8,9,5,9,6,8,7</div>-->
-                            <#--</li>-->
-                            <#--<li>Convertion Rate-->
-                                <#--<div class="linebar3">5,7,8,9,3,5,3,8,5</div>-->
-                            <#--</li>-->
-                        <#--</ul>-->
-                        <#--<h3>-->
-                            <#--<span>游客</span>-->
-                        <#--</h3>-->
-                        <#--<div id="g1" style="height:180px" class="gauge"></div>-->
-                    <#--</div>-->
+                <#--<div class="side-dash">-->
+                <#--<h3>-->
+                <#--<span>设备</span>-->
+                <#--</h3>-->
+                <#--<ul class="side-dashh-list">-->
+                <#--<li>Avg. Traffic-->
+                <#--<span>25k<i style="color:#44BBC1;" class="fa fa-arrow-circle-up"></i>-->
+                <#--</span>-->
+                <#--</li>-->
+                <#--<li>Visitors-->
+                <#--<span>80%<i style="color:#AB6DB0;" class="fa fa-arrow-circle-down"></i>-->
+                <#--</span>-->
+                <#--</li>-->
+                <#--<li>Convertion Rate-->
+                <#--<span>13m<i style="color:#19A1F9;" class="fa fa-arrow-circle-up"></i>-->
+                <#--</span>-->
+                <#--</li>-->
+                <#--</ul>-->
+                <#--<h3>-->
+                <#--<span>交通</span>-->
+                <#--</h3>-->
+                <#--<ul class="side-bar-list">-->
+                <#--<li>Avg. Traffic-->
+                <#--<div class="linebar">5,20,30</div>-->
+                <#--</li>-->
+                <#--<li>Visitors-->
+                <#--<div class="linebar2">9,7,8,9,5,9,6,8,7</div>-->
+                <#--</li>-->
+                <#--<li>Convertion Rate-->
+                <#--<div class="linebar3">5,7,8,9,3,5,3,8,5</div>-->
+                <#--</li>-->
+                <#--</ul>-->
+                <#--<h3>-->
+                <#--<span>游客</span>-->
+                <#--</h3>-->
+                <#--<div id="g1" style="height:180px" class="gauge"></div>-->
+                <#--</div>-->
                 </div>
             </div>
         </div>
@@ -549,89 +571,89 @@
             </div>
         </div>
 
-        <#--<div style="margin-top:0;" class="right-wrapper">-->
-            <#--<div class="row">-->
-                <#--<h3>-->
-                    <#--<span><i class="entypo-chat"></i>&nbsp;&nbsp;CHAT</span>-->
-                <#--</h3>-->
-                <#--<div class="col-lg-12">-->
-                    <#--<span class="label label-warning label-chat">Online</span>-->
-                    <#--<ul class="chat">-->
-                        <#--<li>-->
-                            <#--<a href="#">-->
-                                <#--<span>-->
-                                    <#--<img alt="" class="img-chat img-circle" src="${base}/plug/portraits/thumb/men/20.jpg">-->
-                                <#--</span><b>Dave Junior</b>-->
-                                <#--<br><i>Last seen : 08:00 PM</i>-->
-                            <#--</a>-->
-                        <#--</li>-->
-                        <#--<li>-->
-                            <#--<a href="#">-->
-                                <#--<span>-->
-                                    <#--<img alt="" class="img-chat img-circle" src="${base}/plug/portraits/thumb/men/21.jpg">-->
-                                <#--</span><b>Kenneth Lucas</b>-->
-                                <#--<br><i>Last seen : 07:21 PM</i>-->
-                            <#--</a>-->
-                        <#--</li>-->
-                        <#--<li>-->
-                            <#--<a href="#">-->
-                                <#--<span>-->
-                                    <#--<img alt="" class="img-chat img-circle" src="${base}/plug/portraits/thumb/men/22.jpg">-->
-                                <#--</span><b>Heidi Perez</b>-->
-                                <#--<br><i>Last seen : 05:43 PM</i>-->
-                            <#--</a>-->
-                        <#--</li>-->
+    <#--<div style="margin-top:0;" class="right-wrapper">-->
+    <#--<div class="row">-->
+    <#--<h3>-->
+    <#--<span><i class="entypo-chat"></i>&nbsp;&nbsp;CHAT</span>-->
+    <#--</h3>-->
+    <#--<div class="col-lg-12">-->
+    <#--<span class="label label-warning label-chat">Online</span>-->
+    <#--<ul class="chat">-->
+    <#--<li>-->
+    <#--<a href="#">-->
+    <#--<span>-->
+    <#--<img alt="" class="img-chat img-circle" src="${base}/plug/portraits/thumb/men/20.jpg">-->
+    <#--</span><b>Dave Junior</b>-->
+    <#--<br><i>Last seen : 08:00 PM</i>-->
+    <#--</a>-->
+    <#--</li>-->
+    <#--<li>-->
+    <#--<a href="#">-->
+    <#--<span>-->
+    <#--<img alt="" class="img-chat img-circle" src="${base}/plug/portraits/thumb/men/21.jpg">-->
+    <#--</span><b>Kenneth Lucas</b>-->
+    <#--<br><i>Last seen : 07:21 PM</i>-->
+    <#--</a>-->
+    <#--</li>-->
+    <#--<li>-->
+    <#--<a href="#">-->
+    <#--<span>-->
+    <#--<img alt="" class="img-chat img-circle" src="${base}/plug/portraits/thumb/men/22.jpg">-->
+    <#--</span><b>Heidi Perez</b>-->
+    <#--<br><i>Last seen : 05:43 PM</i>-->
+    <#--</a>-->
+    <#--</li>-->
 
 
-                    <#--</ul>-->
+    <#--</ul>-->
 
-                    <#--<span class="label label-chat">Offline</span>-->
-                    <#--<ul class="chat">-->
-                        <#--<li>-->
-                            <#--<a href="#">-->
-                                <#--<span>-->
-                                    <#--<img alt="" class="img-chat img-offline img-circle" src="${base}/plug/portraits/thumb/men/23.jpg">-->
-                                <#--</span><b>Dave Junior</b>-->
-                                <#--<br><i>Last seen : 08:00 PM</i>-->
-                            <#--</a>-->
-                        <#--</li>-->
-                        <#--<li>-->
-                            <#--<a href="#">-->
-                                <#--<span>-->
-                                    <#--<img alt="" class="img-chat img-offline img-circle" src="${base}/plug/portraits/thumb/women/24.jpg">-->
-                                <#--</span><b>Kenneth Lucas</b>-->
-                                <#--<br><i>Last seen : 07:21 PM</i>-->
-                            <#--</a>-->
-                        <#--</li>-->
-                        <#--<li>-->
-                            <#--<a href="#">-->
-                                <#--<span>-->
-                                    <#--<img alt="" class="img-chat img-offline img-circle" src="${base}/plug/portraits/thumb/men/25.jpg">-->
-                                <#--</span><b>Heidi Perez</b>-->
-                                <#--<br><i>Last seen : 05:43 PM</i>-->
-                            <#--</a>-->
-                        <#--</li>-->
-                        <#--<li>-->
-                            <#--<a href="#">-->
-                                <#--<span>-->
-                                    <#--<img alt="" class="img-chat img-offline img-circle" src="${base}/plug/portraits/thumb/women/25.jpg">-->
-                                <#--</span><b>Kenneth Lucas</b>-->
-                                <#--<br><i>Last seen : 07:21 PM</i>-->
-                            <#--</a>-->
-                        <#--</li>-->
-                        <#--<li>-->
-                            <#--<a href="#">-->
-                                <#--<span>-->
-                                    <#--<img alt="" class="img-chat img-offline img-circle" src="${base}/plug/portraits/thumb/men/26.jpg">-->
-                                <#--</span><b>Heidi Perez</b>-->
-                                <#--<br><i>Last seen : 05:43 PM</i>-->
-                            <#--</a>-->
-                        <#--</li>-->
+    <#--<span class="label label-chat">Offline</span>-->
+    <#--<ul class="chat">-->
+    <#--<li>-->
+    <#--<a href="#">-->
+    <#--<span>-->
+    <#--<img alt="" class="img-chat img-offline img-circle" src="${base}/plug/portraits/thumb/men/23.jpg">-->
+    <#--</span><b>Dave Junior</b>-->
+    <#--<br><i>Last seen : 08:00 PM</i>-->
+    <#--</a>-->
+    <#--</li>-->
+    <#--<li>-->
+    <#--<a href="#">-->
+    <#--<span>-->
+    <#--<img alt="" class="img-chat img-offline img-circle" src="${base}/plug/portraits/thumb/women/24.jpg">-->
+    <#--</span><b>Kenneth Lucas</b>-->
+    <#--<br><i>Last seen : 07:21 PM</i>-->
+    <#--</a>-->
+    <#--</li>-->
+    <#--<li>-->
+    <#--<a href="#">-->
+    <#--<span>-->
+    <#--<img alt="" class="img-chat img-offline img-circle" src="${base}/plug/portraits/thumb/men/25.jpg">-->
+    <#--</span><b>Heidi Perez</b>-->
+    <#--<br><i>Last seen : 05:43 PM</i>-->
+    <#--</a>-->
+    <#--</li>-->
+    <#--<li>-->
+    <#--<a href="#">-->
+    <#--<span>-->
+    <#--<img alt="" class="img-chat img-offline img-circle" src="${base}/plug/portraits/thumb/women/25.jpg">-->
+    <#--</span><b>Kenneth Lucas</b>-->
+    <#--<br><i>Last seen : 07:21 PM</i>-->
+    <#--</a>-->
+    <#--</li>-->
+    <#--<li>-->
+    <#--<a href="#">-->
+    <#--<span>-->
+    <#--<img alt="" class="img-chat img-offline img-circle" src="${base}/plug/portraits/thumb/men/26.jpg">-->
+    <#--</span><b>Heidi Perez</b>-->
+    <#--<br><i>Last seen : 05:43 PM</i>-->
+    <#--</a>-->
+    <#--</li>-->
 
-                    <#--</ul>-->
-                <#--</div>-->
-            <#--</div>-->
-        <#--</div>-->
+    <#--</ul>-->
+    <#--</div>-->
+    <#--</div>-->
+    <#--</div>-->
     </div>
 </#macro>
 
@@ -645,7 +667,10 @@
             <p id="clock"></p>
         </div>
         <div class="copyright">Make with Love
-            <span class="entypo-heart"></span>2019 <a href="http://themeforest.net/item/apricot-navigation-admin-dashboard-template/7664475?WT.ac=category_item&amp;WT.z_author=themesmile">(Themesmile) Purchase This Item</a> All Rights Reserved</div>
+            <span class="entypo-heart"></span>2019 <a
+                    href="http://themeforest.net/item/apricot-navigation-admin-dashboard-template/7664475?WT.ac=category_item&amp;WT.z_author=themesmile">(Themesmile)
+                Purchase This Item</a> All Rights Reserved
+        </div>
         <div class="devider-footer"></div>
     </div>
 </#macro>
@@ -665,7 +690,7 @@
 
             <!-- 欢迎div -->
             <#if (titleVo.isMsg!)=='yes'>
-                <div class="col-lg-7" >
+                <div class="col-lg-7">
                     <div class="devider-vertical visible-lg"></div>
                     <div class="tittle-middle-header">
 
@@ -690,7 +715,8 @@
                 <div class="devider-vertical visible-lg"></div>
                 <div class="btn-group btn-wigdet pull-right visible-lg">
                     <div class="btn">
-                        Widget</div>
+                        Widget
+                    </div>
                     <button data-toggle="dropdown" class="btn dropdown-toggle" type="button">
                         <span class="caret"></span>
                         <span class="sr-only">Toggle Dropdown</span>
@@ -728,7 +754,7 @@
         </li>
         <li><i class="fa fa-lg fa-angle-right"></i>
         </li>
-        <li><a href="#"  title="Sample page 1">${titleVo.title!}</a>
+        <li><a href="#" title="Sample page 1">${titleVo.title!}</a>
         </li>
         <li class="pull-right">
             <div class="input-group input-widget">
@@ -756,16 +782,19 @@
     <script type="text/javascript" src="${base}/plug/assets/js/validate/jquery.validate.extend.js"></script>
     <!-- vueJS -->
     <script type="text/javascript" src="${base}/plug/assets/js/vue/vue.min.js"></script>
-    <#--通用-->
+<#--通用-->
 
     <!-- bootstarp 表格 -->
-    <script type="text/javascript" src="${base}/plug/assets/js/bootstrap/js/bootstrap-table/bootstrap-table.min.js"></script>
-    <script type="text/javascript" src="${base}/plug/assets/js/bootstrap/js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript"
+            src="${base}/plug/assets/js/bootstrap/js/bootstrap-table/bootstrap-table.min.js"></script>
+    <script type="text/javascript"
+            src="${base}/plug/assets/js/bootstrap/js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
     <script type="text/javascript" src="${base}/plug/assets/js/bootstrap/js/base_list.js"></script>
 
 
     <!-- 导出 -->
-    <script type="text/javascript" src="${base}/plug/assets/js/bootstrap/extensions/export/bootstrap-table-export.js"></script>
+    <script type="text/javascript"
+            src="${base}/plug/assets/js/bootstrap/extensions/export/bootstrap-table-export.js"></script>
     <script type="text/javascript" src="${base}/plug/assets/js/bootstrap/extensions/export/tableExport.js"></script>
 
     <!-- 弹窗 -->

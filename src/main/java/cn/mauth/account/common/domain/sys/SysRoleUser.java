@@ -1,4 +1,4 @@
-package cn.mauth.account.common.domain;
+package cn.mauth.account.common.domain.sys;
 
 import cn.mauth.account.common.base.BaseEntity;
 
@@ -10,10 +10,8 @@ import javax.persistence.Transient;
 public class SysRoleUser extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    @Column(nullable = false)
-    private Integer sort;
-    @Column(nullable = false)
-    private Integer statusId;
+    private int sort;
+    private int statusId;
     @Column(nullable = false)
     private Long roleId;
     @Column(nullable = false)
@@ -21,22 +19,21 @@ public class SysRoleUser extends BaseEntity {
     @Transient
     private String roleName;
 
-    public Integer getSort() {
+    public int getSort() {
         return sort;
     }
 
-    public void setSort(Integer sort) {
+    public void setSort(int sort) {
         this.sort = sort;
     }
 
-    public Integer getStatusId() {
+    public int getStatusId() {
         return statusId;
     }
 
-    public void setStatusId(Integer statusId) {
+    public void setStatusId(int statusId) {
         this.statusId = statusId;
     }
-
 
     public Long getRoleId() {
         return roleId;
@@ -60,19 +57,5 @@ public class SysRoleUser extends BaseEntity {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
-    }
-
-    @Override
-    public String toString() {
-        return "SysRoleUser{" +
-                "sort=" + sort +
-                ", statusId=" + statusId +
-                ", roleId=" + roleId +
-                ", userInfoId=" + userInfoId +
-                ", roleName='" + roleName + '\'' +
-                ", id=" + id +
-                ", gmtCreate=" + gmtCreate +
-                ", gmtModified=" + gmtModified +
-                '}';
     }
 }

@@ -1,7 +1,7 @@
 package cn.mauth.account.common.util;
 
-import cn.mauth.account.common.domain.SysMenu;
-import cn.mauth.account.common.domain.SysUserInfo;
+import cn.mauth.account.common.domain.sys.SysMenu;
+import cn.mauth.account.common.domain.sys.SysUserInfo;
 import com.alibaba.fastjson.JSON;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
@@ -45,7 +45,7 @@ public final class SessionUtils {
         return Long.valueOf(SessionUtils.getAttribute(Constants.Session.USER_ID).toString());
     }
 
-    public static void setMenuAndRole(List<SysMenu> menuList){
+    public static void setMenu(List<SysMenu> menuList){
         SessionUtils.setAttribute(false,Constants.Session.MENU, JSON.toJSONString(menuList));
         Set<String> menuSet = new HashSet<>();
         SessionUtils.listMenu(menuSet, menuList);

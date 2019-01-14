@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" >
-<head th:replace="admin/common/html/head :: head(~{::title},~{::link},~{::style})">
-<!-- 这儿引用单独的css link -->
-
-
-
 <style type="text/css">
 /**
 *这里写单独的css样式
@@ -15,32 +8,12 @@
 }
 </style>
 
-</head>
 
-<body>
-
-<!-- 顶部通用-->
-<div th:replace="admin/common/html/topMenu :: topMenu(${isribbon})">
-</div>
-<!-- 结束顶部通用 -->
-   
-<!-- 左边菜单栏通用 -->
-<div th:replace="admin/common/html/leftMenu :: leftMenu">
-</div>
-<!-- 结束左边菜单栏通用 -->
-
-
-
-
-<!-- ###############################代码编写出############################### -->
 
 <!-- 右边内容 -->
 <div class="wrap-fluid">
     <div class="container-fluid paper-wrap bevel tlbr">
-        <!-- 内容 -->
-        <!--标题 通用-->
-        <div th:replace="admin/common/html/title :: title(${title},${parenttitle},${isMsg},${msgHTML})">
-        </div>
+
         <!-- 结束标题 通用-->
         <div class="content-wrap">
             <!-- 结束内容 -->
@@ -115,45 +88,10 @@
                 </div>
                 <!-- 空白页结束 -->
             </div>
-            <!-- 结束内容 -->
-            <!-- 页脚 通用-->
-            <div th:replace="admin/common/html/footer :: footer">
             </div>
-            <!-- 结束页脚通用 -->
         </div>
     </div>
 </div>
-<!-- 结束右边内容 -->
-<!-- ###############################代码编写出############################### -->
-
-
-
-
-
-
-
-<!-- 右侧隐藏滑块内容 -->
-<div th:include="${base}/admin/common/html/rightHide :: rightHide">
-    
-</div>
-   <!-- END 右侧隐藏滑块内容-->
-
-<!-- 通用js -->
-<div th:include="${base}/admin/common/html/js :: onload_js">
-   
-</div>
-<!-- bootstarp 表格 -->
-<script type="text/javascript" src="${base}/plug/assets/js/bootstrap/js/bootstrap-table/bootstrap-table.min.js"></script>
-<script type="text/javascript" src="${base}/plug/assets/js/bootstrap/js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
-<script type="text/javascript" src="${base}/plug/assets/js/bootstrap/js/base_list.js"></script>
-<!-- 导出 -->
-<script type="text/javascript" src="${base}/plug/assets/js/bootstrap/extensions/export/bootstrap-table-export.js"></script>
-<script type="text/javascript" src="${base}/plug/assets/js/bootstrap/extensions/export/tableExport.js"></script>
-
-<!-- 弹窗 -->
-
-
-
 
 
 <script type="text/javascript">
@@ -174,7 +112,7 @@ var exportUrl="/RoleController/export";
         sortName: "roleSort",
         modalName: "角色",
         search: false,
-	   dataColumns: [
+	    dataColumns: [
 			{
 			    checkbox: true
 			},                   
@@ -200,22 +138,8 @@ var exportUrl="/RoleController/export";
 			    }
 			}]
   };
-$(function(){
-	var oTab=$.table.oTableInit(options);
-	oTab.Init();
-})
+    $(function(){
+        var oTab=$.table.oTableInit(options);
+        oTab.Init();
+    })
 </script>
-
-
-<script type="text/javascript">
-
-
-
-</script>
-
-
-
-</body>
-
-
-</html>

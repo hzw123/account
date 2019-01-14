@@ -1,7 +1,7 @@
 package cn.mauth.account.controller.admin;
 
 import cn.mauth.account.common.base.BaseController;
-import cn.mauth.account.common.domain.SysUserInfo;
+import cn.mauth.account.common.domain.sys.SysUserInfo;
 import cn.mauth.account.enums.StatusIdEnum;
 import cn.mauth.account.enums.UserTypeEnum;
 import cn.mauth.account.server.SysUserInfoService;

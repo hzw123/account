@@ -1,6 +1,6 @@
 package cn.mauth.account.shiro.util;
 
-import cn.mauth.account.common.domain.SysUserInfo;
+import cn.mauth.account.common.domain.sys.SysUserInfo;
 import cn.mauth.account.common.util.SessionUtils;
 import cn.mauth.account.shiro.service.MyShiroRealm;
 import org.apache.shiro.SecurityUtils;
