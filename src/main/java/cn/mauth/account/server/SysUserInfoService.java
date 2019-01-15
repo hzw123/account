@@ -16,11 +16,11 @@ import cn.mauth.account.enums.UserTypeEnum;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Component;
 
 import com.xiaoleilu.hutool.crypto.DigestUtil;
 import com.xiaoleilu.hutool.crypto.SecureUtil;
 import com.xiaoleilu.hutool.util.ObjectUtil;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.Predicate;
@@ -31,7 +31,7 @@ import javax.persistence.criteria.Predicate;
  * @author mauth
  * @since 2017-12-26
  */
-@Component
+@Service
 public class SysUserInfoService {
 
 	@Autowired

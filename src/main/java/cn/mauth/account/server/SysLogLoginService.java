@@ -8,7 +8,7 @@ import cn.mauth.account.dao.SysLogLoginDao;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * 用户登陆日志 
  */
-@Component
+@Service
 public class SysLogLoginService {
 
 	@Autowired

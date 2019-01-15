@@ -3,7 +3,7 @@ package cn.mauth.account.server;
 import cn.mauth.account.common.domain.sys.SysRoleUser;
 import cn.mauth.account.dao.SysRoleUserDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
@@ -15,7 +15,7 @@ import java.util.List;
  * @author mauth
  * @since 2017-12-26
  */
-@Component
+@Service
 public class SysRoleUserService {
 
 	@Autowired

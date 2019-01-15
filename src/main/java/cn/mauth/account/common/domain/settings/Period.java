@@ -15,10 +15,12 @@ import java.util.Date;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 public class Period implements Serializable{
+
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private int asId;//账套ID
     private int pid;//期间ID
     private boolean IsActive;//是否当前期间
@@ -33,11 +35,11 @@ public class Period implements Serializable{
     private PeriodStatus Status=PeriodStatus.NO;//状态
     private int fsStatus;//期间结束时间
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -30,4 +30,7 @@ public interface SysMenuDao extends BaseDao<SysMenu,Long>{
             "where role_id=:roleId)",nativeQuery = true)
     List<SysMenu> loadByRoleId(@Param("roleId") long roleId);
 
+    @Query(value = "select parent_id from sys_menu where id=:id",nativeQuery = true)
+    Long findParentIdById(@Param("id")long id);
+
 }

@@ -1,12 +1,9 @@
 package cn.mauth.account.dao;
 
 import cn.mauth.account.common.base.BaseDao;
-import cn.mauth.account.common.domain.settings.Period;
+import cn.mauth.account.common.domain.settings.VoucherLine;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface PeriodDao extends BaseDao<Period,Integer>{
-
+public interface VoucherLineDao extends BaseDao<VoucherLine,Integer>{
 }

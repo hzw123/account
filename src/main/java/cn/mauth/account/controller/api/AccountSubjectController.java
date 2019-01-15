@@ -1,6 +1,6 @@
 package cn.mauth.account.controller.api;
 
-import cn.mauth.account.common.bean.Body;
+import cn.mauth.account.common.bean.Parameters;
 import cn.mauth.account.common.bean.SubjectVo;
 import cn.mauth.account.common.domain.settings.AccountSubject;
 import cn.mauth.account.dao.AccountSubjectDao;
@@ -23,40 +23,40 @@ public class AccountSubjectController {
     private AccountSubjectDao dao;
 
     @GetMapping
-    @ApiOperation(value = "获取账套下所有科目",notes = "获取账套下所有科目")
-    public List<AccountSubject> findByAisId(Body body){
-        String token=body.getAccessToken();
+    @ApiOperation(value = "获取账套下所有科目")
+    public List<AccountSubject> findByAisId(Parameters param){
+        String token=param.getAccessToken();
         if(StringUtils.isEmpty(token))
             return null;
 
         return this.dao.findAll((root, query, cb) -> {
             List<Predicate> list=new ArrayList<>();
-            if(body.getAsId()>0)
-                list.add(cb.equal(root.get("asId"),body.getAsId()));
-            if(body.getAsubId()>0)
-                list.add(cb.equal(root.get("asubId"),body.getAsId()));
+            if(param.getAsId()>0)
+                list.add(cb.equal(root.get("asId"),param.getAsId()));
+            if(param.getAsubId()>0)
+                list.add(cb.equal(root.get("asubId"),param.getAsId()));
 
             return cb.and(list.toArray(new Predicate[list.size()]));
         });
     }
 
     @PostMapping
-    @ApiOperation(value = "批量添加科目",notes = "批量添加科目")
-    public void batchSave(List<SubjectVo> list,String accessToken){
+    @ApiOperation(value = "批量添加科目")
+    public void batchSave(Parameters param,List<SubjectVo> list){
 
     }
 
     @PutMapping
-    @ApiOperation(value = "批量修改科目",notes = "批量修改科目")
-    public void batchUpdate(List<SubjectVo> list,String accessToken){
+    @ApiOperation(value = "批量修改科目")
+    public void batchUpdate(Parameters param,List<SubjectVo> list){
 
     }
 
-    @PutMapping
-    @ApiOperation(value = "批量修改科目",notes = "批量修改科目")
-    public void delete(Body body){
-        int asId=body.getAsId();
-        int subId=body.getAsubId();
+    @DeleteMapping
+    @ApiOperation(value = "批量修改科目")
+    public void delete(Parameters param){
+        int asId=param.getAsId();
+        int subId=param.getAsubId();
         if(asId>0&&subId>0){
             this.dao.deleteByAsIdAndAsubId(asId,subId);
         }else if(asId>0){

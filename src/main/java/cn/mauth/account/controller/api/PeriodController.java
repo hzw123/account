@@ -1,9 +1,10 @@
 package cn.mauth.account.controller.api;
 
-import cn.mauth.account.common.bean.Body;
+import cn.mauth.account.common.bean.Parameters;
 import cn.mauth.account.common.domain.settings.Period;
 import cn.mauth.account.dao.PeriodDao;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,19 +24,20 @@ public class PeriodController {
     private PeriodDao dao;
 
     @GetMapping
-    public List<Period> load(Body body){
-        String token=body.getAccessToken();
+    @ApiOperation(value = "获取一个账套的所有期间信息",notes = "获取一个账套的所有期间信息")
+    public List<Period> list(Parameters param){
+        String token=param.getAccessToken();
         if(StringUtils.isEmpty(token))
             return null;
 
         return this.dao.findAll((root, query, cb) -> {
             List<Predicate> list=new ArrayList<>();
-            if(body.getAsId()>0)
-                list.add(cb.equal(root.get("asId"),body.getAsId()));
-            if(StringUtils.isNotEmpty(body.getStart()));
-                list.add(cb.equal(root.get(""),body.getStart()));
-             if(StringUtils.isNotEmpty(body.getEnd()));
-                list.add(cb.equal(root.get(""),body.getEnd()));
+            if(param.getAsId()>0)
+                list.add(cb.equal(root.get("asId"),param.getAsId()));
+            if(StringUtils.isNotEmpty(param.getStart()));
+                list.add(cb.equal(root.get(""),param.getStart()));
+             if(StringUtils.isNotEmpty(param.getEnd()));
+                list.add(cb.equal(root.get(""),param.getEnd()));
             return cb.and(list.toArray(new Predicate[list.size()]));
         });
     }

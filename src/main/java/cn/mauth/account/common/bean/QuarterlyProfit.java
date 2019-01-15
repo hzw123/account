@@ -1,25 +1,21 @@
-package cn.mauth.account.common.domain.settings;
+package cn.mauth.account.common.bean;
 
 import cn.mauth.account.enums.EntryType;
 import cn.mauth.account.enums.LineType;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * 现金流量表
+ * 获取利润表季报
  */
-@Entity
-public class CashFlowSheet implements Serializable{
-
+public class QuarterlyProfit implements Serializable{
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String amount1;//只在资产负债表使用，用于存储重分类前期末余额
-    private String initalAmount1;//只在资产负债表使用，用于存储重分类前年初余额
-    private String createdManually;//只在调整表中使用，存储是否手动调整改行值
+    private double qutar1;//第一季度合计，只在获取季度报表中is_fullyear为真时才有值
+    private double qutar2;//第二季度合计
+    private double qutar3;//第三季度合计
+    private double qutar4;//第四季度合计
+    private double Item;//
     private int pId;//期间ID
     private int asId;//账套id
     private int statementId;//报表类型值
@@ -35,39 +31,45 @@ public class CashFlowSheet implements Serializable{
     private double initalAmount;//资产负债表中表示期初余额 其他表示本年累计
     private int priority;//表内总计项目计算的优先级，越大计算越早
     private int coumType;//
-    private double Item;//
 
-
-    public Integer getId() {
-        return id;
+    public double getQutar1() {
+        return qutar1;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setQutar1(double qutar1) {
+        this.qutar1 = qutar1;
     }
 
-    public String getAmount1() {
-        return amount1;
+    public double getQutar2() {
+        return qutar2;
     }
 
-    public void setAmount1(String amount1) {
-        this.amount1 = amount1;
+    public void setQutar2(double qutar2) {
+        this.qutar2 = qutar2;
     }
 
-    public String getInitalAmount1() {
-        return initalAmount1;
+    public double getQutar3() {
+        return qutar3;
     }
 
-    public void setInitalAmount1(String initalAmount1) {
-        this.initalAmount1 = initalAmount1;
+    public void setQutar3(double qutar3) {
+        this.qutar3 = qutar3;
     }
 
-    public String getCreatedManually() {
-        return createdManually;
+    public double getQutar4() {
+        return qutar4;
     }
 
-    public void setCreatedManually(String createdManually) {
-        this.createdManually = createdManually;
+    public void setQutar4(double qutar4) {
+        this.qutar4 = qutar4;
+    }
+
+    public double getItem() {
+        return Item;
+    }
+
+    public void setItem(double item) {
+        Item = item;
     }
 
     public int getpId() {
@@ -188,13 +190,5 @@ public class CashFlowSheet implements Serializable{
 
     public void setCoumType(int coumType) {
         this.coumType = coumType;
-    }
-
-    public double getItem() {
-        return Item;
-    }
-
-    public void setItem(double item) {
-        Item = item;
     }
 }

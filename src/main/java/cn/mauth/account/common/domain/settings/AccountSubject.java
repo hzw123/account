@@ -11,10 +11,12 @@ import java.io.Serializable;
  */
 @Entity
 public class AccountSubject implements Serializable {
+
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     /** 账套ID*/
     private int asId;
     /** 科目编码*/
@@ -61,11 +63,11 @@ public class AccountSubject implements Serializable {
     /** 不含父级科目名称*/
     private String simpleAsubName;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

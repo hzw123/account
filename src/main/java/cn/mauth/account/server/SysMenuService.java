@@ -10,15 +10,16 @@ import cn.mauth.account.common.domain.sys.SysMenuRole;
 import cn.mauth.account.common.util.Constants;
 import cn.mauth.account.common.util.SessionUtils;
 import cn.mauth.account.dao.SysMenuDao;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 
 /**
  * 菜单信息
  */
-@Component
+@Service
 public class SysMenuService {
 
 	@Autowired
@@ -45,6 +46,11 @@ public class SysMenuService {
 	}
 
 	public int updateById(SysMenu qo) {
+		if(qo.getParentId()==null){
+			Long parent=this.dao.findParentIdById(qo.getId());
+			qo.setParentId(parent);
+		}
+
 		this.dao.save(qo);
 		return 1;
 	}
@@ -68,18 +74,17 @@ public class SysMenuService {
 
 	public List<SysMenu> loadMenus(){
 		Long userInfoId = Long.valueOf(SessionUtils.getAttribute(Constants.Session.USER_ID).toString());
-		return this.toTreeNode(this.dao.loadmenus(userInfoId),true);
+		return this.toTreeNode(this.dao.loadmenus(userInfoId));
 	}
 
 
 	/**
 	 * 递归获取菜单(角色关联菜单)
 	 */
-	public List<SysMenu> toTreeNode(List<SysMenu> menus,boolean flag){
+	public List<SysMenu> toTreeNode(List<SysMenu> menus){
 		Map<Long,List<SysMenu>> map=new LinkedHashMap<>();
 		menus.forEach(r->{
-			if(flag)
-				r.setIsShow(1);
+			r.setIsShow(1);
 			List<SysMenu> list=null;
 			if(map.get(r.getParentId())==null){
 				list=new ArrayList<>();
