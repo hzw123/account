@@ -1,10 +1,9 @@
 package cn.mauth.account.common.bean;
 
-import cn.mauth.account.common.domain.settings.VoucherLine;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 凭证信息
@@ -12,22 +11,23 @@ import java.util.List;
 public class VoucherBody implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private int vid;//所编辑凭证id
+    private Long id;
     private String period;//期间信息（201608）
-    private String vgName;//凭证字（记、收、付、转）
-    private String vNum;//凭证号（1、2、3、4）
-    private Date vDate;//凭证日期
+    private String vchGroup;//凭证字（记、收、付、转）
+    private int vchNum;//凭证号（1、2、3、4）
+    private Date vchDate;//凭证日期
     private String attachements;//附件个数
     private String note;//凭证备注
-    private List<VoucherLine> lines;//凭证行
+    private List<Entries> entries;//凭证行
     private String currentPeriod;//所编辑凭证期间信息（201608）
+    private Set<Long> idSet;
 
-    public int getVid() {
-        return vid;
+    public Long getId() {
+        return id;
     }
 
-    public void setVid(int vid) {
-        this.vid = vid;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getPeriod() {
@@ -38,28 +38,28 @@ public class VoucherBody implements Serializable {
         this.period = period;
     }
 
-    public String getVgName() {
-        return vgName;
+    public String getVchGroup() {
+        return vchGroup;
     }
 
-    public void setVgName(String vgName) {
-        this.vgName = vgName;
+    public void setVchGroup(String vchGroup) {
+        this.vchGroup = vchGroup;
     }
 
-    public String getvNum() {
-        return vNum;
+    public int getVchNum() {
+        return vchNum;
     }
 
-    public void setvNum(String vNum) {
-        this.vNum = vNum;
+    public void setVchNum(int vchNum) {
+        this.vchNum = vchNum;
     }
 
-    public Date getvDate() {
-        return vDate;
+    public Date getVchDate() {
+        return vchDate;
     }
 
-    public void setvDate(Date vDate) {
-        this.vDate = vDate;
+    public void setVchDate(Date vchDate) {
+        this.vchDate = vchDate;
     }
 
     public String getAttachements() {
@@ -78,12 +78,12 @@ public class VoucherBody implements Serializable {
         this.note = note;
     }
 
-    public List<VoucherLine> getLines() {
-        return lines;
+    public List<Entries> getEntries() {
+        return entries;
     }
 
-    public void setLines(List<VoucherLine> lines) {
-        this.lines = lines;
+    public void setEntries(List<Entries> entries) {
+        this.entries = entries;
     }
 
     public String getCurrentPeriod() {
@@ -92,5 +92,30 @@ public class VoucherBody implements Serializable {
 
     public void setCurrentPeriod(String currentPeriod) {
         this.currentPeriod = currentPeriod;
+    }
+
+    public Set<Long> getIdSet() {
+        return idSet;
+    }
+
+    public void setIdSet(Set<Long> idSet) {
+        this.idSet = idSet;
+    }
+
+    public String findIds(){
+        String ids=null;
+        if(this.isIds()){
+            StringBuffer sb=new StringBuffer();
+            idSet.forEach(id->{
+                sb.append(",");
+                sb.append(id);
+            });
+            ids=sb.toString().substring(1);
+        }
+        return ids;
+    }
+
+    public boolean isIds(){
+        return (idSet!=null&&idSet.size()>0);
     }
 }

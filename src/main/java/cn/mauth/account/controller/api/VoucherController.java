@@ -2,13 +2,13 @@ package cn.mauth.account.controller.api;
 
 import cn.mauth.account.common.bean.Parameters;
 import cn.mauth.account.common.bean.VoucherBody;
-import cn.mauth.account.common.bean.VoucherResult;
 import cn.mauth.account.common.domain.settings.Voucher;
-import cn.mauth.account.dao.VoucherDao;
-import cn.mauth.account.dao.VoucherLineDao;
+import cn.mauth.account.server.VoucherService;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,73 +18,62 @@ import java.util.List;
 public class VoucherController {
 
     @Autowired
-    private VoucherDao voucherDao;
-    @Autowired
-    private VoucherLineDao voucherLineDao;
+    private VoucherService service;
 
     @PostMapping("/voucher")
     @ApiOperation(value = "提交凭证")
-    public List<Voucher> save(Parameters params, VoucherBody body){
-        String token=params.getAccessToken();
-        int asId=params.getAsId();
-        if(StringUtils.isEmpty(token)||asId>0)
+    public List<Voucher> save(String accessToken, Long accountId, VoucherBody body, Pageable pageable){
+
+        if(StringUtils.isEmpty(accessToken))
             return null;
 
+        this.service.saveVoucher(body);
         return null;
     }
 
     @DeleteMapping("/voucher")
-    public String delete(Parameters params, VoucherBody body){
-        String token=params.getAccessToken();
-        int asId=params.getAsId();
-        if(StringUtils.isEmpty(token))
+    public Object delete(String accessToken,Long accountId, VoucherBody body){
+        if(StringUtils.isEmpty(accessToken))
             return null;
-
-
-        String period=body.getPeriod();
-        String vg=body.getVgName();
-        String vNum=body.getvNum();
-
+        this.service.deleteVoucher(body);
         return null;
     }
 
 
     @PutMapping("/voucher")
-    public List<VoucherResult> update(Parameters params, VoucherBody body){
-        String token=params.getAccessToken();
-        int asId=params.getAsId();
-        if(StringUtils.isEmpty(token))
+    public Object update(String accessToken,Long accountId,VoucherBody body){
+        if(StringUtils.isEmpty(accessToken))
             return null;
 
-        return null;
+        return this.service.updateVoucher();
     }
 
     @GetMapping("/voucher")
     @ApiOperation(value = "查询凭证")
-    public List<Voucher> get(Parameters params){
+    public Page<Voucher> page(Parameters params,Pageable pageable){
 
         String token=params.getAccessToken();
-        int asId=params.getAsId();
+        Long accountId=params.getAccountId();
         String start=params.getStart();
         String end=params.getEnd();
-        int startNum=params.getvNumStart();
-        int endNum=params.getvNumEnd();
-        int vid=params.getVid();
+        int startNum=params.getStartVNum();
+        int endNum=params.getEndVNum();
+        Long vid=params.getVid();
+
         if(vid>0){
             return null;//返回凭证数量
         }
 
-        return null;
+        return this.service.page(pageable);
     }
 
     @DeleteMapping("/voucherExtra")
     @ApiOperation(value = "删除凭证",notes = "删除凭证")
-    public String voucherExtra(Parameters param,VoucherBody body){
-        String token=param.getAccessToken();
-        int asId=param.getAsId();
+    public String voucherExtra(String accessToken,Long accountId,VoucherBody body){
 
-        int vId=body.getVid();
-        String period=body.getPeriod();
+
+
+        this.service.deleteVoucher(body);
 
         return null;
     }

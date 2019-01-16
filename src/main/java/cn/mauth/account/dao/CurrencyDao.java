@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CurrencyDao extends BaseDao<Currency,Integer>{
+public interface CurrencyDao extends BaseDao<Currency,Long>{
 
-    List<Currency> findByAsId(int asId);
 }

@@ -5,5 +5,5 @@ import cn.mauth.account.common.domain.settings.AccountSet;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AccountSetDao extends BaseDao<AccountSet,Integer>{
+public interface AccountSetDao extends BaseDao<AccountSet,Long>{
 }

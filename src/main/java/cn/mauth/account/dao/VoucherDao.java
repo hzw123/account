@@ -5,5 +5,6 @@ import cn.mauth.account.common.domain.settings.Voucher;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface VoucherDao extends BaseDao<Voucher,Integer>{
+public interface VoucherDao extends BaseDao<Voucher,Long>{
+
 }

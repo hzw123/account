@@ -5,5 +5,5 @@ import cn.mauth.account.common.domain.settings.AssistAccounting;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AssistAccountingDao extends BaseDao<AssistAccounting,Integer>{
+public interface AssistAccountingDao extends BaseDao<AssistAccounting,Long>{
 }

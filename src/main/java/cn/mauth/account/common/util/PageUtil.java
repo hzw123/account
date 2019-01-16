@@ -17,6 +17,10 @@ public final class PageUtil {
                 page.getSize(),page.getContent());
     }
 
+    public static Pageable getPageable(Pageable pageable){
+        return getPageable(pageable.getPageNumber(),pageable.getPageSize(),pageable.getSort());
+    }
+
     public static Pageable getPageable(int page,int size,Sort sort){
 
         page=page-1;

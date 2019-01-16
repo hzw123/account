@@ -16,12 +16,12 @@ public class CashFlowSheet implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String amount1;//只在资产负债表使用，用于存储重分类前期末余额
     private String initalAmount1;//只在资产负债表使用，用于存储重分类前年初余额
     private String createdManually;//只在调整表中使用，存储是否手动调整改行值
-    private int pId;//期间ID
-    private int asId;//账套id
+    private Long pId;//期间ID
+    private Long account;//账套id
     private int statementId;//报表类型值
     private int lineId;//报表行 内部编码
     private String lineName;//报表行各项财务统计指标名称
@@ -29,7 +29,7 @@ public class CashFlowSheet implements Serializable{
     private EntryType entryType;//内部类别，只在资产负债表中用于识别资产列于负载权益列
     private int lineNumber;//显示用行号
     private String note;//计算公式文本
-    private int parentId;//行与行父子关系键
+    private Long parentId;//行与行父子关系键
     private int expand;//是否展开合并与ParentID共同用于控制显示
     private double amount;//资产复制表中表示期末余额 其他表示本期数据
     private double initalAmount;//资产负债表中表示期初余额 其他表示本年累计
@@ -37,12 +37,11 @@ public class CashFlowSheet implements Serializable{
     private int coumType;//
     private double Item;//
 
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -70,20 +69,20 @@ public class CashFlowSheet implements Serializable{
         this.createdManually = createdManually;
     }
 
-    public int getpId() {
+    public Long getpId() {
         return pId;
     }
 
-    public void setpId(int pId) {
+    public void setpId(Long pId) {
         this.pId = pId;
     }
 
-    public int getAsId() {
-        return asId;
+    public Long getAccount() {
+        return account;
     }
 
-    public void setAsId(int asId) {
-        this.asId = asId;
+    public void setAccount(Long account) {
+        this.account = account;
     }
 
     public int getStatementId() {
@@ -142,11 +141,11 @@ public class CashFlowSheet implements Serializable{
         this.note = note;
     }
 
-    public int getParentId() {
+    public Long getParentId() {
         return parentId;
     }
 
-    public void setParentId(int parentId) {
+    public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
 

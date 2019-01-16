@@ -1,43 +1,24 @@
 package cn.mauth.account.common.domain.settings;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.io.Serializable;
+import cn.mauth.account.common.base.BaseEntity;
+
+import javax.persistence.*;
 
 /**
  * 货币
  */
 @Entity
-public class Currency implements Serializable{
+public class Currency extends BaseEntity{
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;//外币ID编码
-    private int asId;//
-    private String code;//外币代码
-    private String name;//外币名称
+    @Column(unique = true,nullable = false)
+    private String code;//货币代码
+    @Column(unique = true,nullable = false)
+    private String name;//货币名称
     private double rate;//初始汇率
     private int status;//启用状态
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public int getAsId() {
-        return asId;
-    }
-
-    public void setAsId(int asId) {
-        this.asId = asId;
-    }
+    private int isStandard;//是否本位币;
 
     public String getCode() {
         return code;
@@ -69,5 +50,13 @@ public class Currency implements Serializable{
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public int getIsStandard() {
+        return isStandard;
+    }
+
+    public void setIsStandard(int isStandard) {
+        this.isStandard = isStandard;
     }
 }

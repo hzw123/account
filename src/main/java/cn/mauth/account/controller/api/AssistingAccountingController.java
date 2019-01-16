@@ -20,7 +20,7 @@ public class AssistingAccountingController {
     @ApiOperation(value = "根据辅助核算名称获取辅助核算信息")
     public List<AssistAccounting> get(Parameters param){
         String token=param.getAccessToken();
-        int asId=param.getAsId();
+        Long accountId=param.getAccountId();
         String name=param.getAssistName();
         return null;
     }
@@ -47,9 +47,8 @@ public class AssistingAccountingController {
     @ApiOperation(value = "删除辅助核算项目")
     public Object delete(Parameters param){
         String token=param.getAccessToken();
-        int asId=param.getAsId();
+        Long accountId=param.getAccountId();
         String name=param.getAssistName();
-        int status=param.getAaeId();
 
         return null;
     }

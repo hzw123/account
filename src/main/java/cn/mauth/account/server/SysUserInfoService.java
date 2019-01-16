@@ -3,13 +3,13 @@ package cn.mauth.account.server;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.mauth.account.common.domain.sys.SysService;
+import cn.mauth.account.common.domain.sys.SysAppInfo;
 import cn.mauth.account.common.domain.sys.SysUserInfo;
 import cn.mauth.account.common.util.Constants;
 import cn.mauth.account.common.util.PageInfo;
 import cn.mauth.account.common.util.PageUtil;
 import cn.mauth.account.common.util.SessionUtils;
-import cn.mauth.account.dao.SysServiceDao;
+import cn.mauth.account.dao.SysAppInfoDao;
 import cn.mauth.account.dao.SysUserInfoDao;
 import cn.mauth.account.enums.StatusIdEnum;
 import cn.mauth.account.enums.UserTypeEnum;
@@ -37,7 +37,7 @@ public class SysUserInfoService {
 	@Autowired
 	private SysUserInfoDao dao;
 	@Autowired
-	private SysServiceDao sysServiceDao;
+	private SysAppInfoDao sysServiceDao;
 
 	public PageInfo<SysUserInfo> listForPage(int pageCurrent, int pageSize, SysUserInfo qo) {
 
@@ -110,9 +110,9 @@ public class SysUserInfoService {
 
 	private List<Long> getIds() {
 		List<Long> ids = new ArrayList<>();
-		List<SysService> listMch = sysServiceDao.findAll();
+		List<SysAppInfo> listMch = sysServiceDao.findAll();
 		if (listMch != null && !listMch.isEmpty()) {
-			for (SysService mch : listMch) {
+			for (SysAppInfo mch : listMch) {
 				ids.add(mch.getUserInfoId());
 			}
 		}

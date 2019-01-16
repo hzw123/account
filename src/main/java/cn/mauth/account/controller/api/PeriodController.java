@@ -24,7 +24,7 @@ public class PeriodController {
     private PeriodDao dao;
 
     @GetMapping
-    @ApiOperation(value = "获取一个账套的所有期间信息",notes = "获取一个账套的所有期间信息")
+    @ApiOperation(value = "获取一个账套的所有期间信息")
     public List<Period> list(Parameters param){
         String token=param.getAccessToken();
         if(StringUtils.isEmpty(token))
@@ -32,8 +32,8 @@ public class PeriodController {
 
         return this.dao.findAll((root, query, cb) -> {
             List<Predicate> list=new ArrayList<>();
-            if(param.getAsId()>0)
-                list.add(cb.equal(root.get("asId"),param.getAsId()));
+            if(param.getAccountId()>0)
+                list.add(cb.equal(root.get("accountId"),param.getAccountId()));
             if(StringUtils.isNotEmpty(param.getStart()));
                 list.add(cb.equal(root.get(""),param.getStart()));
              if(StringUtils.isNotEmpty(param.getEnd()));

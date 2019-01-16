@@ -1,169 +1,194 @@
 package cn.mauth.account.common.domain.settings;
 
+import cn.mauth.account.common.base.BaseEntity;
+import cn.mauth.account.enums.BalanceEnum;
+import cn.mauth.account.enums.SubType;
+import org.apache.commons.lang.StringUtils;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.io.Serializable;
+import javax.persistence.Transient;
 
 /**
- * 科目信息CRUD
+ * 科目信息
  */
 @Entity
-public class AccountSubject implements Serializable {
+public class AccountSubject extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private Integer id;
-    /** 账套ID*/
-    private int asId;
-    /** 科目编码*/
-    private int asubId;
     /** 父节点ID*/
-    private int parent;
-    /** 科目编码*/
-    private int asubCode;
-    /** 科目类别*/
-    /**
-     * 科目类别 资产1，负债2，共同3（企业会计准则），权益4，成本5，损益6
-     */
-    private int asubType;
+    private long parent;
+    /** 科目名称*/
+    @Column(nullable = false,unique = true,length = 100)
+    private String name;
     /** 科目全称*/
-    private String asubName;
-    /** 方向*/
-    private int direction;
-    /** 简拼*/
-    private String acronym;
-    /** 全拼*/
-    private String pinyin;
-    /** 数量核算单位*/
-    private String measureUnit;
-    /** 科目状态*/
-    private int status;
-    /**
-     * 是否开启辅助核算 1启用 0 未启用
-     */
-    private int assit;
-    /** 辅助核算项目*/
-    private String aaTypes;
-    /**
-     * 科目级别
-     */
-    private int asubLevel;
+    private String fullName;
+    /** 科目编码*/
+    @Column(nullable = false,unique = true,length = 100)
+    private String code;
+    /** 科目类别*/
+    private SubType subType;
+    /** 科目类别名称*/
+    private String groupName;
+    /** 科目级别*/
+    private int level;
+    /** 余额方向，借/贷 */
+    private BalanceEnum dc;
+    @Transient
+    private String dcDesc;//余额方向名称
+    /** 账套ID*/
+    private long accountId;
     /** 备注*/
     private String note;
-    /** 外币核算开关 停用0，启用1，默认停用*/
-    private int forgeinCurrcy;
-    /** 是否进行期末调汇*/
-    private int pcAdjust;
+    /** 是否明细科目*/
+    private boolean isDetail;
+    /** 是否禁用*/
+    private boolean isDeleted;
+
+    @Column(nullable = false)
+    private String currency;//货币代码
+
+    /** 是否开启辅助核算0 未启用 1启用 */
+    private boolean assit;
+    /** 辅助核算项目*/
+    private String aaTypes;
+
+    /** 数量单位编码*/
+    private String qtyUnit;
+    /** 使用数量辅助核算*/
+    private boolean useQtyAux;
+
+    /** 是否期末调汇*/
+    private boolean isRateAdj;
+
     /** 外币核算值*/
     private String fcCodes;
-    /** 不含父级科目名称*/
-    private String simpleAsubName;
+    /** 外币核算开关*/
+    private boolean isForeignCurrency;
 
-    public Integer getId() {
-        return id;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public int getAsId() {
-        return asId;
-    }
-
-    public void setAsId(int asId) {
-        this.asId = asId;
-    }
-
-    public int getAsubId() {
-        return asubId;
-    }
-
-    public void setAsubId(int asubId) {
-        this.asubId = asubId;
-    }
-
-    public int getParent() {
+    public long getParent() {
         return parent;
     }
 
-    public void setParent(int parent) {
+    public void setParent(long parent) {
         this.parent = parent;
     }
 
-    public int getAsubCode() {
-        return asubCode;
+    public String getName() {
+        return name;
     }
 
-    public void setAsubCode(int asubCode) {
-        this.asubCode = asubCode;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getAsubType() {
-        return asubType;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setAsubType(int asubType) {
-        this.asubType = asubType;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public String getAsubName() {
-        return asubName;
+    public String getCode() {
+        return code;
     }
 
-    public void setAsubName(String asubName) {
-        this.asubName = asubName;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public int getDirection() {
-        return direction;
+    public SubType getSubType() {
+        return subType;
     }
 
-    public void setDirection(int direction) {
-        this.direction = direction;
+    public void setSubType(SubType subType) {
+        this.subType = subType;
     }
 
-    public String getAcronym() {
-        return acronym;
+    public String getGroupName() {
+        return StringUtils.isNotEmpty(groupName)?groupName:(subType==null?null:subType.getDesc());
     }
 
-    public void setAcronym(String acronym) {
-        this.acronym = acronym;
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
-    public String getPinyin() {
-        return pinyin;
+    public int getLevel() {
+        return level;
     }
 
-    public void setPinyin(String pinyin) {
-        this.pinyin = pinyin;
+    public void setLevel(int level) {
+        this.level = level;
     }
 
-    public String getMeasureUnit() {
-        return measureUnit;
+    public BalanceEnum getDc() {
+        return dc;
     }
 
-    public void setMeasureUnit(String measureUnit) {
-        this.measureUnit = measureUnit;
+    public void setDc(BalanceEnum dc) {
+        this.dc = dc;
     }
 
-    public int getStatus() {
-        return status;
+    public String getDcDesc() {
+
+        return StringUtils.isNotBlank(dcDesc)?dcDesc:(dc==null?null:dc.getDesc());
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setDcDesc(String dcDesc) {
+        this.dcDesc = dcDesc;
     }
 
-    public int getAssit() {
+    public long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(long accountId) {
+        this.accountId = accountId;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public boolean isDetail() {
+        return isDetail;
+    }
+
+    public void setDetail(boolean detail) {
+        isDetail = detail;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public boolean isAssit() {
         return assit;
     }
 
-    public void setAssit(int assit) {
+    public void setAssit(boolean assit) {
         this.assit = assit;
     }
 
@@ -175,36 +200,28 @@ public class AccountSubject implements Serializable {
         this.aaTypes = aaTypes;
     }
 
-    public int getAsubLevel() {
-        return asubLevel;
+    public String getQtyUnit() {
+        return qtyUnit;
     }
 
-    public void setAsubLevel(int asubLevel) {
-        this.asubLevel = asubLevel;
+    public void setQtyUnit(String qtyUnit) {
+        this.qtyUnit = qtyUnit;
     }
 
-    public String getNote() {
-        return note;
+    public boolean isUseQtyAux() {
+        return useQtyAux;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setUseQtyAux(boolean useQtyAux) {
+        this.useQtyAux = useQtyAux;
     }
 
-    public int getForgeinCurrcy() {
-        return forgeinCurrcy;
+    public boolean isRateAdj() {
+        return isRateAdj;
     }
 
-    public void setForgeinCurrcy(int forgeinCurrcy) {
-        this.forgeinCurrcy = forgeinCurrcy;
-    }
-
-    public int getPcAdjust() {
-        return pcAdjust;
-    }
-
-    public void setPcAdjust(int pcAdjust) {
-        this.pcAdjust = pcAdjust;
+    public void setRateAdj(boolean rateAdj) {
+        isRateAdj = rateAdj;
     }
 
     public String getFcCodes() {
@@ -215,11 +232,11 @@ public class AccountSubject implements Serializable {
         this.fcCodes = fcCodes;
     }
 
-    public String getSimpleAsubName() {
-        return simpleAsubName;
+    public boolean isForeignCurrency() {
+        return isForeignCurrency;
     }
 
-    public void setSimpleAsubName(String simpleAsubName) {
-        this.simpleAsubName = simpleAsubName;
+    public void setForeignCurrency(boolean foreignCurrency) {
+        isForeignCurrency = foreignCurrency;
     }
 }

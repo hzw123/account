@@ -1,28 +1,20 @@
 package cn.mauth.account.common.domain.settings;
 
+import cn.mauth.account.common.base.BaseEntity;
 import cn.mauth.account.enums.AccountingStandard;
 import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 账套
  */
 @Entity
-@EntityListeners(AuditingEntityListener.class)
-public class AccountSet implements Serializable{
+public class AccountSet extends BaseEntity{
 
     private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;//账套id
 
     @Column(length = 32)
     private String name;//账套名称
@@ -44,7 +36,7 @@ public class AccountSet implements Serializable{
     private String startDateMonth;//账套起始月份
 
     @Column(columnDefinition = "datetime")
-    private Date asCurrentDate;//为当前日期
+    private Date ascDate;//为当前日期
     private String asCurrentDateYear;//
     private String asCurrentDateMonth;//
 
@@ -60,16 +52,8 @@ public class AccountSet implements Serializable{
     @CreatedBy
     private int createBy;//
 
-    @CreatedDate
-    @Column(columnDefinition = "datetime")
-    private Date createDate;//
-
     @LastModifiedBy
     private int modifyBy;//
-
-    @LastModifiedDate
-    @Column(columnDefinition = "datetime")
-    private Date modifyDate;//
 
     private int usedBy;//
 
@@ -80,14 +64,6 @@ public class AccountSet implements Serializable{
 
     private boolean isChangedStartDate;//更改开始日期
 
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -201,12 +177,12 @@ public class AccountSet implements Serializable{
         this.startDateMonth = startDateMonth;
     }
 
-    public Date getAsCurrentDate() {
-        return asCurrentDate;
+    public Date getAscDate() {
+        return ascDate;
     }
 
-    public void setAsCurrentDate(Date asCurrentDate) {
-        this.asCurrentDate = asCurrentDate;
+    public void setAscDate(Date ascDate) {
+        this.ascDate = ascDate;
     }
 
     public String getAsCurrentDateYear() {
@@ -289,28 +265,12 @@ public class AccountSet implements Serializable{
         this.createBy = createBy;
     }
 
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
     public int getModifyBy() {
         return modifyBy;
     }
 
     public void setModifyBy(int modifyBy) {
         this.modifyBy = modifyBy;
-    }
-
-    public Date getModifyDate() {
-        return modifyDate;
-    }
-
-    public void setModifyDate(Date modifyDate) {
-        this.modifyDate = modifyDate;
     }
 
     public int getUsedBy() {

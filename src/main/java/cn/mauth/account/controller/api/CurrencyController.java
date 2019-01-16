@@ -18,26 +18,22 @@ public class CurrencyController {
 
     @GetMapping
     @ApiOperation(value = "获取账套外币信息",notes = "获取账套外币信息")
-    public List<Currency> get(Parameters param){
+    public List<Currency> get(String accessToken){
 
-        String token=param.getAccessToken();
-        int asId=param.getAsId();
 
-        return this.dao.findByAsId(asId);
+        return null;
     }
 
     @PostMapping
     @ApiOperation(value = "添加新的外币核算内容",notes = "添加新的外币核算内容")
-    public Currency save(Parameters param,Currency currency){
-        String token=param.getAccessToken();
+    public Currency save(String accessToken,Currency currency){
 
         return this.dao.save(currency);
     }
 
     @PutMapping
     @ApiOperation(value = "修改外币核算项目",notes = "修改外币核算项目")
-    public Currency update(Parameters param,Currency currency){
-        String token=param.getAccessToken();
+    public Currency update(String accessToken,Currency currency){
 
         return this.dao.save(currency);
     }
@@ -47,8 +43,8 @@ public class CurrencyController {
     public Object delete(Parameters param){
         String token=param.getAccessToken();
 
-        int asId=param.getAsId();
-        int fcId=param.getFcId();
+        Long asId=param.getAccountId();
+        Long fcId=param.getFcId();
 
         return null;
     }

@@ -9,20 +9,16 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-public interface AccountSubjectDao extends BaseDao<AccountSubject,Integer>{
+public interface AccountSubjectDao extends BaseDao<AccountSubject,Long>{
 
-    @Query(value = "delete from account_subject where as_id=:asId and asub_id=:subId",nativeQuery = true)
+    @Query(value = "delete from account_subject where account_id=:accountId and id=:id",nativeQuery = true)
     @Modifying
     @Transactional
-    int deleteByAsIdAndAsubId(@Param("asId") int asId,@Param("subId")  int subId);
+    int deleteByIdAndAccountId(@Param("accountId") long accountId,@Param("id")  long id);
 
-    @Query(value = "delete from account_subject where as_id=:asId ",nativeQuery = true)
+    @Query(value = "delete from account_subject where account_id=:accountId ",nativeQuery = true)
     @Modifying
     @Transactional
-    int deleteByAsId(@Param("asId") int asId);
+    int deleteByAccountId(@Param("accountId") long accountId);
 
-    @Query(value = "delete from account_subject where asub_id=:subId",nativeQuery = true)
-    @Modifying
-    @Transactional
-    int deleteByAsubId(@Param("subId")  int subId);
 }

@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PeriodDao extends BaseDao<Period,Integer>{
+public interface PeriodDao extends BaseDao<Period,Long>{
 
 }
