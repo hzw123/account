@@ -12,7 +12,6 @@ public final class Constants {
 	private Constants() {
 	}
 
-
 	/**
 	 * 常量
 	 * 
@@ -26,7 +25,29 @@ public final class Constants {
 		public final static String PERMISSIONS = "accounting_Permissions";
 		public final static String ROLE = "accounting_role";
 		public final static String ACCOUNT = "accounting_account";
-		public final static String SESSIONINDEX = "accounting_sessionIndex";
+		public final static String SESSION_INDEX = "accounting_sessionIndex";
+	}
+	public interface Redis {
+		/**
+		 * redis-key-前缀-shiro:access_token:
+		 */
+		public final static String PREFIX_SHIRO_ACCESS_TOKEN = "shiro:access_token:";
+		public final static String PREFIX_SHIRO_CURRENT_TIME_MILLIS="shiro:currentTimeMillis:";
+		/**
+		 * PASSWORD_MAX_LEN
+		 */
+		public static final Integer PASSWORD_MAX_LEN = 8;
+	}
+
+	public interface Jwt{
+		/**
+		 * JWT-account:
+		 */
+		public final static String ACCOUNT = "account";
+		public final static String PASSWORD = "password";
+		public final static String CLIENT_ID = "clientId";
+		public final static String CURRENT_TIME_MILLIS = "currentTimeMillis";
+
 	}
 
 }

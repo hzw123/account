@@ -1,5 +1,6 @@
 package cn.mauth.account.shiro.config;
 
+import cn.mauth.account.filter.JwtFilter;
 import cn.mauth.account.shiro.service.MyShiroRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.CacheManager;
@@ -19,6 +20,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.Filter;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -39,17 +42,23 @@ public class ShiroAutoConfiguration {
 	@Bean(name = {"ShiroFilterFactoryBean"})
 	@ConditionalOnMissingBean({ShiroFilterFactoryBean.class})
 	public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
+
 		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
+
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
+
 		//登录
 		shiroFilterFactoryBean.setLoginUrl(this.properties.getLoginUrl());
+
 		//首页
 		shiroFilterFactoryBean.setSuccessUrl(this.properties.getSuccessUrl());
+
 		//错误页面，认证不通过跳转
 		shiroFilterFactoryBean.setUnauthorizedUrl(this.properties.getUnauthorizedUrl());
 
 		//页面权限控制
 		Map<String, String> map = this.properties.getFilterChainDefinitionMap();
+
 		Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 
 		for (Map.Entry<String,String> entry:map.entrySet()) {
@@ -79,10 +88,15 @@ public class ShiroAutoConfiguration {
 	 */
 	@Bean
 	public DefaultWebSecurityManager securityManager(Realm shiroRealm,CacheManager cacheManager,RememberMeManager manager) {
+
 		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+
 		securityManager.setCacheManager(cacheManager);
+
 		securityManager.setRememberMeManager(manager);//记住Cookie
+
 		securityManager.setRealm(shiroRealm);
+
 		return securityManager;
 	}
 
@@ -118,8 +132,7 @@ public class ShiroAutoConfiguration {
 	 */
 	@Bean
 	public CacheManager cacheManager() {
-		MemoryConstrainedCacheManager cacheManager=new MemoryConstrainedCacheManager();//使用内存缓存
-		return cacheManager;
+		return new MemoryConstrainedCacheManager();//使用内存缓存
 	}
 
 	/**
@@ -134,6 +147,31 @@ public class ShiroAutoConfiguration {
 		return shiroRealm;
 	}
 
+	@Bean
+	public ShiroFilterFactoryBean factory(SecurityManager securityManager) {
+
+		ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
+
+		// 添加自己的过滤器取名为jwt
+		Map<String, Filter> filterMap = new HashMap<>(16);
+
+		filterMap.put("jwt", new JwtFilter());
+
+		bean.setFilters(filterMap);
+
+		bean.setSecurityManager(securityManager);
+
+		// 自定义url规则
+		Map<String, String> filterRuleMap = new HashMap<>(16);
+
+		// 所有请求通过我们自己的JWTFilter
+		filterRuleMap.put("/api/**", "jwt");
+
+		bean.setFilterChainDefinitionMap(filterRuleMap);
+
+		return bean;
+	}
+
 
 	/**
 	 * 启用shiro注解
@@ -142,7 +180,7 @@ public class ShiroAutoConfiguration {
 	 * @return
 	 */
     @Bean
-    public AuthorizationAttributeSourceAdvisor getAuthorizationAttributeSourceAdvisor(SecurityManager securityManager) {
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
         AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
         advisor.setSecurityManager(securityManager);
         return advisor;

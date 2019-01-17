@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cn.mauth.account.common.base.BaseController;
-import cn.mauth.account.common.bean.AccountToken;
+import cn.mauth.account.common.bean.JwtToken;
 import cn.mauth.account.common.bean.TitleVo;
 import cn.mauth.account.common.util.Bjui;
 import cn.mauth.account.common.util.SessionUtils;
@@ -43,8 +43,8 @@ public class LoginController extends BaseController {
 	 * @throws IOException
 	 */
 	@GetMapping(value = "/login")
-	@ApiOperation(value="请求到登陆界面",notes="请求到登陆界面")
-	public String loginGet(HttpServletRequest req, HttpServletResponse resp,Model model) throws IOException {
+	@ApiOperation(value="请求到登陆界面")
+	public String login(HttpServletRequest req, HttpServletResponse resp,Model model) throws IOException {
 		if (SessionUtils.isUser()) {
 			return redirect("/index");
 		}
@@ -66,20 +66,22 @@ public class LoginController extends BaseController {
 
 	/**
 	 * 用户登陆验证
-	 * @param accountToken
+	 * @param jwtToken
 	 * @param model
 	 * @return
 	 */
 	@PostMapping(value = "/login")
-	public String loginPost(AccountToken accountToken, Model model) {
-		return this.login(accountToken,model);
+	public String loginPost(JwtToken jwtToken, Model model) {
+		return this.login(jwtToken,model);
 	}
 
-	private String login(AccountToken token, Model model){
+	private String login(JwtToken token, Model model){
+
 		String scode = (String)SessionUtils.getAttribute(Constants.KAPTCHA_SESSION_KEY);
 		//判断验证码
 		String message="";
-		if(StringUtils.isNotEmpty(token.getCode())&&scode.equals(token.getCode())){
+
+		if(StringUtils.isNotEmpty(token.getCode()) && scode.equals(token.getCode())){
 			String userName = token.getUsername();
 			Subject currentUser = SecurityUtils.getSubject();
 

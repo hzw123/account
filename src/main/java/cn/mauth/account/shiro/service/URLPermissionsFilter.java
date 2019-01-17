@@ -19,8 +19,8 @@ public class URLPermissionsFilter  extends PermissionsAuthorizationFilter {
      */
     public boolean isAccessAllowed(HttpServletRequest request, HttpServletResponse response, Object mappedValue)
             throws IOException {
-        System.out.println(URLPermissionsFilter.class.toString());
-        Subject subject = getSubject(request, response);
+
+        Subject subject = this.getSubject(request, response);
         // DefaultFilterChainManager
         // PathMatchingFilterChainResolver
         String[] perms = (String[]) mappedValue;

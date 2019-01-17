@@ -35,11 +35,11 @@ public final class HttpUtils {
     }
 
     public static void setSessionIndex(String sessionIndex){
-        HttpUtils.getSession().setAttribute(Constants.Session.SESSIONINDEX,sessionIndex);
+        HttpUtils.getSession().setAttribute(Constants.Session.SESSION_INDEX,sessionIndex);
     }
 
     public static String getSessionIndex(){
-        Object obj=HttpUtils.getSession().getAttribute(Constants.Session.SESSIONINDEX);
+        Object obj=HttpUtils.getSession().getAttribute(Constants.Session.SESSION_INDEX);
         return obj!=null?obj.toString():null;
     }
 

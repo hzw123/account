@@ -3,7 +3,7 @@ package cn.mauth.account.config.durid;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "spring.datasource.druid")
-public class DruidProperties {
+public final class DruidProperties {
     private String name;
     private String url;
     private String username;
