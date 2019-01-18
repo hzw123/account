@@ -2,8 +2,13 @@ package cn.mauth.account.controller.api;
 
 import cn.mauth.account.common.bean.*;
 import cn.mauth.account.common.domain.sys.SysUserInfo;
+import cn.mauth.account.common.util.Result;
+import cn.mauth.account.server.Oauth2Server;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -12,7 +17,12 @@ import java.util.Map;
 @Api("oauth2")
 @RestController
 @RequestMapping("/api/oauth2")
-public class oauth2Controller {
+public class Oauth2Controller {
+
+    private final Logger logger= LoggerFactory.getLogger(this.getClass());
+
+    @Autowired
+    private Oauth2Server server;
 
     @PutMapping("/mobile")
     @ApiOperation(value = "第三方应用为其用户更换手机号")
@@ -85,19 +95,22 @@ public class oauth2Controller {
         return null;
     }
 
+//    @GetMapping("/token")
+//    @ApiOperation(value = "验证access_token是否有效")
+//    public String token(String accessToken){
+//
+//        return null;
+//    }
+
     @GetMapping("/token")
-    @ApiOperation(value = "验证access_token是否有效")
-    public String token(String accessToken){
-
-        return null;
-    }
-
-    @PostMapping("/token")
     @ApiOperation(value = "获取单独用户授权access_token")
-    public AccessToken getToken(AppUserAccessToken token){
+    public Result getToken(AppUserAccessToken app){
+        try{
+            return Result.success(server.getToken(app));
+        }catch (Exception e){
+            return Result.error(e.getMessage());
+        }
 
-
-        return new AccessToken("");
     }
 
     @PutMapping("/token")

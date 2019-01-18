@@ -74,7 +74,7 @@ public class SysMenuService {
 
 	public List<SysMenu> loadMenus(){
 		Long userInfoId = Long.valueOf(SessionUtils.getAttribute(Constants.Session.USER_ID).toString());
-		return this.toTreeNode(this.dao.loadmenus(userInfoId));
+		return this.toTreeNode(this.dao.loadMenus(userInfoId));
 	}
 
 

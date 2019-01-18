@@ -22,7 +22,7 @@ public interface SysMenuDao extends BaseDao<SysMenu,Long>{
             "select role_id from sys_role_user " +
             "where user_info_id=:uid) " +
             "ORDER BY id asc)",nativeQuery = true)
-    List<SysMenu> loadmenus(@Param("uid") long uid);
+    List<SysMenu> loadMenus(@Param("uid") long uid);
 
     @Query(value = "select *from sys_menu " +
             "where id in(" +

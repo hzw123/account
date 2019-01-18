@@ -38,7 +38,7 @@ public class JwtUtil {
      * @param token
      * @return
      */
-    public static boolean verify(String token) {
+    public static boolean verify(String token) throws CustomException{
 
         try {
             // 帐号加JWT私钥解密
@@ -49,16 +49,16 @@ public class JwtUtil {
             JWTVerifier verifier = JWT.require(algorithm).build();
 
             DecodedJWT jwt = verifier.verify(token);
-
             return true;
-        } catch (UnsupportedEncodingException e) {
+        } catch (Exception e) {
 
-            String error="JWTToken认证解密出现UnsupportedEncodingException异常:";
+            String error="JWTToken认证解密错误:";
 
-            log.error(error,e);
+            log.error(error+e.getMessage());
 
-            throw new CustomException(error,e);
+            throw new CustomException(error+e.getMessage());
         }
+
     }
 
     /**

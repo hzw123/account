@@ -20,7 +20,7 @@ public class LogView extends BaseLog{
 
     @Override
     public void addAfter(JoinPoint joinPoint) {
-        logger.warn("logView after log");
+        logger.warn("\nlogView after log");
     }
 
 }

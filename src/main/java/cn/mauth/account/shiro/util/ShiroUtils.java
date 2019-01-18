@@ -2,7 +2,7 @@ package cn.mauth.account.shiro.util;
 
 import cn.mauth.account.common.domain.sys.SysUserInfo;
 import cn.mauth.account.common.util.SessionUtils;
-import cn.mauth.account.shiro.service.MyShiroRealm;
+import cn.mauth.account.shiro.config.MyShiroRealm;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.mgt.RealmSecurityManager;
 import org.apache.shiro.session.Session;

@@ -1,6 +1,6 @@
 package cn.mauth.account.server;
 
-import cn.mauth.account.common.bean.JwtToken;
+import cn.mauth.account.shiro.util.AccountingToken;
 import cn.mauth.account.common.util.Constants;
 import cn.mauth.account.common.util.JwtUtil;
 import org.apache.commons.lang.StringUtils;
@@ -72,8 +72,5 @@ public class RedisUtil {
         return value;
     }
 
-    public static void setToken(JwtToken jwtToken){
-        String token=jwtToken.getToken();
-    }
 
 }

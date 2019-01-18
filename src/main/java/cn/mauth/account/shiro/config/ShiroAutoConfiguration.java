@@ -1,7 +1,8 @@
 package cn.mauth.account.shiro.config;
 
-import cn.mauth.account.filter.JwtFilter;
-import cn.mauth.account.shiro.service.MyShiroRealm;
+import cn.mauth.account.shiro.filter.JwtAuthorizationFilter;
+
+import cn.mauth.account.shiro.filter.UrlAuthorizationFilter;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
@@ -43,18 +44,18 @@ public class ShiroAutoConfiguration {
 	@ConditionalOnMissingBean({ShiroFilterFactoryBean.class})
 	public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
 
-		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
+		ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
 
-		shiroFilterFactoryBean.setSecurityManager(securityManager);
+		bean.setSecurityManager(securityManager);
 
 		//登录
-		shiroFilterFactoryBean.setLoginUrl(this.properties.getLoginUrl());
+		bean.setLoginUrl(this.properties.getLoginUrl());
 
 		//首页
-		shiroFilterFactoryBean.setSuccessUrl(this.properties.getSuccessUrl());
+		bean.setSuccessUrl(this.properties.getSuccessUrl());
 
 		//错误页面，认证不通过跳转
-		shiroFilterFactoryBean.setUnauthorizedUrl(this.properties.getUnauthorizedUrl());
+		bean.setUnauthorizedUrl(this.properties.getUnauthorizedUrl());
 
 		//页面权限控制
 		Map<String, String> map = this.properties.getFilterChainDefinitionMap();
@@ -74,9 +75,9 @@ public class ShiroAutoConfiguration {
 		}
 
 
-		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+		bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
-		return shiroFilterFactoryBean;
+		return bean;
 	}
 
 	/**
@@ -155,7 +156,8 @@ public class ShiroAutoConfiguration {
 		// 添加自己的过滤器取名为jwt
 		Map<String, Filter> filterMap = new HashMap<>(16);
 
-		filterMap.put("jwt", new JwtFilter());
+		filterMap.put("jwt", new JwtAuthorizationFilter());
+		filterMap.put("url", new UrlAuthorizationFilter());
 
 		bean.setFilters(filterMap);
 
@@ -166,6 +168,7 @@ public class ShiroAutoConfiguration {
 
 		// 所有请求通过我们自己的JWTFilter
 		filterRuleMap.put("/api/**", "jwt");
+		filterRuleMap.put("/admin/**", "url");
 
 		bean.setFilterChainDefinitionMap(filterRuleMap);
 

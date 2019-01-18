@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cn.mauth.account.common.base.BaseController;
-import cn.mauth.account.common.bean.JwtToken;
+import cn.mauth.account.shiro.util.AccountingToken;
 import cn.mauth.account.common.bean.TitleVo;
 import cn.mauth.account.common.util.Bjui;
 import cn.mauth.account.common.util.SessionUtils;
@@ -66,16 +66,16 @@ public class LoginController extends BaseController {
 
 	/**
 	 * 用户登陆验证
-	 * @param jwtToken
+	 * @param accountingToken
 	 * @param model
 	 * @return
 	 */
 	@PostMapping(value = "/login")
-	public String loginPost(JwtToken jwtToken, Model model) {
-		return this.login(jwtToken,model);
+	public String loginPost(AccountingToken accountingToken, Model model) {
+		return this.login(accountingToken,model);
 	}
 
-	private String login(JwtToken token, Model model){
+	private String login(AccountingToken token, Model model){
 
 		String scode = (String)SessionUtils.getAttribute(Constants.KAPTCHA_SESSION_KEY);
 		//判断验证码

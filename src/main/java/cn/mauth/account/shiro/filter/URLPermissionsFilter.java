@@ -1,4 +1,4 @@
-package cn.mauth.account.shiro.service;
+package cn.mauth.account.shiro.filter;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package cn.mauth.account.shiro.service;
+package cn.mauth.account.shiro.config;
 
 import cn.mauth.account.SpringContextUtil;
 import cn.mauth.account.common.domain.sys.SysLogLogin;
@@ -50,6 +50,7 @@ public class MyShiroRealm extends AuthorizingRealm {
         if (token.getPrincipal() == null) {
             return null;
         }
+
 		String username = (String) token.getPrincipal();
 		String password = new String((char[]) token.getCredentials());
 
