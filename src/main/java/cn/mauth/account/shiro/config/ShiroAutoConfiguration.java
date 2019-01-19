@@ -1,8 +1,8 @@
 package cn.mauth.account.shiro.config;
 
-import cn.mauth.account.shiro.filter.JwtAuthorizationFilter;
+import cn.mauth.account.shiro.filter.JwtFilter;
 
-import cn.mauth.account.shiro.filter.UrlAuthorizationFilter;
+import cn.mauth.account.shiro.filter.UrlFilter;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
@@ -156,8 +156,8 @@ public class ShiroAutoConfiguration {
 		// 添加自己的过滤器取名为jwt
 		Map<String, Filter> filterMap = new HashMap<>(16);
 
-		filterMap.put("jwt", new JwtAuthorizationFilter());
-		filterMap.put("url", new UrlAuthorizationFilter());
+		filterMap.put("jwt", new JwtFilter());
+		filterMap.put("url", new UrlFilter());
 
 		bean.setFilters(filterMap);
 

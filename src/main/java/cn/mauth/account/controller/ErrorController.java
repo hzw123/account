@@ -12,7 +12,6 @@ public class ErrorController {
     /****页面测试****/
     @GetMapping("/404")
     public String Out404(){
-
         return "/error/404";
     }
 

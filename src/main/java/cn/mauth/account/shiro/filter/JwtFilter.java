@@ -2,44 +2,42 @@ package cn.mauth.account.shiro.filter;
 
 import cn.mauth.account.common.util.HttpUtils;
 import cn.mauth.account.common.util.JwtUtil;
-import cn.mauth.account.exception.CustomException;
+import cn.mauth.account.filter.AccountFilter;
 import cn.mauth.account.server.RedisUtil;
 import org.apache.commons.lang.StringUtils;
-import org.apache.shiro.subject.Subject;
-import org.apache.shiro.web.filter.authz.AuthorizationFilter;
+import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
-public class JwtAuthorizationFilter extends AuthorizationFilter {
+public class JwtFilter extends AccountFilter {
 
     private static final String ACCESS_TOKEN="access_token";
 
-    private static final Logger logger= LoggerFactory.getLogger(JwtAuthorizationFilter.class);
+    private static final Logger logger= LoggerFactory.getLogger(JwtFilter.class);
 
     @Override
-    protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object o) {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
 
-        logger.warn("\ninto JwtAuthenticationFilter");
+        logger.warn("\ninto JwtFilter");
 
-
-        Subject subject=this.getSubject(request,response);
-
-        if(subject.isAuthenticated())
-            return true;
-
-        if(this.isGetToken(request))
-            return true;
+        if(SecurityUtils.getSubject().isAuthenticated()||this.isGetToken(request)){
+            filterChain.doFilter(request,response);
+            return;
+        }
 
         try {
 
             this.verifyToken(request);
 
-            return true;
+            filterChain.doFilter(request,response);
         }catch (Exception e){
 
             String msg = e.getMessage();
@@ -48,10 +46,10 @@ public class JwtAuthorizationFilter extends AuthorizationFilter {
 
             HttpUtils.sendCall(request,response,HttpStatus.UNAUTHORIZED.value(),"无权访问:"+msg);
 
-            return false;
         }
 
     }
+
 
     private void verifyToken(ServletRequest request) throws Exception{
 

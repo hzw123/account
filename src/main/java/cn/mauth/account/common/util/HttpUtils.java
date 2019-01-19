@@ -68,7 +68,7 @@ public final class HttpUtils {
             String data = JSON.toJSONString(Result.of(httpStatus,message));
 
             out.append(data);
-
+            return;
         } catch (IOException e) {
 
             String error="直接返回Response信息出现IOException异常:";

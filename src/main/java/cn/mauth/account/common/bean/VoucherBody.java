@@ -11,7 +11,7 @@ import java.util.Set;
 public class VoucherBody implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private Long id=0L;
     private String period;//期间信息（201608）
     private String vchGroup;//凭证字（记、收、付、转）
     private int vchNum;//凭证号（1、2、3、4）

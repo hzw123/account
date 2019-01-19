@@ -2,36 +2,33 @@ package cn.mauth.account.shiro.filter;
 
 import cn.mauth.account.common.util.Bjui;
 import cn.mauth.account.common.util.SessionUtils;
+import cn.mauth.account.filter.AccountFilter;
 import com.alibaba.fastjson.JSON;
-import org.apache.shiro.web.filter.authz.AuthorizationFilter;
+import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class UrlAuthorizationFilter extends AuthorizationFilter{
-
-    private static final Logger logger= LoggerFactory.getLogger(UrlAuthorizationFilter.class);
+public class UrlFilter extends AccountFilter{
 
     @Override
-    protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object o) throws Exception {
-
-        logger.warn("\ninto UrlAuthorizationFilter");
-
-        return this.isUrl(request,response);
-    }
-
-    private boolean isUrl(ServletRequest req,ServletResponse res){
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain) throws IOException, ServletException {
+        logger.warn("into UrlFilter");
 
         HttpServletRequest request=(HttpServletRequest) req;
 
         HttpServletResponse response=(HttpServletResponse) res;
+
+        if(!SecurityUtils.getSubject().isAuthenticated()){
+            response.sendRedirect("/");
+            return;
+        }
 
         String uri = request.getServletPath();
 
@@ -39,7 +36,6 @@ public class UrlAuthorizationFilter extends AuthorizationFilter{
             if (!checkUri(uri)) {
                 logger.error("没此权限，当前访问路径为：{}", uri);
                 response.setContentType("text/html;charset=UTF-8");
-                response.setStatus(401);
 
                 PrintWriter out = response.getWriter();
 
@@ -54,14 +50,15 @@ public class UrlAuthorizationFilter extends AuthorizationFilter{
                 out.flush();
 
                 out.close();
-                return false;
+            }else {
+                filterChain.doFilter(request,response);
             }
         }catch (IOException e){
             logger.error(e.getMessage());
         }
 
-        return true;
     }
+
     private static Boolean checkUri(String uri) {
 
         if(uri.equals("/admin/index"))

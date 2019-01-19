@@ -7,10 +7,10 @@ public class Parameters implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String accessToken;//授权信息
-    private Long accountId;//账套Id
-    private Long subId;//科目Id
-    private Long vid;//凭证id
-    private Long fcId;//
+    private Long accountId=0L;//账套Id
+    private Long subId=0L;//科目Id
+    private Long vid=0L;//凭证id
+    private Long fcId=0L;//
 
     private String start;//开始期间（201610）
     private String end;//结束期间（201611)
