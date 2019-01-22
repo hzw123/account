@@ -6,7 +6,7 @@ public class Parameters implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String accessToken;//授权信息
+    private String access_token;
     private Long accountId=0L;//账套Id
     private Long subId=0L;//科目Id
     private Long vid=0L;//凭证id
@@ -21,12 +21,12 @@ public class Parameters implements Serializable {
     private String assistName;//辅助核算名称
     private String assistCode;//辅助核算类别项编码
 
-    public String getAccessToken() {
-        return accessToken;
+    public String getAccess_token() {
+        return access_token;
     }
 
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
+    public void setAccess_token(String access_token) {
+        this.access_token = access_token;
     }
 
     public Long getAccountId() {

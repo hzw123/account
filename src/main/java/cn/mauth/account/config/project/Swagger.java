@@ -14,7 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * 配置文件
  */
-@Configuration(value="false")
+@Configuration
 @EnableSwagger2 //启动swagger注解 启动服务，浏览器输入"http://服务名:8080/swagger-ui.html"
 public class Swagger {
 	@Bean
@@ -29,9 +29,8 @@ public class Swagger {
 	
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
-				.title("springBoot利用swagger构建api文档")
-				.description("简单优雅的restful风格，http://blog.csdn.net/saytime")
-				.termsOfServiceUrl("http://blog.csdn.net/saytime")
+				.title("api文档")
+				.description("简单优雅的restful风格")
 				.version("1.0")
 				.build();
 	}

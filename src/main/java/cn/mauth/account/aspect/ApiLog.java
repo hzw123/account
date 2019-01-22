@@ -6,19 +6,17 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Aspect
-@Order(1)
+@Order(2)
 @Component
-public class LogView extends BaseLog{
+public class ApiLog extends BaseLog{
 
-    @Override
-    @Pointcut("execution(public * cn.mauth.account.controller.admin.*.*(..))")
+    @Pointcut("execution(public * cn.mauth.account.controller.api.*.*(..))")
     public void pointcutMethod() {
 
     }
 
-
     @Override
-    protected String addAfter() {
-        return this.info("admin 日志");
+    public String addAfter() {
+        return this.info("api 日志");
     }
 }

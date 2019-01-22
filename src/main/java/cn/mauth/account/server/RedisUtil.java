@@ -1,6 +1,5 @@
 package cn.mauth.account.server;
 
-import cn.mauth.account.shiro.util.AccountingToken;
 import cn.mauth.account.common.util.Constants;
 import cn.mauth.account.common.util.JwtUtil;
 import org.apache.commons.lang.StringUtils;
@@ -35,25 +34,35 @@ public class RedisUtil {
         return value;
     }
 
+    public static boolean delete(String key){
+        boolean flag=redisTemplate.delete(key);
+        logger.info("delete key:{},{}",key,flag);
+        return flag;
+    }
+
     public static boolean exists(String key){
         return redisTemplate.hasKey(key);
     }
 
-    public static void putToken(String token){
+    public static void putSign(String token,String sign){
         if(StringUtils.isNotEmpty(token)){
             String key=Constants.Redis.PREFIX_SHIRO_ACCESS_TOKEN+token;
-            RedisUtil.putString(key,token, JwtUtil.getProperties().getTimeout());
+            RedisUtil.putString(key,sign, JwtUtil.getProperties().getTimeout());
         }
     }
 
-
-    public static String getToken(String token){
+    public static String getSign(String token){
         String value=null;
         if(StringUtils.isNotEmpty(token)){
             String key=Constants.Redis.PREFIX_SHIRO_ACCESS_TOKEN+token;
             value=RedisUtil.getString(key);
         }
         return value;
+    }
+
+    public static boolean deleteSign(String token){
+        String key=Constants.Redis.PREFIX_SHIRO_ACCESS_TOKEN+token;
+        return RedisUtil.delete(key);
     }
 
     public static void putCurrentTimeMillis(String token,String currentTimeMillis){
@@ -72,5 +81,15 @@ public class RedisUtil {
         return value;
     }
 
+    public static boolean deleteCurrentTimeMillis(String token){
+        String key=Constants.Redis.PREFIX_SHIRO_CURRENT_TIME_MILLIS+token;
+        return RedisUtil.delete(key);
+    }
+
+    public static boolean deleteToken(String token){
+        boolean var1=RedisUtil.deleteSign(token);
+        boolean var2=RedisUtil.deleteCurrentTimeMillis(token);
+        return var1&&var2;
+    }
 
 }

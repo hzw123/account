@@ -60,8 +60,8 @@
                 <ul class="nav navbar-nav">
                     <!-- 消息通知栏 -->
                     <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:20px;"
-                                                                                      class="icon-conversation"></i>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i style="font-size:20px;" class="icon-conversation"></i>
                             <div class="noft-red">23</div>
                         </a>
                         <ul style="margin: 11px 0 0 9px;" role="menu" class="dropdown-menu dropdown-wrap">
@@ -108,7 +108,8 @@
 
                     <!-- 右边警告图标通知栏 -->
                     <li>
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:19px;" class="icon-warning tooltitle"></i>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i style="font-size:19px;" class="icon-warning tooltitle"></i>
                             <div class="noft-green">5</div>
                         </a>
                         <ul style="margin: 12px 0 0 0;" role="menu" class="dropdown-menu dropdown-wrap">
@@ -181,47 +182,54 @@
 
                     <!-- 天气预报div -->
                     <ul id="nt-title">
-                        <li><i class="wi-day-lightning"></i>&#160;&#160;Berlin&#160;
+                        <li>
+                            <i class="wi-day-lightning"></i>&#160;&#160;Berlin&#160;
                             <b>85</b><i class="wi-fahrenheit"></i>&#160;; 15km/h
                         </li>
-                        <li><i class="wi-day-lightning"></i>&#160;&#160;Yogyakarta&#160;
+                        <li>
+                            <i class="wi-day-lightning"></i>&#160;&#160;Yogyakarta&#160;
                             <b>85</b><i class="wi-fahrenheit"></i>&#160;; Tonight- 72 °F (22.2 °C)
                         </li>
 
-                        <li><i class="wi-day-lightning"></i>&#160;&#160;Sttugart&#160;
+                        <li>
+                            <i class="wi-day-lightning"></i>&#160;&#160;Sttugart&#160;
                             <b>85</b><i class="wi-fahrenheit"></i>&#160;; 15km/h
                         </li>
 
-                        <li><i class="wi-day-lightning"></i>&#160;&#160;Muchen&#160;
+                        <li>
+                            <i class="wi-day-lightning"></i>&#160;&#160;Muchen&#160;
                             <b>85</b><i class="wi-fahrenheit"></i>&#160;; 15km/h
                         </li>
 
-                        <li><i class="wi-day-lightning"></i>&#160;&#160;Frankurt&#160;
+                        <li>
+                            <i class="wi-day-lightning"></i>&#160;&#160;Frankurt&#160;
                             <b>85</b><i class="wi-fahrenheit"></i>&#160;; 15km/h
                         </li>
 
                     </ul>
-                    <!--end 天气预报div -->
+
                 </div>
-                <!-- end 右侧顶部 日期 时间  天气预报 -->
 
                 <!-- 右侧顶部 头像设置-->
                 <ul style="margin-right:0;" class="nav navbar-nav navbar-right">
                     <!-- 头像设置 -->
                     <li>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <img alt="" class="admin-pic img-circle" src="${base}/plug/portraits/thumb/men/10.jpg">Hi,
-                            Dave Mattew <b class="caret"></b>
+                            <img alt="" class="admin-pic img-circle" src="${base}/plug/portraits/thumb/men/10.jpg">
+                            Hi, Dave Mattew
+                            <b class="caret"></b>
                         </a>
                         <ul style="margin-top:14px;" role="menu" class="dropdown-setting dropdown-menu">
                             <li>
                                 <a href="${base}/admin/sysUserInfo/info" data-toggle="navtab" data-id="info"
                                    data-mask="true">
-                                    <span class="entypo-user"></span>&#160;&#160;我的资料</a>
+                                    <span class="entypo-user"></span>&#160;&#160;我的资料
+                                </a>
                             </li>
                             <li>
-                                <a href="#"
-                                    <span class="entypo-vcard"></span>&#160;&#160;帐户设置</a>
+                                <a href="#">
+                                    <span class="entypo-vcard"></span>&#160;&#160;帐户设置
+                                </a>
                             </li>
                             <li>
                                 <a href="${base}/admin/sysUserInfo/password"
@@ -241,7 +249,7 @@
                             </li>
                         </ul>
                     </li>
-                    <!-- END头像设置 -->
+
                     <!-- 背景设置 -->
                     <li>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -264,7 +272,6 @@
                             </li>
                         </ul>
                     </li>
-                    <!--END 背景设置 -->
 
                     <!-- 顶部右侧隐藏按钮 -->
                     <li class="hidden-xs">
@@ -272,9 +279,9 @@
                             <span style="font-size:20px;" class="entypo-list-add"></span>
                         </a>
                     </li>
-                    <!-- END顶部右侧隐藏按钮 -->
+
                 </ul>
-                <!-- end 右侧顶部 头像设置-->
+
             </div>
         </div>
     </nav>
@@ -282,7 +289,6 @@
 
 <#--左边菜单-->
 <#macro leftMenu>
-    <!-- 左边菜单 -->
 	<div id="skin-select">
         <!-- PC端 LOGO -->
         <div id="logo">
@@ -294,16 +300,16 @@
         <a id="toggle">
             <span class="entypo-menu"></span>
         </a>
-        <!--END点击隐藏左边菜单栏按钮 -->
+
         <!-- PC端搜索按钮 -->
         <div class="dark">
             <form action="#">
 	            <span>
-					<input type="text" name="search" value="" class="search rounded id_search" placeholder="菜单搜索"
-                           autofocus/>
+					<input type="text" name="search" value="" class="search rounded id_search" placeholder="菜单搜索" autofocus/>
 	            </span>
             </form>
         </div>
+
         <!-- 手机端搜索按钮  有bug-->
         <div class="search-hover">
             <form id="demo-2">
@@ -316,122 +322,6 @@
         <div class="skin-part">
             <div id="tree-wrap">
                 <div class="side-bar">
-                <#--<ul class="topnav menu-left-nest">-->
-                <#--<li>-->
-                <#--<a href="#" style="border-left:0px solid!important;" class="title-menu-left">-->
-
-                <#--<span class="widget-menu"></span>-->
-                <#--<i data-toggle="tooltip" class="entypo-cog pull-right config-wrap"></i>-->
-
-                <#--</a>-->
-                <#--</li>-->
-
-                <#--<li>-->
-                <#--<a class="tooltip-tip ajax-load" href="#" title="Blog App">-->
-                <#--<i class="icon-document-edit"></i>-->
-                <#--<span>Blog App</span>-->
-
-                <#--</a>-->
-                <#--<ul>-->
-                <#--<li>-->
-                <#--<a class="tooltip-tip2 ajax-load" href="blog-list.html" title="Blog List"><i class="entypo-doc-text"></i><span>Blog List</span></a>-->
-                <#--</li>-->
-                <#--<li>-->
-                <#--<a class="tooltip-tip2 ajax-load" href="blog-detail.html" title="Blog Detail"><i class="entypo-newspaper"></i><span>Blog Details</span></a>-->
-                <#--</li>-->
-                <#--</ul>-->
-                <#--</li>-->
-                <#--<li>-->
-                <#--<a class="tooltip-tip ajax-load" href="social.html" title="Social">-->
-                <#--<i class="icon-feed"></i>-->
-                <#--<span>Social</span>-->
-
-                <#--</a>-->
-                <#--</li>-->
-                <#--<li>-->
-                <#--<a class="tooltip-tip ajax-load" href="media.html" title="Media">-->
-                <#--<i class="icon-camera"></i>-->
-                <#--<span>Media</span>-->
-
-                <#--</a>-->
-                <#--</li>-->
-                <#--</ul>-->
-
-                <#--<ul class="topnav menu-left-nest">-->
-                <#--<li>-->
-                <#--<a href="#" style="border-left:0px solid!important;" class="title-menu-left">-->
-
-                <#--<span class="design-kit"></span>-->
-                <#--<i data-toggle="tooltip" class="entypo-cog pull-right config-wrap"></i>-->
-
-                <#--</a>-->
-                <#--</li>-->
-
-                <#--<li>-->
-                <#--<a class="tooltip-tip ajax-load" href="index-2.html" title="Dashboard">-->
-                <#--<i class="icon-window"></i>-->
-                <#--<span>Dashboard</span>-->
-
-                <#--</a>-->
-                <#--</li>-->
-                <#--<li>-->
-                <#--<a class="tooltip-tip ajax-load" href="mail.html" title="Mail">-->
-                <#--<i class="icon-mail"></i>-->
-                <#--<span>mail</span>-->
-                <#--<div class="noft-blue">289</div>-->
-                <#--</a>-->
-                <#--</li>-->
-
-                <#--<li>-->
-                <#--<a class="tooltip-tip ajax-load" href="icon.html" title="Icons">-->
-                <#--<i class="icon-preview"></i>-->
-                <#--<span>Icons</span>-->
-                <#--<div class="noft-blue" style="display: inline-block; float: none;">New</div>-->
-                <#--</a>-->
-                <#--</li>-->
-
-                <#--<li>-->
-                <#--<a class="tooltip-tip" href="#" title="Extra Pages">-->
-                <#--<i class="icon-document-new"></i>-->
-                <#--<span>Extra Page</span>-->
-                <#--</a>-->
-                <#--<ul>-->
-                <#--<li>-->
-                <#--<a class="tooltip-tip2 ajax-load" href="blank_page.html" title="Blank Page"><i class="icon-media-record"></i><span>Blank Page</span></a>-->
-                <#--</li>-->
-                <#--<li>-->
-                <#--<a class="tooltip-tip2 ajax-load" href="profile.html" title="Profile Page"><i class="icon-user"></i><span>Profile Page</span></a>-->
-                <#--</li>-->
-                <#--<li>-->
-                <#--<a class="tooltip-tip2 ajax-load" href="invoice.html" title="Invoice"><i class="entypo-newspaper"></i><span>Invoice</span></a>-->
-                <#--</li>-->
-                <#--<li>-->
-                <#--<a class="tooltip-tip2 ajax-load" href="pricing_table.html" title="Pricing Table"><i class="fontawesome-money"></i><span>Pricing Table</span></a>-->
-                <#--</li>-->
-                <#--<li>-->
-                <#--<a class="tooltip-tip2 ajax-load" href="time-line.html" title="Time Line"><i class="entypo-clock"></i><span>Time Line</span></a>-->
-                <#--</li>-->
-                <#--<li>-->
-                <#--<a class="tooltip-tip2" href="404.html" title="404 Error Page"><i class="icon-thumbs-down"></i><span>404 Error Page</span></a>-->
-                <#--</li>-->
-                <#--<li>-->
-                <#--<a class="tooltip-tip2" href="500.html" title="500 Error Page"><i class="icon-thumbs-down"></i><span>500 Error Page</span></a>-->
-                <#--</li>-->
-                <#--<li>-->
-                <#--<a class="tooltip-tip2" href="lock-screen.html" title="Lock Screen"><i class="icon-lock"></i><span>Lock Screen</span></a>-->
-                <#--</li>-->
-                <#--</ul>-->
-                <#--</li>-->
-
-                <#--<li>-->
-                <#--<a class="tooltip-tip " href="login.html" title="login">-->
-                <#--<i class="icon-download"></i>-->
-                <#--<span>Login</span>-->
-                <#--</a>-->
-                <#--</li>-->
-
-                <#--</ul>-->
-
                     <!-- 系统设置 -->
                     <ul id="menu-showhide" class="topnav menu-left-nest">
                         <li>
@@ -442,7 +332,7 @@
                         </li>
 
                         <li>
-                            <a class="tooltip-tip" href="UserController/view" title="用户管理">
+                            <a class="tooltip-tip" href="${base}/admin/sysUser/view" title="用户管理">
                                 <i class="icon icon-user"></i>
                                 <span>用户管理</span>
                             </a>
@@ -477,51 +367,11 @@
 
 
                     </ul>
-                    <!-- 结束系统设置 -->
-
-                <#--<div class="side-dash">-->
-                <#--<h3>-->
-                <#--<span>设备</span>-->
-                <#--</h3>-->
-                <#--<ul class="side-dashh-list">-->
-                <#--<li>Avg. Traffic-->
-                <#--<span>25k<i style="color:#44BBC1;" class="fa fa-arrow-circle-up"></i>-->
-                <#--</span>-->
-                <#--</li>-->
-                <#--<li>Visitors-->
-                <#--<span>80%<i style="color:#AB6DB0;" class="fa fa-arrow-circle-down"></i>-->
-                <#--</span>-->
-                <#--</li>-->
-                <#--<li>Convertion Rate-->
-                <#--<span>13m<i style="color:#19A1F9;" class="fa fa-arrow-circle-up"></i>-->
-                <#--</span>-->
-                <#--</li>-->
-                <#--</ul>-->
-                <#--<h3>-->
-                <#--<span>交通</span>-->
-                <#--</h3>-->
-                <#--<ul class="side-bar-list">-->
-                <#--<li>Avg. Traffic-->
-                <#--<div class="linebar">5,20,30</div>-->
-                <#--</li>-->
-                <#--<li>Visitors-->
-                <#--<div class="linebar2">9,7,8,9,5,9,6,8,7</div>-->
-                <#--</li>-->
-                <#--<li>Convertion Rate-->
-                <#--<div class="linebar3">5,7,8,9,3,5,3,8,5</div>-->
-                <#--</li>-->
-                <#--</ul>-->
-                <#--<h3>-->
-                <#--<span>游客</span>-->
-                <#--</h3>-->
-                <#--<div id="g1" style="height:180px" class="gauge"></div>-->
-                <#--</div>-->
                 </div>
             </div>
         </div>
-        <!-- 左侧菜单栏 -->
+
     </div>
-	<!-- 结束左边菜单栏 -->
 </#macro>
 
 <#--右边隐藏视图-->
@@ -659,19 +509,13 @@
 
 <#--底部-->
 <#macro footer>
-    <div class="footer-space"></div>
 	<div id="footer">
-        <div class="devider-footer-left"></div>
-        <div class="time">
-            <p id="spanDate"></p>
-            <p id="clock"></p>
+        <div class="text-center" style="padding: 20px;">
+            Make with Love<span class="entypo-heart"></span>2019
+            <a href="http://themeforest.net/item/apricot-navigation-admin-dashboard-template/7664475?WT.ac=category_item&amp;WT.z_author=themesmile">
+                (Themesmile) Purchase This Item
+            </a> All Rights Reserved
         </div>
-        <div class="copyright">Make with Love
-            <span class="entypo-heart"></span>2019 <a
-                    href="http://themeforest.net/item/apricot-navigation-admin-dashboard-template/7664475?WT.ac=category_item&amp;WT.z_author=themesmile">(Themesmile)
-                Purchase This Item</a> All Rights Reserved
-        </div>
-        <div class="devider-footer"></div>
     </div>
 </#macro>
 

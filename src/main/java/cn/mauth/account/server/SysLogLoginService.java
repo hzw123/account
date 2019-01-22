@@ -27,7 +27,9 @@ public class SysLogLoginService {
 
 		Page<SysLogLogin> page=this.dao.findAll((root, query, cb) -> {
 			List<Predicate> list=new ArrayList<>();
+
 			Long userInfoId=qo.getUserInfoId();
+
 			if(userInfoId!=null && userInfoId>0)
 				list.add(cb.equal(root.get("userInfoId"),userInfoId));
 

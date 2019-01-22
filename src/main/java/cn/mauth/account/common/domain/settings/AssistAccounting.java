@@ -14,11 +14,14 @@ public class AssistAccounting extends BaseEntity{
 
     @Column(nullable = false,unique = true,length = 100)
     private String name;//辅助核算项名称
+
     @Column(nullable = false,unique = true,length = 100)
     private String code;//辅助核算用户编码
+
     private Long accountId;//账套ID
 
     private int type;//辅助核算类别
+
     private String typeName;//辅助核算类别名称
 
     @Column(columnDefinition = "text")

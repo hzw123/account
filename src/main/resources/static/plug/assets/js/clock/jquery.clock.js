@@ -35,18 +35,24 @@
     setInterval( function() {
       var hours = jQuery.calcTime(opts.offset).getHours();
       var mins = jQuery.calcTime(opts.offset).getMinutes();
-      if(opts.type=='analog')
-      {
+
+      if(opts.type=='analog') {
+
         var hdegree = hours * 30 + (mins / 2);
+
         var hrotate = "rotate(" + hdegree + "deg)";
+
         jQuery(_this).find(".hour").css({"-moz-transform" : hrotate, "-webkit-transform" : hrotate});
-      }
-      else
-      {
+
+      } else {
+
         jQuery(_this).find(".hour").html(hours);
+
       }
+
       var meridiem = hours<12?'AM':'PM';
       jQuery(_this).find('.meridiem').html(meridiem);
+
     }, 1000 );
 
     setInterval( function() {

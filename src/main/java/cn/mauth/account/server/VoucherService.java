@@ -1,5 +1,6 @@
 package cn.mauth.account.server;
 
+import cn.mauth.account.common.bean.Parameters;
 import cn.mauth.account.common.bean.VoucherBody;
 import cn.mauth.account.common.domain.settings.Voucher;
 import cn.mauth.account.common.util.DateUtil;
@@ -80,7 +81,14 @@ public class VoucherService {
 
     }
 
-    public Page<Voucher> page(Pageable pageable){
-        return this.voucherDao.findAll(PageUtil.getPageable(pageable));
+    public Page<Voucher> page(Parameters params,Pageable pageable){
+        return this.voucherDao.findAll(((root, query, cb) -> {
+            List<Predicate> list=new ArrayList<>();
+
+
+
+
+            return cb.and(list.toArray(new Predicate[list.size()]));
+        }),PageUtil.getPageable(pageable));
     }
 }

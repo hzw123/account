@@ -29,11 +29,11 @@ public abstract class BaseLog {
 
     @After("pointcutMethod()")
     public void after(JoinPoint joinPoint){
-        this.addAfter(joinPoint);
-        this.log(joinPoint);
+        String info=this.addAfter();
+        this.log(joinPoint,info);
     }
 
-    protected void log(JoinPoint joinPoint){
+    protected void log(JoinPoint joinPoint,String info){
         HttpServletRequest request= HttpUtils.getRequest();
 
         String uri=request.getRequestURI();
@@ -44,10 +44,18 @@ public abstract class BaseLog {
 
         String param= Arrays.toString(joinPoint.getArgs());
         long time=System.currentTimeMillis()-threadLocal.get();
-        logger.info("\n{\n\turi:{},\n\ttype:{},\n\tclassName:{}," +
+        logger.info("\n{}\n{\n\turi:{},\n\ttype:{},\n\tclassName:{}," +
                         "\n\tmethod:{},\n\tparam:{},\n\ttimeLong:{}\n}",
-                uri,type,className,method, param,time);
+                info,uri,type,className,method, param,time);
     }
 
-    public abstract void addAfter(JoinPoint joinPoint);
+    protected abstract String addAfter();
+
+    protected String info(String info){
+        StringBuffer sb=new StringBuffer();
+        sb.append("---------------");
+        sb.append(info);
+        sb.append("---------------");
+        return sb.toString();
+    }
 }

@@ -31,7 +31,7 @@ public class SysMenuService {
 	}
 
 	public int deleteById(Long id) {
-		int ret=0;
+		int ret=1;
 		int count = dao.countByParentId(id);
 		if (count>0) {
 			ret= -1;

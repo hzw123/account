@@ -45,9 +45,17 @@
 				<td>${(bean.lastLoginTime?string('yyyy-MM-dd HH:mm:ss'))!}</td>
 				<td>${bean.singleName!}</td>
 				<td>
+				<@shiro.hasPermission name="/admin/sysLogLogin/view">
 					<a href="${base}/admin/sysLogLogin/view?id=${bean.id}" class="btn btn-blue" data-toggle="dialog" data-id="sysLogLogin-view" data-options="{title:'查看', height:250}">查看 </a>
-					<#--<a href="${base}/admin/sysLogLogin/edit?id=${bean.id}" class="btn btn-green" data-toggle="dialog" data-id="sysLogLogin-edit" data-options="{title:'修改', height:340}">修改 </a>-->
-					<#--<a href="${base}/admin/sysLogLogin/delete?id=${bean.id}" class="btn btn-red" data-toggle="doajax" data-id="sysLogLogin-delete" data-confirm-msg="确定要删除吗？">删除</a>-->
+				</@shiro.hasPermission>
+
+				<@shiro.hasPermission name="/admin/sysLogLogin/edit">
+					<a href="${base}/admin/sysLogLogin/edit?id=${bean.id}" class="btn btn-green" data-toggle="dialog" data-id="sysLogLogin-edit" data-options="{title:'修改', height:340}">修改 </a>
+				</@shiro.hasPermission>
+
+				<@shiro.hasPermission name="/admin/sysLogLogin/delete">
+					<a href="${base}/admin/sysLogLogin/delete?id=${bean.id}" class="btn btn-red" data-toggle="doajax" data-id="sysLogLogin-delete" data-confirm-msg="确定要删除吗？">删除</a>
+				</@shiro.hasPermission>
 				</td>
 			</tr>
 			</#list>

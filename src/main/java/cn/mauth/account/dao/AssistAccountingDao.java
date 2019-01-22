@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AssistAccountingDao extends BaseDao<AssistAccounting,Long>{
+
+    AssistAccounting findByNameAndAccountId(String name,Long accountId);
+
+    void deleteByNameAndAccountId(String name,Long accountId);
 }

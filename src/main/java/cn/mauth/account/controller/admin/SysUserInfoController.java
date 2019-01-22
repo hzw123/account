@@ -9,11 +9,7 @@ import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -28,13 +24,13 @@ public class SysUserInfoController extends BaseController {
 	@Autowired
 	private SysUserInfoService service;
 
-	@RequestMapping(value = "/password", method = RequestMethod.GET)
+	@GetMapping(value = "/password")
 	public void passwordGet(ModelMap modelMap) {
 		modelMap.put("bean", service.getUserInfoForSeesion());
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/password", method = RequestMethod.POST)
+	@PostMapping(value = "/password")
 	public String passwordPost(String oldPwd, String newPwd, String rePwd) {
 		if (service.updatePassword(oldPwd, newPwd, rePwd) > 0) {
 			// 修改成功，退出登录
@@ -71,7 +67,7 @@ public class SysUserInfoController extends BaseController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/save")
+	@PostMapping(value = "/save")
 	public String save(@ModelAttribute SysUserInfo qo) {
 		if (service.save(qo) > 0) {
 			return success(TARGETID);

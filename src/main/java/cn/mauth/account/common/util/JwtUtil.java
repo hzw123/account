@@ -8,6 +8,8 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.xiaoleilu.hutool.crypto.DigestUtil;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -35,20 +37,20 @@ public class JwtUtil {
 
     /**
      * 校验token是否正确
-     * @param token
+     * @param sign
      * @return
      */
-    public static boolean verify(String token) throws CustomException{
+    public static boolean verify(String sign) throws CustomException{
 
         try {
             // 帐号加JWT私钥解密
-            String secret = JwtUtil.getClaim(token,Constants.Jwt.ACCOUNT) + Base64Util.decode(properties.getKey());
+            String secret = JwtUtil.getClaim(sign,Constants.Jwt.ACCOUNT) + Base64Util.decode(properties.getKey());
 
             Algorithm algorithm = Algorithm.HMAC256(secret);
 
             JWTVerifier verifier = JWT.require(algorithm).build();
 
-            DecodedJWT jwt = verifier.verify(token);
+            DecodedJWT jwt = verifier.verify(sign);
             return true;
         } catch (Exception e) {
 
@@ -63,14 +65,14 @@ public class JwtUtil {
 
     /**
      * 获得Token中的信息无需secret解密也能获得
-     * @param token
+     * @param sign
      * @return
      */
-    public static String getClaim(String token,String claim) {
+    public static String getClaim(String sign,String claim) {
 
         try {
 
-            DecodedJWT jwt = JWT.decode(token);
+            DecodedJWT jwt = JWT.decode(sign);
 
             // 只能输出String类型，如果是其他类型返回null
             return jwt.getClaim(claim).asString();
@@ -85,21 +87,47 @@ public class JwtUtil {
         }
     }
 
-    public static String getAccount(String token){
+    public static void verifyToken(String token)throws Exception{
 
-        return JwtUtil.getClaim(token,Constants.Jwt.ACCOUNT);
+        if(StringUtils.isEmpty(token)){
+            throw new Exception("没有找到 access_token:"+token);
+        }
+
+        String sign=RedisUtil.getSign(token);
+
+        if(StringUtils.isEmpty(sign)){
+            throw new Exception("没有找到token:"+token);
+        }
+
+        JwtUtil.verify(sign);
+
+        String currentTimeMillisRedis= RedisUtil.getCurrentTimeMillis(token);
+
+        if(StringUtils.isEmpty(currentTimeMillisRedis)){
+            throw new Exception("access_token 已过期");
+        }
+
+        if(!currentTimeMillisRedis.equals(JwtUtil.getCurrentTimeMillis(sign))){
+            throw new Exception("access_token 错误");
+        }
+
     }
 
-    public static String getPassword(String token){
-        return JwtUtil.getClaim(token,Constants.Jwt.PASSWORD);
+    public static String getAccount(String sign){
+
+        return JwtUtil.getClaim(sign,Constants.Jwt.ACCOUNT);
     }
 
-    public static String getClientId(String token){
-        return JwtUtil.getClaim(token,Constants.Jwt.CLIENT_ID);
+    public static String getPassword(String sign){
+        return JwtUtil.getClaim(sign,Constants.Jwt.PASSWORD);
     }
 
-    public static String getCurrentTimeMillis(String token){
-        return JwtUtil.getClaim(token,Constants.Jwt.CURRENT_TIME_MILLIS);
+    public static String getClientId(String sign){
+        return JwtUtil.getClaim(sign,Constants.Jwt.CLIENT_ID);
+    }
+
+    public static String getCurrentTimeMillis(String sign){
+        return JwtUtil.getClaim(sign,Constants.Jwt.CURRENT_TIME_MILLIS);
     }
 
     /**
@@ -109,7 +137,7 @@ public class JwtUtil {
      * @param clientId
      * @return 返回加密的Token
      */
-    public static String sign(String account,String password,String clientId) {
+    public static String sign(String account,String password,String clientId,String currentTimeMillis) {
 
         try {
             // 帐号加JWT私钥加密
@@ -119,9 +147,8 @@ public class JwtUtil {
             Date date = new Date(System.currentTimeMillis() + properties.getTimeout()*1000);
 
             Algorithm algorithm = Algorithm.HMAC256(secret);
-            String currentTimeMillis = String.valueOf(System.currentTimeMillis());
 
-            String token=JWT.create()
+            String sign=JWT.create()
                     .withClaim(Constants.Jwt.ACCOUNT, account)
                     .withClaim(Constants.Jwt.PASSWORD, password)
                     .withClaim(Constants.Jwt.CLIENT_ID, clientId)
@@ -129,12 +156,8 @@ public class JwtUtil {
                     .withExpiresAt(date)
                     .sign(algorithm);
 
-            // 设置RefreshToken中的时间戳为当前最新时间戳)
-            RedisUtil.putCurrentTimeMillis(token, currentTimeMillis);
 
-            RedisUtil.putToken(token);
-
-            return token;
+            return sign;
 
         } catch (UnsupportedEncodingException e) {
 
@@ -148,11 +171,33 @@ public class JwtUtil {
 
     public static String refreshSign(String token){
 
-        String account=JwtUtil.getAccount(token);
-        String password=JwtUtil.getPassword(token);
-        String clientId=JwtUtil.getClientId(token);
+        String sign=RedisUtil.getSign(token);
 
-        return JwtUtil.sign(account,password,clientId);
+        RedisUtil.deleteToken(token);
+
+        String account=JwtUtil.getAccount(sign);
+
+        String password=JwtUtil.getPassword(sign);
+
+        String clientId=JwtUtil.getClientId(sign);
+
+        return JwtUtil.token(account,password,clientId);
+    }
+
+    public static String token(String account,String password,String clientId){
+
+        String currentTimeMillis = String.valueOf(System.currentTimeMillis());
+
+        String sign=sign(account, password, clientId,currentTimeMillis);
+
+        String token=DigestUtil.md5Hex(sign);
+
+        // 设置RefreshToken中的时间戳为当前最新时间戳)
+        RedisUtil.putCurrentTimeMillis(token, currentTimeMillis);
+
+        RedisUtil.putSign(token,sign);
+
+        return token;
     }
 
 }

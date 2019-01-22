@@ -133,7 +133,8 @@ public class ShiroAutoConfiguration {
 	 */
 	@Bean
 	public CacheManager cacheManager() {
-		return new MemoryConstrainedCacheManager();//使用内存缓存
+		MemoryConstrainedCacheManager bean=new MemoryConstrainedCacheManager();//使用内存缓存
+		return bean;
 	}
 
 	/**

@@ -26,7 +26,7 @@ public class JwtFilter extends AccountFilter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
 
-        logger.warn("\ninto JwtFilter");
+        logger.warn("\ntoken 验证");
 
         if(SecurityUtils.getSubject().isAuthenticated()||this.isGetToken(request)){
             filterChain.doFilter(request,response);
@@ -53,25 +53,11 @@ public class JwtFilter extends AccountFilter {
 
     private void verifyToken(ServletRequest request) throws Exception{
 
-
         String token = request.getParameter(ACCESS_TOKEN);
 
-        if(StringUtils.isEmpty(token)){
-            throw new Exception("not found access_token");
-        }
+        JwtUtil.verifyToken(token);
 
-        JwtUtil.verify(token);
-
-        String currentTimeMillisRedis= RedisUtil.getCurrentTimeMillis(token);
-
-        if(StringUtils.isEmpty(currentTimeMillisRedis)){
-            throw new Exception("access_token expired");
-        }
-
-        if(!currentTimeMillisRedis.equals(JwtUtil.getCurrentTimeMillis(token))){
-            throw new Exception("access_token 错误");
-        }
-
+        logger.info("token：{}, 验证通过",token);
     }
 
     private boolean isGetToken(ServletRequest request){
@@ -82,7 +68,7 @@ public class JwtFilter extends AccountFilter {
 
         String method=req.getMethod();
 
-        if(uri.equals("/api/oauth2/token")&&method.equals("GET")){
+        if(uri.equals("/api/oauth2/token") && (method.equals("POST")||method.equals("GET"))){
             return true;
         }
 

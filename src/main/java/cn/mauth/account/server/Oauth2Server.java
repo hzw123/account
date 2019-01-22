@@ -4,6 +4,7 @@ import cn.mauth.account.common.bean.AppUserAccessToken;
 import cn.mauth.account.common.domain.sys.SysAppInfo;
 import cn.mauth.account.common.domain.sys.SysUserInfo;
 import cn.mauth.account.common.util.JwtUtil;
+import cn.mauth.account.dao.AccountSetDao;
 import cn.mauth.account.dao.SysAppInfoDao;
 import cn.mauth.account.dao.SysUserInfoDao;
 import com.xiaoleilu.hutool.crypto.DigestUtil;
@@ -18,6 +19,8 @@ public class Oauth2Server {
     private SysUserInfoDao sysUserInfoDao;
     @Autowired
     private SysAppInfoDao sysAppInfoDao;
+    @Autowired
+    private AccountSetDao accountSetDao;
 
     public String getToken(AppUserAccessToken token)throws Exception{
 
@@ -29,34 +32,42 @@ public class Oauth2Server {
 
         Long appId=0L;
 
-        if(StringUtils.isNotEmpty(username))
-            throw new Exception("username not null");
-        if(StringUtils.isNotEmpty(password))
-            throw new Exception("password not null");
-        if(StringUtils.isNotEmpty(clientId))
-            throw new Exception("clientId not null");
+        if(StringUtils.isEmpty(username))
+            throw new Exception("username 不能为空");
+        if(StringUtils.isEmpty(password))
+            throw new Exception("password 不能为空");
+        if(StringUtils.isEmpty(clientId))
+            throw new Exception("clientId 不能为空");
         try{
             appId=Long.valueOf(clientId);
         }catch (Exception e){
-            throw new Exception("clientId 转换 Long fail ,clientId:"+clientId);
+            throw new Exception("clientId 转换 Long 失败 ,clientId:"+clientId);
         }
 
         SysUserInfo userInfo=sysUserInfoDao.findByLoginName(username);
 
-        if(!DigestUtil.md5Hex(password+userInfo.getSalt()).equals(userInfo.getPwd())){
-            throw new Exception("Password mistake");
+        if(!DigestUtil.md5Hex(userInfo.getSalt()+password).equals(userInfo.getPwd())){
+            throw new Exception("密码验证错误");
         }
 
-        SysAppInfo app=sysAppInfoDao.findById(appId).get();
+        if(accountSetDao.findById(appId)==null){
+            throw new Exception("client 没有找到");
+        }
+
+        SysAppInfo app=sysAppInfoDao.findByAccountId(appId);
 
         if(app==null){
-            throw new Exception("Could not find clientId:"+appId);
+            throw new Exception("没有找到装套为："+appId+"的应用");
         }
 
         if(app.getUserInfoId()!=userInfo.getId()){
             throw new Exception("用户和应用不匹配");
         }
 
-        return JwtUtil.sign(username,password,clientId);
+        return JwtUtil.token(username,password,clientId);
+    }
+
+    public SysUserInfo findByAccount(String account){
+        return sysUserInfoDao.findByLoginName(account);
     }
 }

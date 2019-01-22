@@ -5,7 +5,6 @@ import cn.mauth.account.common.bean.VoucherBody;
 import cn.mauth.account.common.domain.settings.Voucher;
 import cn.mauth.account.server.VoucherService;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,28 +21,23 @@ public class VoucherController {
 
     @PostMapping("/voucher")
     @ApiOperation(value = "提交凭证")
-    public List<Voucher> save(String accessToken, Long accountId, VoucherBody body, Pageable pageable){
-
-        if(StringUtils.isEmpty(accessToken))
-            return null;
+    public List<Voucher> save(Long accountId, VoucherBody body){
 
         this.service.saveVoucher(body);
+
         return null;
     }
 
     @DeleteMapping("/voucher")
-    public Object delete(String accessToken,Long accountId, VoucherBody body){
-        if(StringUtils.isEmpty(accessToken))
-            return null;
+    public Object delete(Long accountId, VoucherBody body){
         this.service.deleteVoucher(body);
+
         return null;
     }
 
 
     @PutMapping("/voucher")
-    public Object update(String accessToken,Long accountId,VoucherBody body){
-        if(StringUtils.isEmpty(accessToken))
-            return null;
+    public Object update(Long accountId,VoucherBody body){
 
         return this.service.updateVoucher();
     }
@@ -52,7 +46,6 @@ public class VoucherController {
     @ApiOperation(value = "查询凭证")
     public Page<Voucher> page(Parameters params,Pageable pageable){
 
-        String token=params.getAccessToken();
         Long accountId=params.getAccountId();
         String start=params.getStart();
         String end=params.getEnd();
@@ -64,14 +57,12 @@ public class VoucherController {
             return null;//返回凭证数量
         }
 
-        return this.service.page(pageable);
+        return this.service.page(params,pageable);
     }
 
     @DeleteMapping("/voucherExtra")
     @ApiOperation(value = "删除凭证",notes = "删除凭证")
-    public String voucherExtra(String accessToken,Long accountId,VoucherBody body){
-
-
+    public String voucherExtra(Long accountId,VoucherBody body){
 
         this.service.deleteVoucher(body);
 

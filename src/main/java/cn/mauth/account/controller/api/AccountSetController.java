@@ -19,15 +19,13 @@ public class AccountSetController {
 
     @GetMapping
     @ApiOperation(value = "通过账套信息获取")
-    public Page<AccountSet> loadAccountSet(String accessToken, Pageable pageable){
-
-
+    public Page<AccountSet> loadAccountSet(Pageable pageable){
         return this.dao.findAll(PageUtil.getPageable(pageable));
     }
 
     @PostMapping
     @ApiOperation(value = "创建账套")
-    public Object save(String accessToken,AccountSet accountSet){
+    public Object save(AccountSet accountSet){
 
         this.dao.save(accountSet);
 
@@ -36,7 +34,7 @@ public class AccountSetController {
 
     @PutMapping
     @ApiOperation(value = "修改账套信息")
-    public Object update(String accessToken,AccountSet accountSet){
+    public Object update(AccountSet accountSet){
 
         this.dao.save(accountSet);
 
@@ -45,7 +43,7 @@ public class AccountSetController {
 
     @DeleteMapping
     @ApiOperation(value = "删除账套")
-    public Object delete(String accessToken,Long accountId){
+    public Object delete(Long accountId){
 
         this.dao.deleteById(accountId);
 

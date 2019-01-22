@@ -1,11 +1,26 @@
+<#include "../../macro/utils.ftl"/>
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <@head/>
+    <@css/>
+    <@js/>
+</head>
+
+<body>
+<!-- 顶部通用-->
+<@topMenu/>
+
+<!-- 左边菜单栏通用 -->
+<@leftMenu/>
 
 <div class="wrap-fluid">
     <div class="container-fluid paper-wrap bevel tlbr">
         <!-- 内容 -->
         <!--标题 通用-->
-        <div th:replace="admin/common/html/title :: title(${title},${parenttitle},${isMsg},${msgHTML})">
-        </div>
-        <!-- 结束标题 通用-->
+        <@title/>
+        
         <div class="content-wrap">
             <!-- 结束内容 -->
             <div class="row">
@@ -83,49 +98,71 @@
                 </div>
                 <!-- 空白页结束 -->
             </div>
-            <!-- 结束内容 -->
+
             <!-- 页脚 通用-->
-            <div th:replace="admin/common/html/footer :: footer">
-            </div>
-            <!-- 结束页脚通用 -->
+            <@footer/>
         </div>
+
     </div>
 </div>
 
+<!-- 右侧隐藏滑块内容 -->
+<@rightHide/>
+
 <script type="text/javascript">
-<!-- jquery-export 表格导出插件 -->
 
 <!-- 导出 -->
-var dataUrl="/UserController/list";
-var removeUrl="/UserController/remove";
-var createUrl="/UserController/add";
-var updateUrl="/UserController/edit/{id";
-var exportUrl="/UserController/export";
+var dataUrl="/admin/sysUser/list";
+var removeUrl="/admin/sysUser/delete";
+var createUrl="/admin/sysUser/add";
+var updateUrl="/admin/sysUser/edit/{id}";
+var exportUrl="/admin/sysUser/export";
   var options = {
 		dataUrl: dataUrl,
         createUrl: createUrl,
         updateUrl: updateUrl,
         removeUrl:removeUrl,
         exportUrl: exportUrl,
-        sortName: "roleSort",
+        sortName: "sort",
         modalName: "用户",
         search: false,
 	   dataColumns: [
-			{
+	       {
 			    checkbox: true
-			},                   
-			{
+			},
+           {
 			    field: 'id',
 			    title: '序号'
-			}, 
-			
-			{
-			    field: 'username',
-			    title: '账号'
-			}, {
-			    field: 'password',
-			    title: '密码'
-			}, {
+			},
+           {
+			    field: 'loginName',
+			    title: '登录名'
+			},
+           {
+			    field: 'nickName',
+			    title: '用户名'
+			},
+           {
+			    field: 'email',
+			    title: '邮箱'
+			},
+           {
+			    field: 'mobile',
+			    title: '手机'
+			},
+           {
+			    field: 'addr',
+			    title: '地址'
+			},
+           {
+			    field: 'userType',
+			    title: '类型'
+			},
+           {
+			    field: 'statusId',
+			    title: '状态'
+			},
+           {
 			    title: '操作',
 			    formatter: function (value, row, index) {
 			        var id = row.id;
@@ -133,8 +170,6 @@ var exportUrl="/UserController/export";
 			        actions.push('<a class="btn btn-success btn-xs"  href="#" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
 			        actions.push('<a class="btn btn-danger btn-xs" href="#" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
 			        return actions.join('');
-			
-			        //return '<a class="btn btn-xs btn-danger" onclick="delPermission(' + "" + id + "" + ')"><i class="fa fa-remove"></i>删除</a>';
 			    }
 			}]
   };
@@ -146,7 +181,7 @@ $(function(){
 
 
 <script type="text/javascript">
-	var editPwdUrl="/UserController/editPwd/{id";
+	var editPwdUrl="/admin/sysUser/password/{id}";
 	function updatePwd(){
 		 var rows = $.common.isEmpty($.table._option.id) ? $.table.selectFirstColumns() : $.table.selectColumns($.table._option.id);
          if (rows.length == 0) {
@@ -166,8 +201,6 @@ $(function(){
 	}
 
 </script>
-
-
 
 </body>
 

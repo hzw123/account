@@ -19,7 +19,7 @@ public class UrlFilter extends AccountFilter{
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain) throws IOException, ServletException {
-        logger.warn("into UrlFilter");
+        logger.warn("权限验证");
 
         HttpServletRequest request=(HttpServletRequest) req;
 

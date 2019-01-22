@@ -1,12 +1,14 @@
 package cn.mauth.account.controller.api;
 
 import cn.mauth.account.common.domain.settings.AccountSubject;
+import cn.mauth.account.common.util.PageUtil;
 import cn.mauth.account.common.util.Result;
 import cn.mauth.account.dao.AccountSubjectDao;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.criteria.Predicate;
@@ -23,40 +25,50 @@ public class AccountSubjectController {
 
     @GetMapping
     @ApiOperation(value = "获取账套下所有科目")
-    public List<AccountSubject> findByAisId(String accessToken,Long accountId,Long subId){
-        if(StringUtils.isEmpty(accessToken))
-            return null;
+    public Result findByAisId(Long accountId,Long subId,Pageable pageable){
 
-        return this.dao.findAll((root, query, cb) -> {
+        Page<AccountSubject> page=this.dao.findAll((root, query, cb) -> {
+
             List<Predicate> list=new ArrayList<>();
-            if(accountId>0)
+
+            if(accountId!=null && accountId>0)
                 list.add(cb.equal(root.get("accountId"),accountId));
-            if(subId>0)
+
+            if(subId!=null && subId>0)
                 list.add(cb.equal(root.get("id"),subId));
 
+
             return cb.and(list.toArray(new Predicate[list.size()]));
-        });
+        }, PageUtil.getPageable(pageable));
+
+        return Result.success(page);
     }
 
     @PostMapping
     @ApiOperation(value = "批量添加科目")
-    public Object batchSave(String accessToken,List<AccountSubject> list){
+    public Result<String> batchSave(List<AccountSubject> list){
 
+        this.dao.saveAll(list);
 
         return Result.SUCCESS;
     }
 
     @PutMapping
     @ApiOperation(value = "批量修改科目")
-    public Object batchUpdate(String accessToken,List<AccountSubject> list){
+    public Result<String> batchUpdate(List<AccountSubject> list){
+
+        this.dao.saveAll(list);
 
         return Result.SUCCESS;
     }
 
     @DeleteMapping
     @ApiOperation(value = "批量修改科目")
-    public Object delete(String accessToken,Long accountId,Long subId){
-
+    public Result<String> delete(Long accountId,Long subId){
+        if(accountId==null)
+            accountId=0L;
+        if(subId==null)
+            subId=0L;
         try{
             if(subId>0&&accountId>0){
                 this.dao.deleteByIdAndAccountId(subId,accountId);

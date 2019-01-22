@@ -2,9 +2,12 @@ package cn.mauth.account.controller.api;
 
 import cn.mauth.account.common.bean.Parameters;
 import cn.mauth.account.common.domain.settings.Currency;
+import cn.mauth.account.common.util.PageUtil;
+import cn.mauth.account.common.util.Result;
 import cn.mauth.account.dao.CurrencyDao;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,36 +20,34 @@ public class CurrencyController {
     private CurrencyDao dao;
 
     @GetMapping
-    @ApiOperation(value = "获取账套外币信息",notes = "获取账套外币信息")
-    public List<Currency> get(String accessToken){
-
-
-        return null;
+    @ApiOperation(value = "获取账套外币信息")
+    public Result get(Pageable pageable){
+        return Result.success(this.dao.findAll(PageUtil.getPageable(pageable)));
     }
 
     @PostMapping
-    @ApiOperation(value = "添加新的外币核算内容",notes = "添加新的外币核算内容")
-    public Currency save(String accessToken,Currency currency){
-
-        return this.dao.save(currency);
+    @ApiOperation(value = "添加新的外币核算内容")
+    public Result save(Currency currency){
+        currency=this.dao.save(currency);
+        return Result.success(currency);
     }
 
     @PutMapping
-    @ApiOperation(value = "修改外币核算项目",notes = "修改外币核算项目")
-    public Currency update(String accessToken,Currency currency){
+    @ApiOperation(value = "修改外币核算项目")
+    public Result update(Currency currency){
+        this.dao.save(currency);
 
-        return this.dao.save(currency);
+        return Result.SUCCESS;
     }
 
     @DeleteMapping
     @ApiOperation(value = "删除外币核算",notes = "删除外币核算")
-    public Object delete(Parameters param){
-        String token=param.getAccessToken();
-
-        Long asId=param.getAccountId();
+    public Result delete(Parameters param){
         Long fcId=param.getFcId();
 
-        return null;
+        this.dao.deleteById(fcId);
+
+        return Result.success();
     }
 
 
