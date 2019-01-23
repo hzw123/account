@@ -46,7 +46,7 @@ public class WebSocket {
     }
 
 
-    public void sendMessage(String message){
+    public static void sendMessage(String message){
         for(WebSocket webSocket:webSocketSet){
             log.info("【websocket消息】 广播消息，message={}",message);
             try {

@@ -1,6 +1,6 @@
 <#assign base=request.contextPath /> 
 <div class="bjui-pageContent">
-    <form action="${base}/admin/sysServer/update" data-toggle="validate" method="post">
+    <form action="${base}/admin/sysService/update" data-toggle="validate" method="post">
         <input type="hidden" name="id" value="${bean.id}"/>
         <div class="form-group">
             <label class="control-label x85">服务号：</label>

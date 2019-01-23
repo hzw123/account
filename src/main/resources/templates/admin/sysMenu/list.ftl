@@ -1,5 +1,5 @@
 <#include "/macro/base.ftl" />
-<div class="bjui-pageHeader">
+<div class="bjui-pageHeader" xmlns="http://www.w3.org/1999/html">
     <div class="bjui-searchBar">
         <br />
         <a href="${base}/admin/sysMenu/add?parentId=0" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="sysMenu-add" data-options="{title:'添加', height:320, width:425}">添加一级菜单 </a>
@@ -11,7 +11,7 @@
             <#if list??>
             <ul id="privilege" class="ztree" data-toggle="ztree" data-options="{expandAll:false,onClick:'ZtreeClick',maxAddLevel:5}" data-add-hover-dom="edit" data-remove-hover-dom="edit" data-on-remove="M_NodeRemove" >
                 <#list list as bean>
-                    <li data-id="${bean.id}" data-pid="${bean.parentId!}" data-url="${bean.menuUrl!}" data-targetname="${bean.targetName!}" data-menuicon="${bean.menuIcon!}" data-sort="${bean.sort!}" data-remark="${bean.remark!}">${bean.menuName!}</li>
+                    <li data-id="${bean.id}" data-pid="${bean.parentId!}" data-url="${bean.menuUrl!}" data-targetname="${bean.targetName!}" data-menuicon="${bean.menuIcon!}" data-sort="${bean.sort!}" data-remark="${bean.remark!}" data-status="${bean.statusId!}">${bean.menuName!}</li>
                 </#list>
             </ul>
             </#if>
@@ -38,11 +38,20 @@
                      <label for="j_menu_sort" class="control-label x85">排序：</label>
                      <input type="text" class="form-control" name="m.sort" id="j_menu_sort" size="35" placeholder="排序" />
                  </div>
-                 
+                <div class="form-group">
+                    <label for="j_menu_statusId" class="control-label x85">状态：</label>
+                    <select id="j_menu_statusId" class="form-control" name="m.statusId" style="text-align: center;width:150px;">
+                        <option value="0">停用</option>
+                        <option value="1">启用</option>
+                    </select>
+                 </div>
+
                  <div class="form-group">
                      <label for="j_menu_remark" class="control-label x85">备注：</label>
                      <input type="text" class="form-control" name="m.remark" id="j_menu_remark" size="35" placeholder="备注" />
                  </div>
+                 </br>
+
                  <div class="form-group" style="padding-top:8px; border-top:1px #DDD solid;">
                      <label class="control-label x85"></label>
                      <button class="btn btn-green" onclick="Update();">修改菜单</button>
@@ -58,15 +67,27 @@
 function ZtreeClick(event, treeId, treeNode) {
     event.preventDefault();
     var $detail = $('#ztree-detail');
-    if ($detail.attr('tid') == treeNode.tId) {return}
+    if ($detail.attr('tid') == treeNode.tId) {return;}
     if (treeNode.name) {$('#j_menu_name').val(treeNode.name)}
     if (treeNode.url) {$('#j_menu_url').val(treeNode.url)} 
     if (treeNode.targetname) {$('#j_menu_targetname').val(treeNode.targetname)}
     if (treeNode.menuicon) {$('#j_menu_menuicon').val(treeNode.menuicon)} 
     if (treeNode.sort) {$('#j_menu_sort').val(treeNode.sort)} 
-    if (treeNode.remark) {$('#j_menu_remark').val(treeNode.remark)} 
-    $detail.attr('tid', treeNode.tId)
-    $detail.show()
+    if (treeNode.remark) {$('#j_menu_remark').val(treeNode.remark)}
+
+    if(treeNode.status!=undefined){
+        for(var i=0;i<2;i++){
+            var option=$('#j_menu_statusId').children("option").get(i);
+            if(option.value==treeNode.status){
+                $(option).attr("selected","selected");
+                break;
+            }
+        }
+    }
+
+
+    $detail.attr('tid', treeNode.tId);
+    $detail.show();
 }
 
 // 添加修改事件
@@ -78,7 +99,8 @@ function Update() {
     var menuIcon = $('#j_menu_menuicon').val()
     var sort = $('#j_menu_sort').val()
     var remark = $('#j_menu_remark').val()
-    
+    var statusId = $('#j_menu_statusId').val()
+
     if ($.trim(name).length == 0) {
         $(this).alertmsg('error', '菜单名称不能为空！')
         return;
@@ -91,12 +113,20 @@ function Update() {
     }
     
     if(typeof(upNode.id) == "undefined"){
-        var saveData='parentId=' + upNode.pId + '&menuName=' + name + '&menuUrl=' + url + '&targetName=' + targetName + '&menuIcon=' + menuIcon + '&sort=' + sort + '&remark=' + remark;
         // 添加
         $.ajax({
             type:'post',
             url:'${base}/admin/sysMenu/save/sub',
-            data:saveData,
+            data:{
+                parentId:upNode.pId,
+                menuName:name,
+                menuUrl:url,
+                targetName:targetName,
+                menuIcon:menuIcon,
+                sort:sort,
+                statusId:statusId,
+                remark:remark
+            },
             dataType:'json',
             success:function(id){
                 upNode.id    = id;
@@ -107,6 +137,7 @@ function Update() {
                 upNode.menuicon   = menuIcon;
                 upNode.sort   = sort;
                 upNode.remark = remark;
+                upNode.statusId = statusId;
                 zTree.updateNode(upNode);
             },
             error:function(){
@@ -114,12 +145,20 @@ function Update() {
             }
         })
     }else{
-        var updateData='id=' + upNode.id + '&menuName=' + name + '&menuUrl=' + url + '&targetName=' + targetName + '&menuIcon=' + menuIcon + '&sort=' + sort + '&remark=' + remark;
         // 修改
         $.ajax({
             type:'post',
             url:'${base}/admin/sysMenu/update',
-            data:updateData,
+            data:{
+                id:upNode.id,
+                menuName:name,
+                menuUrl:url,
+                targetName:targetName,
+                menuIcon:menuIcon,
+                sort:sort,
+                statusId:statusId,
+                remark:remark
+            },
             dataType:'json',
             success:function(){
                 upNode.name   = name;
@@ -128,6 +167,7 @@ function Update() {
                 upNode.menuicon   = menuIcon;
                 upNode.sort   = sort;
                 upNode.remark = remark;
+                upNode.statusId = statusId;
                 zTree.updateNode(upNode)
             },
             error:function(){

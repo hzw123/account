@@ -1,6 +1,6 @@
 <#assign base=request.contextPath />
 <div class="bjui-pageContent">
-    <form action="${base}/admin/sysServer/save" data-toggle="validate" method="post">
+    <form action="${base}/admin/sysService/save" data-toggle="validate" method="post">
 
         <div class="form-group">
             <label class="control-label x85">服务号：</label>
@@ -18,8 +18,8 @@
             <label class="control-label x85">启用状态：</label>
             <select name="state" data-toggle="selectpicker" size="20">
                 <option value="-1">全部</option>
-                <option value="0">停用</option>
                 <option value="1">启用</option>
+                <option value="0">停用</option>
             </select>
         </div>
     </form>

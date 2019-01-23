@@ -7,29 +7,63 @@
 	</div>
 
     <div class="form-group">
-		<label class="control-label">应用名称：</label>${bean.name!}
+		<label class="control-label">服务列表名称：</label>${bean.name!}
 	</div>
 
     <div class="form-group">
-		<label class="control-label">账套ID：</label>${bean.accountId!}
+		<label class="control-label">应用Id：</label>${bean.appId}
 	</div>
 
     <div class="form-group">
-		<label class="control-label">秘钥：</label>${bean.clientSecret!}
-	</div>
-
-	<div class="form-group">
-		<label class="control-label">用户ID：</label>${bean.userInfoId!}
+		<label class="control-label">账套ID：</label>${bean.accountId}
 	</div>
 
     <div class="form-group">
-		<label class="control-label">启用状态：</label>
+        <label class="control-label">用户ID：</label>${bean.userInfoId!}
+    </div>
+
+	<#if bean.sysService??>
+	    <div class="form-group">
+            <label class="control-label">服务名称：</label>${bean.sysService.name!}
+        </div>
+
+		<div class="form-group">
+       		 <label class="control-label">服务号：</label>${bean.sysService.serverNo!}
+		</div>
+
+		<div class="form-group">
+       		 <label class="control-label">服务名称：</label>${bean.sysService.ytpe!}
+		</div>
+		<div class="form-group">
+            <label class="control-label">服务状态：</label>
+			<#if bean.sysService.state==0>
+				停用
+			<#else>
+				启用
+			</#if>
+        </div>
+	</#if>
+
+    <div class="form-group">
+		<label class="control-label">总用户数：</label>${bean.totalUsers}
+	</div>
+
+    <div class="form-group">
+		<label class="control-label">使用用户数：</label>${bean.usedUsers}
+	</div>
+
+    <div class="form-group">
+		<label class="control-label">状态：</label>
 		<#if bean.state==0>
 			停用
 		<#else>
 			启用
 		</#if>
 	</div>
+
+    <div class="form-group">
+        <label class="control-label">状态：</label>${bean.version}
+    </div>
 
 </div>
 <div class="bjui-pageFooter">

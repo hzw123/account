@@ -1,35 +1,55 @@
 <#assign base=request.contextPath /> 
 <div class="bjui-pageContent">
-    <form action="${base}/admin/SysAppInfo/update" data-toggle="validate" method="post">
+    <form action="${base}/admin/sysServiceList/update" data-toggle="validate" method="post">
 
         <input type="hidden" name="id" value="${bean.id}"/>
 
         <div class="form-group">
-            <label class="control-label x85">应用名称：</label>
-            <input type="text" name="name" value="${bean.name!}" placeholder="应用名称" size="20"  data-rule="required">
+            <label class="control-label x85">服务列表名称：</label>
+            <input type="text" name="name" value="${bean.name!}" placeholder="服务列表名称" size="20"  data-rule="required">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label x85">应用ID：</label>
+            <input type="number" name="appId" value="${bean.appId}" placeholder="应用ID" size="20" data-rule="required" disabled>
         </div>
 
         <div class="form-group">
             <label class="control-label x85">账套ID：</label>
-            <input type="text" name="accountId" value="${bean.accountId!}" placeholder="账套ID" size="20" data-rule="required" disabled>
+            <input type="number" name="accountId" value="${bean.accountId}" placeholder="账套ID" size="20" data-rule="required" disabled>
         </div>
 
         <div class="form-group">
-            <label class="control-label x85">秘钥：</label>
-            <input type="text" name="clientSecret" value="${bean.clientSecret!}" placeholder="秘钥" size="20" data-rule="required" disabled>
-        </div>
-
-       <div class="form-group">
-            <label class="control-label x85">用户ID：</label>
-            <input type="text" name="userInfoId" value="${bean.userInfoId!}" placeholder="用户ID" size="20" data-rule="required" disabled>
+            <label class="control-label x85">用户Id：</label>
+            <input type="number" name="userInfoId" value="${bean.userInfoId}" placeholder="用户Id" size="20" data-rule="required" disabled>
         </div>
 
         <div class="form-group">
-            <label class="control-label x85">启用状态：</label>
+            <label class="control-label x85">总用户数：</label>
+            <input type="number" name="userInfoId" value="${bean.totalUsers}" placeholder="总用户数" size="20" data-rule="required" >
+        </div>
+
+        <div class="form-group">
+            <label class="control-label x85">总用户数：</label>
+            <input type="number" name="userInfoId" value="${bean.totalUsers}" placeholder="总用户数" size="20" data-rule="required" >
+        </div>
+
+        <div class="form-group">
+            <label class="control-label x85">使用用户数：</label>
+            <input type="number" name="usedUsers" value="${bean.usedUsers}" placeholder="使用用户数" size="20" data-rule="required" disabled>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label x85">状态：</label>
             <select name="state" data-toggle="selectpicker" size="20">
                 <option value="0" <#if bean.state==0>selected</#if> >停用</option>
                 <option value="1" <#if bean.state==1>selected</#if> >启用</option>
             </select>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label x85">版本：</label>
+            <input type="number" name="version" value="${bean.version}" placeholder="版本" size="20" data-rule="required" disabled>
         </div>
 
     </form>

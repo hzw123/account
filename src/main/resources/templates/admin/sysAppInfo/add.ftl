@@ -4,19 +4,19 @@
 
         <div class="form-group">
             <label class="control-label x85">应用名称：</label>
-            <input type="text" name="name" value="" placeholder="应用名称" size="20">
+            <input type="text" name="name" value="" placeholder="应用名称" size="20" data-rule="required">
         </div>
         
         <div class="form-group">
             <label class="control-label x85">账套ID：</label>
-            <input type="number" name="accountId" value="" placeholder="账套ID" size="20">
+            <input type="number" name="accountId" value="" placeholder="账套ID" size="20" data-rule="required">
         </div>
 
         <div class="form-group">
             <label class="control-label x85">启用状态：</label>
             <select name="state" data-toggle="selectpicker" size="20">
-                <option value="0">停用</option>
                 <option value="1">启用</option>
+                <option value="0">停用</option>
             </select>
         </div>
     </form>

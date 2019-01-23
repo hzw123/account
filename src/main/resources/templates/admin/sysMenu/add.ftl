@@ -20,6 +20,13 @@
             <input type="text" name="menuIcon" value="" placeholder="菜单图标" size="20">
         </div>
         <div class="form-group">
+            <label class="control-label x85">状态：</label>
+            <select name="statusId" style="text-align: center;width:150px;">
+                <option value="0">停用</option>
+                <option value="1" selected>启用</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label class="control-label x85">排序：</label>
             <input type="text" name="sort" value="1" placeholder="排序" size="20">
         </div>

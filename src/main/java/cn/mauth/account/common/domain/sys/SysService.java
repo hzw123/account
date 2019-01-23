@@ -18,7 +18,7 @@ public class SysService extends BaseEntity{
     private String serverNo;//服务号
     @Column(nullable = false,unique = true,length = 100)
     private String name;//服务名称
-    private String version;//服务类型 totalUsers
+    private String type;//服务类型
     private int state;//启用状态（0-停用,1-启用；）
     @Transient
     private int query;
@@ -39,12 +39,12 @@ public class SysService extends BaseEntity{
         this.name = name;
     }
 
-    public String getVersion() {
-        return version;
+    public String getType() {
+        return type;
     }
 
-    public void setVersion(String version) {
-        this.version = version;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public int getState() {

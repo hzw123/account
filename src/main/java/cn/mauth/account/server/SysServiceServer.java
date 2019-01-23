@@ -32,8 +32,8 @@ public class SysServiceServer {
             if(sysService.getQuery()>0 && sysService.getState()>=0)
                 list.add(cb.equal(root.get("state"),sysService.getState()));
 
-            if(StringUtils.isNotEmpty(sysService.getVersion()))
-                list.add(cb.like(root.get("version"),sysService.getVersion()));
+            if(StringUtils.isNotEmpty(sysService.getType()))
+                list.add(cb.like(root.get("type"),PageUtil.like(sysService.getType())));
 
             return cb.and(list.toArray(new Predicate[list.size()]));
         }),PageUtil.getPageable(pageCurrent,pageSize));

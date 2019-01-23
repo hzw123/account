@@ -26,6 +26,7 @@ public class SysMenuService {
 	private SysMenuDao dao;
 
 	public Long save(SysMenu sysMenu) {
+		sysMenu.setStatusId(1);
 		dao.save(sysMenu);
 		return 1L;
 	}

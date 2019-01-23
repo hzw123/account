@@ -6,22 +6,22 @@
 
         <div class="form-group">
             <label class="control-label x85">应用名称：</label>
-            <input type="text" name="name" value="${bean.name!}" placeholder="应用名称" size="20">
+            <input type="text" name="name" value="${bean.name!}" placeholder="应用名称" size="20"  data-rule="required">
         </div>
 
         <div class="form-group">
             <label class="control-label x85">账套ID：</label>
-            <input type="text" name="accountId" value="${bean.accountId!}" placeholder="服务名称" size="20" readonly>
+            <input type="text" name="accountId" value="${bean.accountId!}" placeholder="账套ID" size="20" data-rule="required" disabled>
         </div>
 
         <div class="form-group">
             <label class="control-label x85">秘钥：</label>
-            <input type="text" name="clientSecret" value="${bean.clientSecret!}" placeholder="秘钥" size="20" readonly>
+            <input type="text" name="clientSecret" value="${bean.clientSecret!}" placeholder="秘钥" size="20" data-rule="required" disabled>
         </div>
 
        <div class="form-group">
             <label class="control-label x85">用户ID：</label>
-            <input type="text" name="userInfoId" value="${bean.userInfoId!}" placeholder="用户ID" size="20" readonly>
+            <input type="text" name="userInfoId" value="${bean.userInfoId!}" placeholder="用户ID" size="20" data-rule="required" disabled>
         </div>
 
         <div class="form-group">

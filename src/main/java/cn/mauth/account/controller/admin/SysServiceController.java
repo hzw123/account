@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/admin/sysServer")
-public class SysServerController extends BaseController{
+@RequestMapping("/admin/sysService")
+public class SysServiceController extends BaseController{
 
-    private final static String TARGETID = "admin-sysServer";
+    private final static String TARGETID = "admin-sysService";
 
     @Autowired
     private SysServiceServer service;
