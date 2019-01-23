@@ -15,7 +15,7 @@
 	</div>
 
     <div class="form-group">
-		<label class="control-label">version：</label>${bean.version!}
+		<label class="control-label">服务类型：</label>${bean.type!}
 	</div>
 
     <div class="form-group">
