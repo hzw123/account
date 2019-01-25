@@ -23,6 +23,8 @@ public class Voucher implements Serializable{
     private Date vchDate;//凭证日期
     @Column(nullable = false)
     private String preparedBy;//制单人
+    @Column(nullable = false)
+    private Long accountId;//账套Id
     private int attachments;//附件数量
     private String approvedBy;//审核人
     private int approveStatus;//审核信息（1表示被审核）
@@ -101,5 +103,21 @@ public class Voucher implements Serializable{
 
     public void setEntries(List<VoucherLine> entries) {
         this.entries = entries;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 }

@@ -45,12 +45,6 @@ public class VoucherController {
     @GetMapping("/voucher")
     @ApiOperation(value = "查询凭证")
     public Page<Voucher> page(Parameters params,Pageable pageable){
-
-        Long accountId=params.getAccountId();
-        String start=params.getStart();
-        String end=params.getEnd();
-        int startNum=params.getStartVNum();
-        int endNum=params.getEndVNum();
         Long vid=params.getVid();
 
         if(vid>0){

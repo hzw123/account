@@ -124,6 +124,6 @@ public class LoginController extends BaseController {
 
 	@RequestMapping("/admin/index")
 	public void adminIndex(ModelMap modelMap){
-		setTitle(modelMap, new TitleVo("首页", "首页", "yes","欢迎进入", "yes", "no"));
+		setTitle(modelMap, new TitleVo("首页", "首页", true,"欢迎进入", true, false));
 	}
 }

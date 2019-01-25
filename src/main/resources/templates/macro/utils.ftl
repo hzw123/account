@@ -25,7 +25,7 @@
 <#--顶部菜单-->
 <#macro topMenu>
     <!-- 彩带 -->
-    <#if (titleVo.isribbo!)=='yes'>
+    <#if titleVo.ribbon?string('1','0')=='1'>
         <div id="awwwards" class="right black">
             <a href="#" target="_blank">best websites of the world</a>
         </div>
@@ -332,7 +332,7 @@
                         </li>
 
                         <li>
-                            <a class="tooltip-tip" href="${base}/admin/sysUser/view" title="用户管理">
+                            <a class="tooltip-tip" href="${base}/api/user/view" title="用户管理">
                                 <i class="icon icon-user"></i>
                                 <span>用户管理</span>
                             </a>
@@ -533,7 +533,7 @@
             </div>
 
             <!-- 欢迎div -->
-            <#if (titleVo.isMsg!)=='yes'>
+            <#if titleVo.msg?string('1','0')=='1'>
                 <div class="col-lg-7">
                     <div class="devider-vertical visible-lg"></div>
                     <div class="tittle-middle-header">
@@ -554,7 +554,7 @@
             <!-- END欢迎div -->
 
             <!-- 小控件 -->
-            <#if (titleVo.isControl!)=='yes'>
+            <#if titleVo.control?string('1','0')=='1'>
             <div class="col-lg-2">
                 <div class="devider-vertical visible-lg"></div>
                 <div class="btn-group btn-wigdet pull-right visible-lg">
@@ -582,7 +582,6 @@
                 </div>
             </div>
             </#if>
-            <!-- END小控件 -->
 
         </div>
     </div>
@@ -594,17 +593,11 @@
         </li>
         <li><i class="fa fa-lg fa-angle-right"></i>
         </li>
-        <li><a href="#" title="Sample page 1">${titleVo.parenttitle!}</a>
+        <li><a href="#" title="菜单">${titleVo.title!}</a>
         </li>
         <li><i class="fa fa-lg fa-angle-right"></i>
         </li>
-        <li><a href="#" title="Sample page 1">${titleVo.title!}</a>
-        </li>
-        <li class="pull-right">
-            <div class="input-group input-widget">
-
-                <input style="border-radius:15px" type="text" placeholder="Search..." class="form-control">
-            </div>
+        <li><a href="#" title="列表">${titleVo.parenttitle!}</a>
         </li>
     </ul>
 </#macro>

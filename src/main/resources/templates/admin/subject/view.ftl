@@ -15,10 +15,6 @@
     </div>
 
     <div class="form-group">
-		<label class="control-label">初始汇率：</label>${bean.rate}
-	</div>
-
-    <div class="form-group">
 		<label class="control-label">科目类别：</label>
 		<#if bean.subType=='ASSETS'>资产
 		<#elseif bean.subType=='LIABILITIES'>负债
@@ -30,7 +26,7 @@
 	</div>
 
     <div class="form-group">
-        <label class="control-label">科目类别详细：</label>${bean.groupName！}
+        <label class="control-label">科目类别详细：</label>${bean.groupName!}
     </div>
 
     <div class="form-group">
@@ -41,6 +37,10 @@
 			贷
 		</#if>
 	</div>
+
+    <div class="form-group">
+        <label class="control-label">外币核算：</label>${bean.currency!}
+    </div>
 
     <div class="form-group">
 		<label class="control-label">状态：</label>

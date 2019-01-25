@@ -26,28 +26,14 @@
             <div class="row">
                 <div class="col-sm-12">
                 <!-- 搜索条件 -->
-                
-                	 <div class="nest" id="inlineClose">
-                            <div class="title-alt">
-                                <h6>搜索条件</h6>
-                                <div class="titleClose">
-                                    <a class="gone" href="#inlineClose">
-                                        <span class="entypo-cancel"></span>
-                                    </a>
-                                </div>
-                                <div class="titleToggle">
-                                    <a class="nav-toggle-alt" href="#search_div">
-                                        <span class="entypo-up-open"></span>
-                                    </a>
-                                </div>
-                            </div>
 
-                            <div class="body-nest" id="search_div">
+                	 <div class="nest" id="inlineClose">
+                            <div class="body-nest" id="search_div" style="border-bottom: #f3f3f3 solid 1px;">
                                 <div class="form_left">
                                     <form role="form" class="form-inline">
                                         <div class="form-group">
                                             <label for="exampleInputEmail2" class="sr-only">用户名字</label>
-                                            <input type="text" name="username" placeholder="用户名字"class="form-control">
+                                            <input type="text" name="loginName" placeholder="用户名字"class="form-control">
                                         </div>
                                         <button onclick="$.table.search(this)" class="btn btn-success" type="button"><i class="fa fa-search"></i>&nbsp;搜索</button>
                                     </form>
@@ -57,20 +43,6 @@
                 	<!-- END搜索条件 -->
                     <!-- 空白页开始-->
                     <div class="nest" id="Blank_PageClose">
-                        <div class="title-alt">
-                            <h6>表单</h6>
-                            <div class="titleClose">
-                                <a class="gone" href="#Blank_PageClose">
-                                    <span class="entypo-cancel"></span>
-                                </a>
-                            </div>
-                            <div class="titleToggle">
-                                <a class="nav-toggle-alt" href="#Blank_Page_Content">
-                                    <span class="entypo-up-open"></span>
-                                </a>
-                            </div>
-                        </div>
-                        
                         <div class="body-nest" id="Blank_Page_Content">
                             <!-- 工具条 -->
                             <div class="btn-group hidden-xs" id="exampleTableEventsToolbar" role="group">
@@ -112,11 +84,11 @@
 <script type="text/javascript">
 
 <!-- 导出 -->
-var dataUrl="/admin/sysUser/list";
-var removeUrl="/admin/sysUser/delete";
-var createUrl="/admin/sysUser/add";
-var updateUrl="/admin/sysUser/edit/{id}";
-var exportUrl="/admin/sysUser/export";
+var dataUrl="/api/user/list";
+var removeUrl="/api/user/delete";
+var createUrl="/api/user/add";
+var updateUrl="/api/user/edit/{id}";
+var exportUrl="/api/user/export";
   var options = {
 		dataUrl: dataUrl,
         createUrl: createUrl,
@@ -126,7 +98,7 @@ var exportUrl="/admin/sysUser/export";
         sortName: "sort",
         modalName: "用户",
         search: false,
-	   dataColumns: [
+	    dataColumns: [
 	       {
 			    checkbox: true
 			},
@@ -167,8 +139,8 @@ var exportUrl="/admin/sysUser/export";
 			    formatter: function (value, row, index) {
 			        var id = row.id;
 			        var actions = [];
-			        actions.push('<a class="btn btn-success btn-xs"  href="#" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
-			        actions.push('<a class="btn btn-danger btn-xs" href="#" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+			        actions.push('<a class="btn btn-success btn-xs"  href="#" onclick="$.operate.edit(\'' + id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+			        actions.push('<a class="btn btn-danger btn-xs" href="#" onclick="$.operate.remove(\'' + id + '\')"><i class="fa fa-remove"></i>删除</a>');
 			        return actions.join('');
 			    }
 			}]

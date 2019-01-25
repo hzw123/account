@@ -5,7 +5,6 @@ import cn.mauth.account.enums.AccountingStandard;
 import org.springframework.data.annotation.CreatedBy;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * 账套
@@ -30,13 +29,14 @@ public class AccountSet extends BaseEntity {
     private String taxNumbers;//国税号
     private String taxType;//税类型
     private AccountingStandard accountingStandard;//会计准则
+    @Transient
+    private String standard;
 
     private int fixedasset;//固定资产启用状态
     private int checkNeeded;//是否启用审核
     private int cashJournal;//是否启用出纳
 
     private int permission;//权限信息
-    @CreatedBy
     private int createBy;//
 
     public String getName() {
@@ -165,5 +165,9 @@ public class AccountSet extends BaseEntity {
 
     public void setCreateBy(int createBy) {
         this.createBy = createBy;
+    }
+
+    public String getStandard() {
+        return accountingStandard.getDesc();
     }
 }

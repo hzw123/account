@@ -6,16 +6,16 @@
             <input type="hidden" name="query" value="1">
 
 			<label>服务列表名称：</label>
-			<input type="text" name="name" value="" class="form-control" size="10">&nbsp;
+			<input type="text" name="name" value="${bean.name!}" class="form-control" size="10">&nbsp;
 
 			<label>账套ID：</label>
-			<input type="number" name="accountId" value="" class="form-control" size="10">&nbsp;
+			<input type="number" name="accountId" value="${bean.accountId!}" class="form-control" size="10">&nbsp;
 
 			<label for="state">启用状态：</label>
 			<select name="state" data-toggle="selectpicker" class="form-control" size="10">
 				<option value="-1">--全部--</option>
-				<option value="0">停用</option>
-				<option value="1">启用</option>
+				<option value="0" <#if bean.state==0>selected</#if>>停用</option>
+				<option value="1" <#if bean.state==1>selected</#if>>启用</option>
 			</select>&nbsp;
 
 			<button type="submit" class="btn-default" data-icon="search">查询</button>&nbsp;

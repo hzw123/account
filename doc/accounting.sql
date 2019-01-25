@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2019-01-23 17:30:03
+Date: 2019-01-25 17:33:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,50 +40,12 @@ CREATE TABLE `account_set` (
   `tax_type` varchar(255) DEFAULT NULL,
   `unified_number` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of account_set
 -- ----------------------------
-INSERT INTO `account_set` VALUES ('1', '2019-01-23 10:47:11', '2019-01-23 10:47:14', '0', '1', '1', '1', '1', '1', '1', '1', '1', 'dfdf', '1', '01', '2019', '1', '1', '111111');
-INSERT INTO `account_set` VALUES ('2', '2019-01-23 15:14:25', '2019-01-23 15:14:25', '1', '1', '1', '0', '1', '1', '0', '0', '0', 'dfdf', '1', null, null, '1', '1', null);
-
--- ----------------------------
--- Table structure for account_subject
--- ----------------------------
-DROP TABLE IF EXISTS `account_subject`;
-CREATE TABLE `account_subject` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `gmt_create` datetime DEFAULT NULL,
-  `gmt_modified` datetime DEFAULT NULL,
-  `aa_types` varchar(255) DEFAULT NULL,
-  `account_id` bigint(20) NOT NULL,
-  `assit` bit(1) NOT NULL,
-  `code` varchar(100) NOT NULL,
-  `currency` varchar(255) NOT NULL,
-  `dc` int(11) DEFAULT NULL,
-  `fc_codes` varchar(255) DEFAULT NULL,
-  `full_name` varchar(255) DEFAULT NULL,
-  `group_name` varchar(255) DEFAULT NULL,
-  `is_deleted` bit(1) NOT NULL,
-  `is_detail` bit(1) NOT NULL,
-  `is_foreign_currency` bit(1) NOT NULL,
-  `is_rate_adj` bit(1) NOT NULL,
-  `level` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `note` varchar(255) DEFAULT NULL,
-  `parent` bigint(20) NOT NULL,
-  `qty_unit` varchar(255) DEFAULT NULL,
-  `sub_type` int(11) DEFAULT NULL,
-  `use_qty_aux` bit(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_emq3216px713xcr3lk5qk2s8m` (`code`),
-  UNIQUE KEY `UK_nbxrhwihipvcrsh36kvd5kde` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of account_subject
--- ----------------------------
+INSERT INTO `account_set` VALUES ('3', '2019-01-25 11:28:04', '2019-01-25 11:28:16', '0', '1', '1', '1', '1', '贸易', '0', '0', '0', 'accounting', '1', '01月', '2019年', '1', '1', '1000001');
 
 -- ----------------------------
 -- Table structure for assist_accounting
@@ -150,39 +112,62 @@ CREATE TABLE `currency` (
   `gmt_create` datetime DEFAULT NULL,
   `gmt_modified` datetime DEFAULT NULL,
   `code` varchar(255) NOT NULL,
-  `is_standard` int(11) NOT NULL,
+  `is_standard` bit(1) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `rate` double NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_h84pd2rtr12isnifnj655rkra` (`code`),
   UNIQUE KEY `UK_ou8q9939fa4k88wjh17qwcmre` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of currency
 -- ----------------------------
+INSERT INTO `currency` VALUES ('1', '2019-01-24 12:50:34', '2019-01-24 12:50:34', 'CNY', '', '人民币', '1', '1');
+INSERT INTO `currency` VALUES ('2', '2019-01-24 12:54:59', '2019-01-24 12:54:59', 'USB', '\0', '美元', '6.87', '1');
+INSERT INTO `currency` VALUES ('3', '2019-01-24 12:58:37', '2019-01-24 12:58:37', 'EUR', '\0', '欧元', '9.78', '1');
+INSERT INTO `currency` VALUES ('4', '2019-01-24 13:00:23', '2019-01-24 13:00:23', 'JPY', '\0', '日元', '0.06196', '1');
+INSERT INTO `currency` VALUES ('5', '2019-01-24 13:01:18', '2019-01-24 13:01:18', 'GBP', '\0', '英镑', '8.8709', '1');
+INSERT INTO `currency` VALUES ('6', '2019-01-24 13:03:52', '2019-01-24 16:50:19', 'HKD', '\0', '港元', '0.865', '1');
+INSERT INTO `currency` VALUES ('7', '2019-01-24 16:49:21', '2019-01-25 12:01:03', 'AUD', '\0', '澳元', '4.83', '1');
 
 -- ----------------------------
--- Table structure for period
+-- Table structure for subject
 -- ----------------------------
-DROP TABLE IF EXISTS `period`;
-CREATE TABLE `period` (
+DROP TABLE IF EXISTS `subject`;
+CREATE TABLE `subject` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `gmt_create` datetime DEFAULT NULL,
   `gmt_modified` datetime DEFAULT NULL,
-  `account_id` bigint(20) DEFAULT NULL,
-  `fs_status` int(11) NOT NULL,
-  `is_active` bit(1) NOT NULL,
-  `sn` int(11) NOT NULL,
-  `status` int(11) DEFAULT NULL,
-  `year` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `aa_types` varchar(255) DEFAULT NULL,
+  `account_id` bigint(20) NOT NULL,
+  `assit` bit(1) NOT NULL,
+  `code` varchar(100) NOT NULL,
+  `currency` varchar(255) NOT NULL,
+  `dc` int(11) DEFAULT NULL,
+  `fc_codes` varchar(255) DEFAULT NULL,
+  `group_name` varchar(255) DEFAULT NULL,
+  `is_deleted` bit(1) NOT NULL,
+  `is_detail` bit(1) NOT NULL,
+  `is_foreign_currency` bit(1) NOT NULL,
+  `is_rate_adj` bit(1) NOT NULL,
+  `level` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `note` varchar(255) DEFAULT NULL,
+  `parent_id` bigint(20) DEFAULT NULL,
+  `qty_unit` varchar(255) DEFAULT NULL,
+  `sub_type` int(11) DEFAULT NULL,
+  `use_qty_aux` bit(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_db5g1rfeug7aywnpb6gab85ep` (`code`),
+  UNIQUE KEY `UK_p1jgir6qcpmqnxt4a8105wsot` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of period
+-- Records of subject
 -- ----------------------------
+INSERT INTO `subject` VALUES ('2', '2019-01-25 12:29:52', '2019-01-25 12:29:52', null, '0', '\0', '0001', 'CNY', '1', null, '不动产投资', '', '\0', '\0', '\0', '0', '投资房产', null, '0', null, '4', '\0');
 
 -- ----------------------------
 -- Table structure for sys_app_info
@@ -192,39 +177,19 @@ CREATE TABLE `sys_app_info` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `gmt_create` datetime DEFAULT NULL,
   `gmt_modified` datetime DEFAULT NULL,
-  `account_id` bigint(20) DEFAULT NULL,
   `client_secret` varchar(50) DEFAULT NULL,
   `sort` int(11) NOT NULL,
   `user_info_id` bigint(20) NOT NULL,
   `name` varchar(30) DEFAULT NULL,
   `state` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_hu9xb9mkymlegemxlhcbg97l1` (`account_id`),
   UNIQUE KEY `UK_7n2tiqn6uhaoygcwnx89n3vx3` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_app_info
 -- ----------------------------
-INSERT INTO `sys_app_info` VALUES ('1', '2019-01-21 12:45:03', '2019-01-21 12:45:05', '1', '111111', '1', '1', 'admin123', '0');
-INSERT INTO `sys_app_info` VALUES ('2', '2019-01-22 12:09:58', '2019-01-22 12:09:58', '2', '286189efdc3e4928aa861d1f163f6d8d', '0', '1', 'accounting', '1');
-
--- ----------------------------
--- Table structure for sys_app_info_services
--- ----------------------------
-DROP TABLE IF EXISTS `sys_app_info_services`;
-CREATE TABLE `sys_app_info_services` (
-  `sys_app_info_id` bigint(20) NOT NULL,
-  `services_id` bigint(20) NOT NULL,
-  PRIMARY KEY (`sys_app_info_id`,`services_id`),
-  KEY `FKpumi4ixmu5s13fcqmgdu5qljq` (`services_id`),
-  CONSTRAINT `FK3g83be4lqupyiff416k9mhipg` FOREIGN KEY (`sys_app_info_id`) REFERENCES `sys_app_info` (`id`),
-  CONSTRAINT `FKpumi4ixmu5s13fcqmgdu5qljq` FOREIGN KEY (`services_id`) REFERENCES `sys_service` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of sys_app_info_services
--- ----------------------------
+INSERT INTO `sys_app_info` VALUES ('1', '2019-01-25 14:24:50', '2019-01-24 11:05:15', '141b67660bd74643b99874f5cc0f7b6d', '0', '1', 'admin123', '1');
 
 -- ----------------------------
 -- Table structure for sys_log_login
@@ -241,11 +206,21 @@ CREATE TABLE `sys_log_login` (
   `single_name` varchar(255) DEFAULT NULL,
   `user_info_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_log_login
 -- ----------------------------
+INSERT INTO `sys_log_login` VALUES ('2', '2019-01-24 11:03:09', '2019-01-24 11:03:09', '0:0:0:0:0:0:0:1', '2019-01-24 10:31:16', '0:0:0:0:0:0:0:1', 'admin', null, '1');
+INSERT INTO `sys_log_login` VALUES ('3', '2019-01-24 11:53:11', '2019-01-24 11:53:11', '0:0:0:0:0:0:0:1', '2019-01-24 11:03:09', '0:0:0:0:0:0:0:1', 'admin', null, '1');
+INSERT INTO `sys_log_login` VALUES ('4', '2019-01-24 15:26:09', '2019-01-24 15:26:09', '0:0:0:0:0:0:0:1', '2019-01-24 11:53:11', '0:0:0:0:0:0:0:1', 'admin', null, '1');
+INSERT INTO `sys_log_login` VALUES ('5', '2019-01-25 10:37:53', '2019-01-25 10:37:53', '0:0:0:0:0:0:0:1', '2019-01-24 15:26:09', '0:0:0:0:0:0:0:1', 'admin', null, '1');
+INSERT INTO `sys_log_login` VALUES ('6', '2019-01-25 10:42:40', '2019-01-25 10:42:40', '0:0:0:0:0:0:0:1', '2019-01-25 10:37:53', '0:0:0:0:0:0:0:1', 'admin', null, '1');
+INSERT INTO `sys_log_login` VALUES ('7', '2019-01-25 10:47:04', '2019-01-25 10:47:04', '0:0:0:0:0:0:0:1', '2019-01-25 10:42:40', '0:0:0:0:0:0:0:1', 'admin', null, '1');
+INSERT INTO `sys_log_login` VALUES ('8', '2019-01-25 14:21:52', '2019-01-25 14:21:52', '0:0:0:0:0:0:0:1', '2019-01-25 10:47:04', '0:0:0:0:0:0:0:1', 'admin', null, '1');
+INSERT INTO `sys_log_login` VALUES ('9', '2019-01-25 16:41:45', '2019-01-25 16:41:45', '0:0:0:0:0:0:0:1', '2019-01-25 14:21:52', '0:0:0:0:0:0:0:1', 'admin', null, '1');
+INSERT INTO `sys_log_login` VALUES ('10', '2019-01-25 16:42:00', '2019-01-25 16:42:00', '0:0:0:0:0:0:0:1', '2019-01-25 16:41:45', '0:0:0:0:0:0:0:1', 'admin', null, '1');
+INSERT INTO `sys_log_login` VALUES ('11', '2019-01-25 16:42:42', '2019-01-25 16:42:42', '0:0:0:0:0:0:0:1', '2019-01-25 16:42:00', '0:0:0:0:0:0:0:1', 'admin', null, '1');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -264,7 +239,7 @@ CREATE TABLE `sys_menu` (
   `status_id` int(11) DEFAULT NULL,
   `target_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -277,8 +252,7 @@ INSERT INTO `sys_menu` VALUES ('5', null, '2019-01-22 16:52:52', 'list', '用户
 INSERT INTO `sys_menu` VALUES ('6', '2019-01-11 12:31:36', '2019-01-11 12:31:38', 'list', '用户管理', '/admin/sysUserInfo/list', '5', null, '1', '1', 'admin-sysUserInfo');
 INSERT INTO `sys_menu` VALUES ('8', null, '2019-01-22 16:52:37', 'list', '日志管理', '', '1', '', '99', '1', '');
 INSERT INTO `sys_menu` VALUES ('10', '2019-01-14 15:10:27', '2019-01-14 15:10:27', 'list', '登录日志管理', '/admin/sysLogLogin/list', '8', '', '999', '1', 'admin-sysLogLogin');
-INSERT INTO `sys_menu` VALUES ('11', null, '2019-01-23 15:10:09', 'list', '会计管理', '', '0', '', '1', '1', '');
-INSERT INTO `sys_menu` VALUES ('12', null, '2019-01-23 12:22:13', 'list', '账套管理', '', '11', '', '1', '1', '');
+INSERT INTO `sys_menu` VALUES ('11', null, '2019-01-23 15:10:09', 'list', '会计管理', '', '41', '', '7', '1', '');
 INSERT INTO `sys_menu` VALUES ('13', null, '2019-01-21 11:31:50', 'list', '设置菜单', '/admin/sysMenuRole/set', '3', '', '8', '1', 'admin-sysMenuRole');
 INSERT INTO `sys_menu` VALUES ('16', null, '2019-01-21 10:48:49', 'list', '添加', '/admin/sysMenu/add', '4', '', '9', '1', 'admin-sysMenu');
 INSERT INTO `sys_menu` VALUES ('17', null, '2019-01-21 11:09:19', 'list', '修改', '/admin/sysMenu/save/sub', '4', '', '7', '1', 'admin-sysMenu');
@@ -306,7 +280,7 @@ INSERT INTO `sys_menu` VALUES ('45', '2019-01-22 10:27:06', '2019-01-22 10:27:06
 INSERT INTO `sys_menu` VALUES ('46', '2019-01-22 10:27:29', '2019-01-22 10:27:29', 'list', '保存', '/admin/sysService/save', '45', '', '1', '1', 'admin-sysService');
 INSERT INTO `sys_menu` VALUES ('47', '2019-01-22 10:27:44', '2019-01-22 10:27:44', 'list', '编辑', '/admin/sysService/edit', '43', '', '7', '1', 'admin-sysService');
 INSERT INTO `sys_menu` VALUES ('48', '2019-01-22 10:28:02', '2019-01-22 10:28:02', 'list', '删除', '/admin/sysService/delete', '43', '', '6', '1', 'admin-sysService');
-INSERT INTO `sys_menu` VALUES ('49', '2019-01-22 10:28:20', '2019-01-22 10:28:20', 'list', '修改', '/admin/sysServicer/update', '47', '', '1', '1', 'admin-sysService');
+INSERT INTO `sys_menu` VALUES ('49', null, '2019-01-25 14:21:41', 'list', '修改', '/admin/sysService/update', '47', '', '1', '1', 'admin-sysService');
 INSERT INTO `sys_menu` VALUES ('50', '2019-01-22 10:59:09', '2019-01-22 10:59:09', '', '管理中心', '', '41', '', '8', '1', '');
 INSERT INTO `sys_menu` VALUES ('51', null, '2019-01-22 11:13:45', 'list', '应用管理', '/admin/sysAppInfo/list', '50', '', '9', '1', 'admin-sysAppInfo');
 INSERT INTO `sys_menu` VALUES ('52', '2019-01-22 11:12:50', '2019-01-22 11:12:50', 'list', 'update', '/admin/sysMenu/update', '4', '', '4', '1', 'admin-sysMenu');
@@ -325,7 +299,7 @@ INSERT INTO `sys_menu` VALUES ('66', null, '2019-01-23 11:47:20', 'list', '编�
 INSERT INTO `sys_menu` VALUES ('67', null, '2019-01-23 11:47:25', 'list', '删除', '/admin/accountSet/delete', '70', '', '6', '1', 'admin-accountSet');
 INSERT INTO `sys_menu` VALUES ('68', null, '2019-01-23 11:47:33', 'list', '保存', '/admin/accountSet/save', '65', '', '1', '1', 'admin-accountSet');
 INSERT INTO `sys_menu` VALUES ('69', null, '2019-01-23 11:47:30', 'list', '更新', '/admin/accountSet/update', '66', '', '1', '1', 'admin-accountSet');
-INSERT INTO `sys_menu` VALUES ('70', null, '2019-01-23 12:54:47', 'list', '账套管理', '/admin/accountSet/list', '12', '', '9', '1', 'admin-accountSet');
+INSERT INTO `sys_menu` VALUES ('70', null, '2019-01-23 12:54:47', 'list', '账套管理', '/admin/accountSet/list', '11', '', '9', '1', 'admin-accountSet');
 INSERT INTO `sys_menu` VALUES ('71', '2019-01-23 17:05:45', '2019-01-23 17:05:45', 'list', '服务列表管理', '/admin/sysServiceList/list', '42', '', '8', '1', 'admin-sysServiceList');
 INSERT INTO `sys_menu` VALUES ('72', '2019-01-23 17:06:31', '2019-01-23 17:06:31', 'list', '查看', '/admin/sysServiceList/view', '71', '', '9', '1', 'admin-sysServiceList');
 INSERT INTO `sys_menu` VALUES ('73', '2019-01-23 17:06:47', '2019-01-23 17:06:47', 'list', '添加', '/admin/sysServiceList/add', '71', '', '8', '1', 'admin-sysServiceList');
@@ -333,6 +307,27 @@ INSERT INTO `sys_menu` VALUES ('74', '2019-01-23 17:07:03', '2019-01-23 17:07:03
 INSERT INTO `sys_menu` VALUES ('75', '2019-01-23 17:07:21', '2019-01-23 17:07:21', 'list', '删除', '/admin/sysServiceList/delete', '71', '', '6', '1', 'admin-sysServiceList');
 INSERT INTO `sys_menu` VALUES ('76', '2019-01-23 17:07:42', '2019-01-23 17:07:42', 'list', '保存', '/admin/sysServiceList/save', '73', '', '1', '1', 'admin-sysServiceList');
 INSERT INTO `sys_menu` VALUES ('77', '2019-01-23 17:07:57', '2019-01-23 17:07:57', 'list', '更新', '/admin/sysServiceList/update', '74', '', '1', '1', 'admin-sysServiceList');
+INSERT INTO `sys_menu` VALUES ('79', '2019-01-24 11:49:48', '2019-01-24 11:49:48', 'list', '货币管理', '/admin/currency/list', '11', '货币管理查询', '9', '1', 'admin-currency');
+INSERT INTO `sys_menu` VALUES ('80', '2019-01-24 11:50:17', '2019-01-24 11:50:17', 'list', '查看', '/admin/currency/view', '79', '货币管理查看', '9', '1', 'admin-currency');
+INSERT INTO `sys_menu` VALUES ('81', '2019-01-24 11:50:41', '2019-01-24 11:50:41', 'list', '添加', '/admin/currency/add', '79', '货币管理--添加', '8', '1', 'admin-currency');
+INSERT INTO `sys_menu` VALUES ('82', '2019-01-24 11:51:00', '2019-01-24 11:51:00', 'list', '编辑', '/admin/currency/edit', '79', '货币管理--编辑', '7', '1', 'admin-currency');
+INSERT INTO `sys_menu` VALUES ('83', '2019-01-24 11:51:20', '2019-01-24 11:51:20', 'list', '删除', '/admin/currency/delete', '79', '货币管理--删除', '6', '1', 'admin-currency');
+INSERT INTO `sys_menu` VALUES ('84', '2019-01-24 11:51:41', '2019-01-24 11:51:41', 'list', '保存', '/admin/currency/save', '81', '货币管理--保存', '1', '1', 'admin-currency');
+INSERT INTO `sys_menu` VALUES ('85', '2019-01-24 11:51:57', '2019-01-24 11:51:57', 'list', '更新', '/admin/currency/update', '82', '货币管理--更新', '1', '1', 'admin-currency');
+INSERT INTO `sys_menu` VALUES ('87', '2019-01-24 15:52:42', '2019-01-24 15:52:42', 'list', '科目管理', '/admin/subject/list', '11', '科目管理-查询', '9', '1', 'admin-subject');
+INSERT INTO `sys_menu` VALUES ('88', '2019-01-24 15:53:04', '2019-01-24 15:53:04', 'list', '查看', '/admin/subject/view', '87', '科目管理-查看', '9', '1', 'admin-subject');
+INSERT INTO `sys_menu` VALUES ('89', '2019-01-24 15:53:20', '2019-01-24 15:53:20', 'list', '添加', '/admin/subject/add', '87', '科目管理-添加', '8', '1', 'admin-subject');
+INSERT INTO `sys_menu` VALUES ('90', '2019-01-24 15:53:38', '2019-01-24 15:53:38', 'list', '编辑', '/admin/subject/edit', '87', '科目管理-编辑', '7', '1', 'admin-subject');
+INSERT INTO `sys_menu` VALUES ('91', '2019-01-24 15:53:57', '2019-01-24 15:53:57', 'list', '删除', '/admin/subject/delete', '87', '科目管理-删除', '6', '1', 'admin-subject');
+INSERT INTO `sys_menu` VALUES ('92', '2019-01-24 15:54:15', '2019-01-24 15:54:15', 'list', '保存', '/admin/subject/save', '89', '科目管理-保存', '1', '1', 'admin-subject');
+INSERT INTO `sys_menu` VALUES ('93', '2019-01-24 15:54:34', '2019-01-24 15:54:34', 'list', '更新', '/admin/subject/update', '90', '科目管理-更新', '1', '1', 'admin-subject');
+INSERT INTO `sys_menu` VALUES ('95', '2019-01-24 15:56:01', '2019-01-24 15:56:01', 'list', '凭证管理', '/admin/voucher/list', '11', '凭证管理-查询列表', '9', '1', 'admin-voucher');
+INSERT INTO `sys_menu` VALUES ('96', '2019-01-24 15:56:26', '2019-01-24 15:56:26', 'list', '查看', '/admin/voucher/view', '95', '凭证管理-查看', '9', '1', 'admin-voucher');
+INSERT INTO `sys_menu` VALUES ('97', '2019-01-24 15:56:41', '2019-01-24 15:56:41', 'list', '添加', '/admin/voucher/add', '95', '凭证管理-添加', '8', '1', 'admin-voucher');
+INSERT INTO `sys_menu` VALUES ('98', '2019-01-24 15:56:59', '2019-01-24 15:56:59', 'list', '编辑', '/admin/voucher/edit', '95', '凭证管理-编辑', '7', '1', 'admin-voucher');
+INSERT INTO `sys_menu` VALUES ('99', null, '2019-01-24 15:57:26', 'list', '删除', '/admin/voucher/delete', '95', '凭证管理-删除', '6', '1', 'admin-voucher');
+INSERT INTO `sys_menu` VALUES ('100', '2019-01-24 15:57:44', '2019-01-24 15:57:44', 'list', '保存', '/admin/voucher/save', '97', '凭证管理-保存', '1', '1', 'admin-voucher');
+INSERT INTO `sys_menu` VALUES ('101', '2019-01-24 15:58:00', '2019-01-24 15:58:00', 'list', '更新', '/admin/voucher/update', '98', '凭证管理-更新', '1', '1', 'admin-voucher');
 
 -- ----------------------------
 -- Table structure for sys_menu_role
@@ -347,75 +342,99 @@ CREATE TABLE `sys_menu_role` (
   `sort` int(11) NOT NULL,
   `status_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=658 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=818 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_menu_role
 -- ----------------------------
-INSERT INTO `sys_menu_role` VALUES ('594', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '1', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('595', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '8', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('596', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '10', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('597', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '35', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('598', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '61', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('599', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '2', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('600', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '4', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('601', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '16', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('602', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '18', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('603', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '17', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('604', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '19', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('605', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '52', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('606', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '3', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('607', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '22', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('608', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '23', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('609', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '27', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('610', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '25', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('611', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '28', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('612', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '13', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('613', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '29', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('614', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '38', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('615', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '5', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('616', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '6', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('617', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '20', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('618', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '30', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('619', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '36', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('620', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '32', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('621', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '37', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('622', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '34', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('623', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '59', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('624', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '60', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('625', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '41', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('626', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '42', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('627', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '43', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('628', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '44', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('629', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '45', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('630', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '46', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('631', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '47', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('632', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '49', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('633', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '48', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('634', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '71', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('635', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '72', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('636', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '73', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('637', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '76', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('638', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '74', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('639', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '77', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('640', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '75', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('641', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '50', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('642', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '51', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('643', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '53', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('644', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '54', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('645', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '57', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('646', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '55', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('647', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '58', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('648', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '56', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('649', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '11', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('650', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '12', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('651', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '70', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('652', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '64', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('653', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '65', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('654', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '68', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('655', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '66', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('656', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '69', '1', '0', '1');
-INSERT INTO `sys_menu_role` VALUES ('657', '2019-01-23 17:08:04', '2019-01-23 17:08:04', '67', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('730', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '1', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('731', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '8', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('732', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '10', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('733', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '35', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('734', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '61', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('735', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '2', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('736', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '4', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('737', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '16', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('738', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '18', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('739', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '17', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('740', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '19', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('741', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '52', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('742', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '3', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('743', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '22', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('744', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '23', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('745', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '27', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('746', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '25', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('747', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '28', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('748', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '13', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('749', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '29', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('750', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '38', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('751', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '5', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('752', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '6', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('753', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '20', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('754', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '30', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('755', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '36', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('756', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '32', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('757', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '37', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('758', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '34', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('759', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '59', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('760', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '60', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('761', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '41', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('762', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '42', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('763', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '43', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('764', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '44', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('765', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '45', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('766', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '46', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('767', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '47', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('768', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '49', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('769', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '48', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('770', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '71', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('771', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '72', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('772', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '73', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('773', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '76', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('774', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '74', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('775', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '77', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('776', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '75', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('777', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '50', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('778', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '51', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('779', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '53', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('780', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '54', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('781', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '57', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('782', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '55', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('783', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '58', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('784', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '56', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('785', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '11', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('786', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '12', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('787', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '70', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('788', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '64', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('789', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '65', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('790', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '68', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('791', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '66', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('792', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '69', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('793', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '67', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('794', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '78', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('795', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '79', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('796', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '80', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('797', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '81', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('798', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '84', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('799', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '82', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('800', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '85', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('801', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '83', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('802', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '86', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('803', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '87', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('804', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '88', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('805', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '89', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('806', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '92', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('807', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '90', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('808', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '93', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('809', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '91', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('810', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '94', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('811', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '95', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('812', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '96', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('813', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '97', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('814', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '100', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('815', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '98', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('816', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '101', '1', '0', '1');
+INSERT INTO `sys_menu_role` VALUES ('817', '2019-01-24 15:58:06', '2019-01-24 15:58:06', '99', '1', '0', '1');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -475,12 +494,13 @@ CREATE TABLE `sys_service` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_ma96kkv4ubv5w55yhhys5s0im` (`name`),
   UNIQUE KEY `UK_7l3m8sj30jx8s01hnynnvy5j4` (`server_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_service
 -- ----------------------------
-INSERT INTO `sys_service` VALUES ('1', '2019-01-22 10:43:55', '2019-01-22 10:43:55', '会计管理', '0001', '1', '公司', null);
+INSERT INTO `sys_service` VALUES ('1', '2019-01-22 10:43:55', '2019-01-25 14:22:09', '云会计', '0001', '1', '公司', '11');
+INSERT INTO `sys_service` VALUES ('2', '2019-01-25 14:42:08', '2019-01-25 14:42:08', '云财贸', '0002', '1', null, '1');
 
 -- ----------------------------
 -- Table structure for sys_service_list
@@ -503,12 +523,13 @@ CREATE TABLE `sys_service_list` (
   UNIQUE KEY `UK_4udg6k6nxf212gp5n9n7bw1vd` (`name`),
   KEY `FKk5gm1wk29mpvxxt4tyhg5dh9l` (`service_id`),
   CONSTRAINT `FKk5gm1wk29mpvxxt4tyhg5dh9l` FOREIGN KEY (`service_id`) REFERENCES `sys_service` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_service_list
 -- ----------------------------
-INSERT INTO `sys_service_list` VALUES ('1', '2019-01-23 17:26:20', '2019-01-23 17:26:20', '1', '1', 'mauth', '1', '8', '0', '1', '1', '1');
+INSERT INTO `sys_service_list` VALUES ('2', '2019-01-25 14:27:36', '2019-01-25 14:27:36', '1', '1', 'mauth', '1', '0', '0', '1', '1', '1');
+INSERT INTO `sys_service_list` VALUES ('3', '2019-01-25 14:42:59', '2019-01-25 14:42:59', '1', '1', 'mauth2', '1', '6', '0', '1', '1', '2');
 
 -- ----------------------------
 -- Table structure for sys_user_info
@@ -543,8 +564,6 @@ INSERT INTO `sys_user_info` VALUES ('2', '2019-01-14 12:39:01', '2019-01-14 12:3
 DROP TABLE IF EXISTS `voucher`;
 CREATE TABLE `voucher` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `gmt_create` datetime DEFAULT NULL,
-  `gmt_modified` datetime DEFAULT NULL,
   `approve_status` int(11) NOT NULL,
   `approved_by` varchar(255) DEFAULT NULL,
   `attachments` int(11) NOT NULL,
@@ -553,12 +572,14 @@ CREATE TABLE `voucher` (
   `num` int(11) NOT NULL,
   `prepared_by` varchar(255) NOT NULL,
   `vch_date` datetime DEFAULT NULL,
+  `account_id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of voucher
 -- ----------------------------
+INSERT INTO `voucher` VALUES ('1', '0', '1', '1', '记', '1', '1', '1', '2019-01-25 16:43:49', '1');
 
 -- ----------------------------
 -- Table structure for voucher_entries

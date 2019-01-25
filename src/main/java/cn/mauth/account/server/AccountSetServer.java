@@ -2,6 +2,8 @@ package cn.mauth.account.server;
 
 import cn.mauth.account.common.base.BaseServer;
 import cn.mauth.account.common.domain.settings.AccountSet;
+import cn.mauth.account.common.util.DateUtil;
+import cn.mauth.account.common.util.SessionUtils;
 import cn.mauth.account.dao.AccountSetDao;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +25,14 @@ public class AccountSetServer extends BaseServer<AccountSetDao,AccountSet>{
     @Override
     protected Predicate toPredicate(List<Predicate> list, AccountSet accountSet, Root root, CriteriaQuery query, CriteriaBuilder cb) {
         return this.and(list,cb);
+    }
+
+    @Override
+    public int save(AccountSet accountSet) {
+
+        accountSet.setCreateBy(SessionUtils.getUserInfoId().intValue());
+        accountSet.setStartDateMonth(DateUtil.getNowMonth());
+        accountSet.setStartDateYear(DateUtil.getNowYear());
+        return super.save(accountSet);
     }
 }

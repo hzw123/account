@@ -55,7 +55,7 @@
 				<td>${bean.unifiedNumber!}</td>
 				<td>${bean.taxNumbers!}</td>
 				<td>${bean.taxType!}</td>
-				<td>${bean.accountingStandard!}</td>
+				<td>${bean.standard!}</td>
 				<td>
 					<@shiro.hasPermission name="/admin/accountSet/view">
 						<a href="${base}/admin/accountSet/view?id=${bean.id}" class="btn btn-blue" data-toggle="dialog" data-id="accountSet-view" data-options="{title:'查看', height:500}">查看 </a>

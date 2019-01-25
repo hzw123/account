@@ -12,7 +12,7 @@
 
         <div class="form-group">
             <label class="control-label x85">科目名称：</label>
-            <input type="text" name="name" value="${bean.name!}" placeholder="科目名称" size="20" data-rule="required" readonly >
+            <input type="text" name="name" value="${bean.name!}" placeholder="科目名称" size="20" data-rule="required" >
         </div>
 
         <div class="form-group">
@@ -27,7 +27,7 @@
 
         <div class="form-group">
             <label class="control-label x85">科目类别：</label>
-            <select name="subType" data-toggle="selectpicker" size="20">
+            <select name="subType" data-toggle="selectpicker" size="20" readonly>
                 <option value="ASSETS" <#if bean.subType=='ASSETS'>selected</#if>>资产</option>
                 <option value="LIABILITIES" <#if bean.subType=='LIABILITIES'>selected</#if>>负债</option>
                 <option value="COMMON" <#if bean.subType=='COMMON'>selected</#if>>共同</option>
@@ -39,12 +39,12 @@
 
         <div class="form-group">
             <label class="control-label x85">科目类别具体名称：</label>
-            <input type="text" name="groupName" value="${bean.groupName!}" placeholder="科目类别具体名称" size="20"  data-rule="required">
+            <input type="text" name="groupName" value="${bean.groupName!}" placeholder="科目类别具体名称" size="20"  data-rule="required" readonly>
         </div>
 
         <div class="form-group">
             <label class="control-label x85">余额方向：</label>
-            <select name="dc" data-toggle="selectpicker" size="20" readonly>
+            <select name="dc" data-toggle="selectpicker" size="20" >
                 <option value="DEBIT" <#if bean.dc=='DEBIT'>selected</#if>>借</option>
                 <option value="CREDIT" <#if bean.dc=='CREDIT'>selected</#if>>贷</option>
             </select>
@@ -54,9 +54,13 @@
             <label class="control-label x85">科目名称：</label>
             <select name="deleted" data-toggle="selectpicker">
                 <option value="1" >启用</option>
-                <option value="0" <#if bean.deleted?string('1','0')=='0'>selected</#if>>禁止</option>${}
+                <option value="0" <#if bean.deleted?string('1','0')=='0'>selected</#if>>禁止</option>
             </select>
         </div>
+       <div class="form-group">
+           <label class="control-label x85">外币核算：</label>
+           <input type="text" name="currency" value="${bean.currency!}" placeholder="外币核算" size="20"  data-rule="required">
+       </div>
 
     </form>
 </div>

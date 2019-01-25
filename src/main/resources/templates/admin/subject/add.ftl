@@ -44,6 +44,18 @@
             </select>
         </div>
 
+        <div class="form-group">
+            <label class="control-label x85">外币核算：</label>
+            <input type="text" name="currency" value="" placeholder="外币核算" size="20"  data-rule="required">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label x85">状态：</label>
+            <select name="deleted" data-toggle="selectpicker" size="20">
+                <option value="1">已启用</option>
+                <option value="0">已禁用</option>
+            </select>
+        </div>
     </form>
 </div>
 <div class="bjui-pageFooter">

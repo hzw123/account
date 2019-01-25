@@ -13,6 +13,10 @@
 	</div>
 
     <div class="form-group">
+		<label class="control-label">账套ID：</label>${bean.accountId}
+	</div>
+
+    <div class="form-group">
 		<label class="control-label">制单人：</label>${bean.preparedBy!}
 	</div>
 

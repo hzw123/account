@@ -5,18 +5,8 @@
 		<div class="bjui-searchBar">
             <input type="hidden" name="query" value="1">
 
-			<label>货币代码：</label>
-			<input type="text" name="code" value="" class="form-control" size="10">&nbsp;
-
-			<label>货币名称：</label>
-			<input type="text" name="name" value="" class="form-control" size="10">&nbsp;
-
-			<label for="status">启用状态：</label>
-			<select name="status" data-toggle="selectpicker" class="form-control" size="10">
-				<option value="-1">--全部--</option>
-				<option value="0">停用</option>
-				<option value="1">启用</option>
-			</select>&nbsp;
+			<label>账套ID：</label>
+			<input type="text" name="accountId" value="${bean.accountId!}" class="form-control" size="10">&nbsp;
 
 			<button type="submit" class="btn-default" data-icon="search">查询</button>&nbsp;
 
@@ -36,6 +26,7 @@
 				<th width="30">序号</th>
 				<th>日期</th>
 				<th>凭证字号</th>
+				<th>账套</th>
                 <th>附件数量</th>
 				<th>制单人</th>
 				<th>审核人</th>
@@ -50,6 +41,7 @@
 				<td align="center">${bean_index+1}</td>
                 <td>${(bean.vchDate?string('yyyy-MM-dd HH:mm:ss'))!}</td>
 				<td>${bean.name!}-${bean.num}</td>
+				<td>${bean.accountId}</td>
 				<td>${bean.attachments}</td>
 				<td>${bean.preparedBy!}</td>
 				<td>${bean.approvedBy!}</td>
@@ -61,7 +53,7 @@
 					</#if>
 				</td>
 				<td>
-					<@shiro.hasPermission name="/admin/voucher/view">
+					<@shiro.hasPermission name="/admin/voucher/view" >
 						<a href="${base}/admin/voucher/view?id=${bean.id}" class="btn btn-blue" data-toggle="dialog" data-id="voucher-view" data-options="{title:'查看', height:350}">查看 </a>
 					</@shiro.hasPermission>
 

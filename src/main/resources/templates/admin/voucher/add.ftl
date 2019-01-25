@@ -4,12 +4,17 @@
 
         <div class="form-group">
             <label class="control-label x85">凭证字：</label>
-            <input type="text" name="name" value="" placeholder="凭证字" size="20"  data-rule="required">
+            <input type="text" name="name" value="记" placeholder="凭证字" size="20"  data-rule="required">
         </div>
 
         <div class="form-group">
             <label class="control-label x85">凭证号：</label>
             <input type="number" name="num" value="0" placeholder="凭证号" size="20"  data-rule="required">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label x85">账套ID：</label>
+            <input type="number" name="accountId" value="" placeholder="账套ID" size="20"  data-rule="required">
         </div>
 
         <div class="form-group">
@@ -39,6 +44,7 @@
             <label class="control-label x85">备注信息：</label>
             <input type="text" name="note" value="" placeholder="备注信息" size="20"  data-rule="required">
         </div>
+
 
     </form>
 </div>

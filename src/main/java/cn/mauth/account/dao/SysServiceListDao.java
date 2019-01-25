@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SysServiceListDao extends BaseDao<SysServiceList,Long>{
+
+    void deleteByAppId(long appId);
 }

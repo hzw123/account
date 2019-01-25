@@ -10,6 +10,7 @@ import cn.mauth.account.dao.SysServiceListDao;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -71,4 +72,10 @@ public class SysAppInfoServer extends BaseServer<SysAppInfoDao,SysAppInfo>{
         });
     }
 
+    @Transactional
+    @Override
+    public int deleteById(long id) {
+        this.sysServiceListDao.deleteByAppId(id);
+        return super.deleteById(id);
+    }
 }

@@ -19,6 +19,11 @@
         </div>
 
         <div class="form-group">
+            <label class="control-label x85">账套ID：</label>
+            <input type="number" name="accountId" value="${bean.accountId}" placeholder="账套ID" size="20"  data-rule="required">
+        </div>
+
+        <div class="form-group">
             <label class="control-label x85">制单人：</label>
             <input type="text" name="preparedBy" value="${bean.preparedBy!}" placeholder="制单人" size="20" data-rule="required"  >
         </div>

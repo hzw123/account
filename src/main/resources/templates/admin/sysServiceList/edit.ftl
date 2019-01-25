@@ -30,14 +30,23 @@
             <input type="number" name="userInfoId" value="${bean.totalUsers}" placeholder="总用户数" size="20" data-rule="required" >
         </div>
 
-        <div class="form-group">
-            <label class="control-label x85">总用户数：</label>
-            <input type="number" name="userInfoId" value="${bean.totalUsers}" placeholder="总用户数" size="20" data-rule="required" >
-        </div>
 
         <div class="form-group">
             <label class="control-label x85">使用用户数：</label>
             <input type="number" name="usedUsers" value="${bean.usedUsers}" placeholder="使用用户数" size="20" data-rule="required" readonly>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label x85">服务：</label>
+            <select name="serviceId" data-toggle="selectpicker">
+                <option value="">---请选择----</option>
+                <#if services??>
+                    <#list services as service>
+                        <option value="${service.id}" <#if service.id==bean.sysService.id>selected</#if>>${service.name!}</option>
+                    </#list>
+
+                </#if>
+            </select>
         </div>
 
         <div class="form-group">

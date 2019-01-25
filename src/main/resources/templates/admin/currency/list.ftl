@@ -64,15 +64,15 @@
 				<td>${bean.standard?string('YES','NO')}</td>
 				<td>
 					<@shiro.hasPermission name="/admin/currency/view">
-						<a href="${base}/admin/currency/view?id=${bean.id}" class="btn btn-blue" data-toggle="dialog" data-id="currency-view" data-options="{title:'查看', height:350}">查看 </a>
+						<a href="/admin/currency/view?id=${bean.id}" class="btn btn-blue" data-toggle="dialog" data-id="currency-view" data-options="{title:'查看', height:350}">查看 </a>
 					</@shiro.hasPermission>
 
 					<@shiro.hasPermission name="/admin/currency/edit">
-						<a href="${base}/admin/currency/edit?id=${bean.id}" class="btn btn-green" data-toggle="dialog" data-id="currency-edit" data-options="{title:'修改', height:300}">修改 </a>
+						<a href="/admin/currency/edit?id=${bean.id}" class="btn btn-green" data-toggle="dialog" data-id="currency-edit" data-options="{title:'修改', height:300}">修改 </a>
 					</@shiro.hasPermission>
 
 					<@shiro.hasPermission name="/admin/currency/delete">
-						<a href="${base}/admin/currency/delete?id=${bean.id}" class="btn btn-red" data-toggle="doajax" data-id="currency-delete" data-confirm-msg="确定要删除吗？">删除</a>
+						<a href="/admin/currency/delete?id=${bean.id}" class="btn btn-red" data-toggle="doajax" data-id="currency-delete" data-confirm-msg="确定要删除吗？">删除</a>
 					</@shiro.hasPermission>
 				</td>
 			</tr>

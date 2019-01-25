@@ -62,4 +62,13 @@ public abstract class BaseServer<D extends BaseDao,T> {
     public T getById(long id) {
         return (T)dao.findById(id).get();
     }
+
+    protected String like(String str){
+        return PageUtil.like(str);
+    }
+
+    protected boolean isLong(Long var){
+
+        return var!=null&&var>0;
+    }
 }

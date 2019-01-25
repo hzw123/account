@@ -52,6 +52,12 @@
 			                excelstyles: ['background-color', 'color', 'font-size', 'font-weight']
 			            },
 
+                        responseHandler: function(res) {
+                            return {
+                                "total": res.totalElements,
+                                "rows": res.content //数据
+                            };
+                        },
 			            //导出excel表格设置<<<<<<<<<<<<<<<<
 			            
 			            onLoadSuccess: function(){  //加载成功时执行
@@ -66,8 +72,8 @@
 			},
 			queryParams:function(params){//参数查询
 				 var search = {};
-				 search.pageSize= params.pageSize;
-				 search.pageNum=params.pageNumber;
+				 search.size= params.pageSize;
+				 search.page=params.pageNumber;
 				 return search;
 				 
 			},
@@ -87,8 +93,8 @@
 					        sortOrder: params.order, // 排序规则
 					        dataId: $("#dataId").val() // 额外添加的参数
 						};*/
-						search.pageSize= params.pageSize;
-						search.pageNum=params.pageNumber;
+						search.size= params.pageSize;
+						search.page=params.pageNumber;
 						
 					 return search;
 				 }

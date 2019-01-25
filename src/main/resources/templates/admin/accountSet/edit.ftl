@@ -3,6 +3,8 @@
     <form action="${base}/admin/accountSet/update" data-toggle="validate" method="post">
 
         <input type="hidden" name="gmtCreate" value="${bean.gmtCreate!}"/>
+        <input type="hidden" name="createBy" value="${bean.createBy}"/>
+
         <div class="form-group">
             <label class="control-label x85">账套ID：</label>
             <input type="text" name="id" value="${bean.id}" placeholder="账套ID" size="20" data-rule="required" readonly>
@@ -79,7 +81,6 @@
             <label class="control-label x85">权限信息：</label>
             <input type="text" name="permission" value="${bean.permission!}" placeholder="国税号" size="20" data-rule="required">
         </div>
-
 
     </form>
 </div>

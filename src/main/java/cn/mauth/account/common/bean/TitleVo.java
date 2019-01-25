@@ -10,10 +10,10 @@ public class TitleVo implements Serializable {
 	
 	private String title;//正标题
 	private String parenttitle;//父级标题
-	private String isMsg="no";//是都添加欢迎语 默认为no
+	private boolean isMsg;//是都添加欢迎语 默认为false
 	private String msgHtml;//欢迎语内容 默认内容为""
-	private String isControl="yes";//控件下拉列表点击  默认yes
-	private String isribbon="yes";//控件彩带 默认yes
+	private boolean isControl=true;//控件下拉列表点击  默认true
+	private boolean isRibbon=true;//控件彩带 默认true
 
 	/**
 	 * 设置通用标题
@@ -22,25 +22,25 @@ public class TitleVo implements Serializable {
 	 * @param isMsg 是否开启内容
 	 * @param msgHtml 内容html
 	 * @param isControl 是否开启小控件
-	 * @param isribbon 是都开启彩带
+	 * @param isRibbon 是都开启彩带
 	 * @ClassName: TitleVo
 	 * @author fuce
 	 * @date 2018年8月26日
 	 */
-	public TitleVo(String title, String parenttitle, String isMsg,
-			String msgHtml, String isControl, String isribbon) {
+	public TitleVo(String title, String parenttitle, boolean isMsg,
+			String msgHtml, boolean isControl, boolean isRibbon) {
 		super();
 		this.title = title;
 		this.parenttitle = parenttitle;
 		this.isMsg = isMsg;
-		if(isMsg.equals("yes")){
+		if(isMsg){
 			this.msgHtml = msgHtml;
 		}else{
 			this.msgHtml = "";
 		}
 		
 		this.isControl = isControl;
-		this.isribbon = isribbon;
+		this.isRibbon = isRibbon;
 	}
 
 	public String getTitle() {
@@ -59,12 +59,12 @@ public class TitleVo implements Serializable {
 		this.parenttitle = parenttitle;
 	}
 
-	public String getIsMsg() {
+	public boolean isMsg() {
 		return isMsg;
 	}
 
-	public void setIsMsg(String isMsg) {
-		this.isMsg = isMsg;
+	public void setMsg(boolean msg) {
+		isMsg = msg;
 	}
 
 	public String getMsgHtml() {
@@ -75,19 +75,19 @@ public class TitleVo implements Serializable {
 		this.msgHtml = msgHtml;
 	}
 
-	public String getIsControl() {
+	public boolean isControl() {
 		return isControl;
 	}
 
-	public void setIsControl(String isControl) {
-		this.isControl = isControl;
+	public void setControl(boolean control) {
+		isControl = control;
 	}
 
-	public String getIsribbon() {
-		return isribbon;
+	public boolean isRibbon() {
+		return isRibbon;
 	}
 
-	public void setIsribbon(String isribbon) {
-		this.isribbon = isribbon;
+	public void setRibbon(boolean ribbon) {
+		isRibbon = ribbon;
 	}
 }

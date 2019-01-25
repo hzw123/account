@@ -27,6 +27,23 @@ public class VoucherService extends BaseServer<VoucherDao,Parameters>{
 
     @Override
     protected Predicate toPredicate(List<Predicate> list, Parameters param, Root root, CriteriaQuery query, CriteriaBuilder cb) {
+        String start=param.getStart();
+        String end=param.getEnd();
+        int startNum=param.getStartVNum();
+        int endNum=param.getEndVNum();
+
+        if(this.isLong(param.getAccountId()))
+            list.add(cb.equal(root.get("accountId"),param.getAccountId()));
+
+        if(this.isLong(param.getVid()))
+            list.add(cb.equal(root.get("id"),param.getVid()));
+
+        if(startNum>0)
+            list.add(cb.gt(root.get("num"),startNum));
+
+        if(endNum>startNum && endNum>0)
+            list.add(cb.ge(root.get("num"),endNum));
+
 
         return this.and(list,cb);
     }
@@ -41,6 +58,7 @@ public class VoucherService extends BaseServer<VoucherDao,Parameters>{
         }
         return true;
     }
+
 
     @Transactional
     public boolean updateVoucher(){

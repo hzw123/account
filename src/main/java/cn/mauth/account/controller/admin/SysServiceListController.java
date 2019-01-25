@@ -55,6 +55,7 @@ public class SysServiceListController extends BaseController{
     @RequestMapping(value = "/edit")
     public void edit(@RequestParam(value = "id") Long id, ModelMap modelMap){
         modelMap.put("bean", service.getById(id));
+        modelMap.put("services",this.service.findAllOfSysServicel());
     }
 
     @ResponseBody
