@@ -11,5 +11,4 @@ public interface SysAppInfoDao extends BaseDao<SysAppInfo,Long>{
 
     List<SysAppInfo> findByUserInfoId(Long uid);
 
-    SysAppInfo findByAccountId(Long accountId);
 }

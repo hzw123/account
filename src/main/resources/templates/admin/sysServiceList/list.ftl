@@ -65,7 +65,7 @@
 					</#if>
 				</td>
 				<td>
-				<@shiro.hasPermission name="/admin/sysServiceList/add">
+				<@shiro.hasPermission name="/admin/sysServiceList/view">
 				    <a href="${base}/admin/sysServiceList/view?id=${bean.id}" class="btn btn-blue" data-toggle="dialog" data-id="sysServiceList-view" data-options="{title:'查看', height:380}">查看 </a>
 				</@shiro.hasPermission>
 

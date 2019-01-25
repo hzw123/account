@@ -8,11 +8,6 @@
         </div>
         
         <div class="form-group">
-            <label class="control-label x85">账套ID：</label>
-            <input type="number" name="accountId" value="" placeholder="账套ID" size="20" data-rule="required">
-        </div>
-
-        <div class="form-group">
             <label class="control-label x85">启用状态：</label>
             <select name="state" data-toggle="selectpicker" size="20">
                 <option value="1">启用</option>

@@ -13,17 +13,15 @@ import javax.persistence.Transient;
  * 科目信息
  */
 @Entity
-public class AccountSubject extends BaseEntity {
+public class Subject extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
     /** 父节点ID*/
-    private long parent;
+    private Long parentId;
     /** 科目名称*/
     @Column(nullable = false,unique = true,length = 100)
     private String name;
-    /** 科目全称*/
-    private String fullName;
     /** 科目编码*/
     @Column(nullable = false,unique = true,length = 100)
     private String code;
@@ -67,16 +65,12 @@ public class AccountSubject extends BaseEntity {
     /** 外币核算开关*/
     private boolean isForeignCurrency;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
+    public Long getParentId() {
+        return parentId;
     }
 
-    public long getParent() {
-        return parent;
-    }
-
-    public void setParent(long parent) {
-        this.parent = parent;
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
     }
 
     public String getName() {
@@ -85,14 +79,6 @@ public class AccountSubject extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 
     public String getCode() {

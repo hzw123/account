@@ -2,6 +2,7 @@
 <div class="bjui-pageContent">
     <form action="${base}/admin/sysService/update" data-toggle="validate" method="post">
         <input type="hidden" name="id" value="${bean.id}"/>
+        <input type="hidden" name="gmtCreate" value="${bean.gmtCreate!}"/>
         <div class="form-group">
             <label class="control-label x85">服务号：</label>
             <input type="text" name="serverNo" value="${bean.serverNo!}" placeholder="服务号" size="20" data-rule="required">

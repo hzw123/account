@@ -2,6 +2,7 @@
 <div class="bjui-pageContent">
 	<form action="${base}/admin/sysRole/update" data-toggle="validate" method="post">
 		<input type="hidden" name="id" value="${bean.id}"/>
+        <input type="hidden" name="gmtCreate" value="${bean.gmtCreate!}"/>
 		<div class="form-group">
             <label class="control-label x85">名称：</label>
             <input type="text" name="roleName" value="${bean.roleName!}" placeholder="名称" size="20">

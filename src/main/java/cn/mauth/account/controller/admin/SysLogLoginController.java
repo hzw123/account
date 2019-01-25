@@ -65,7 +65,7 @@ public class SysLogLoginController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "/update")
 	public String update(@ModelAttribute SysLogLogin qo){
-		if (service.updateById(qo) > 0) {
+		if (service.save(qo) > 0) {
 			return success(TARGETID);
 		}
 		return error("修改失败");

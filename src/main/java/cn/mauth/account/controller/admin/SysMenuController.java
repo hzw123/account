@@ -28,9 +28,8 @@ public class SysMenuController extends BaseController {
 	 * 菜单列出
 	 */
 	@RequestMapping("/list")
-	public void list(@ModelAttribute SysMenu qo, ModelMap modelMap) {
+	public void list( ModelMap modelMap) {
 		modelMap.put("list", service.findAll());
-		modelMap.put("bean", qo);
 	}
 
 	@RequestMapping(value = "/add")

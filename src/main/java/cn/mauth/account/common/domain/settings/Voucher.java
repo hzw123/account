@@ -1,7 +1,7 @@
 package cn.mauth.account.common.domain.settings;
 
-import cn.mauth.account.common.base.BaseEntity;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -9,10 +9,13 @@ import java.util.List;
  * 凭证
  */
 @Entity
-public class Voucher extends BaseEntity{
+public class Voucher implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Long id;
     @Column(nullable = false)
     private String name;//凭证字
     private int num;//凭证号

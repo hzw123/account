@@ -2,6 +2,7 @@
 <div class="bjui-pageContent">
 	<form action="${base}/admin/sysUserInfo/update" data-toggle="validate" method="post">
 		<input type="hidden" name="id" value="${bean.id}"/>
+        <input type="hidden" name="gmtCreate" value="${bean.gmtCreate!}"/>
         <div class="form-group">
             <label class="control-label x85">登录名：</label>
             <input type="text" name="loginName" value="${bean.loginName!}" placeholder="登录名" size="20" data-rule="required" disabled="disabled">

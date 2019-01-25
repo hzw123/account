@@ -8,9 +8,6 @@
 			<label>应用名称：</label>
 			<input type="text" name="name" value="" class="form-control" size="10">&nbsp;
 
-			<label>账套ID：</label>
-			<input type="number" name="accountId" value="" class="form-control" size="10">&nbsp;
-
 			<label for="state">启用状态：</label>
 			<select name="state" data-toggle="selectpicker" class="form-control" size="10">
 				<option value="-1">--全部--</option>
@@ -37,7 +34,6 @@
 				<th>创建时间</th>
 				<th>修改时间</th>
 				<th>应用名称</th>
-				<th>账套ID</th>
 				<th>秘钥</th>
 				<th>用户ID</th>
 				<th>启用状态</th>
@@ -52,7 +48,6 @@
 				<td>${(bean.gmtCreate?string('yyyy-MM-dd HH:mm:ss'))!}</td>
 				<td>${(bean.gmtModified?string('yyyy-MM-dd HH:mm:ss'))!}</td>
 				<td>${bean.name!}</td>
-				<td>${bean.accountId!}</td>
 				<td>${bean.clientSecret!}</td>
 				<td>${bean.userInfoId!}</td>
 				<td>
@@ -63,8 +58,8 @@
 					</#if>
 				</td>
 				<td>
-				<@shiro.hasPermission name="/admin/sysAppInfo/add">
-				    <a href="${base}/admin/sysAppInfo/view?id=${bean.id}" class="btn btn-blue" data-toggle="dialog" data-id="SysAppInfo-view" data-options="{title:'查看', height:250}">查看 </a>
+				<@shiro.hasPermission name="/admin/sysAppInfo/view">
+				    <a href="${base}/admin/sysAppInfo/view?id=${bean.id}" class="btn btn-blue" data-toggle="dialog" data-id="SysAppInfo-view" data-options="{title:'查看', height:auto}">查看 </a>
 				</@shiro.hasPermission>
 
 				<@shiro.hasPermission name="/admin/sysAppInfo/edit">

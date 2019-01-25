@@ -1,41 +1,46 @@
 package cn.mauth.account.server;
 
+import cn.mauth.account.common.base.BaseServer;
 import cn.mauth.account.common.domain.sys.SysAppInfo;
 import cn.mauth.account.common.domain.sys.SysServiceList;
-import cn.mauth.account.common.util.PageInfo;
 import cn.mauth.account.common.util.PageUtil;
 import cn.mauth.account.common.util.SessionUtils;
 import cn.mauth.account.dao.SysAppInfoDao;
 import cn.mauth.account.dao.SysServiceListDao;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @Service
-public class SysAppInfoServer {
+public class SysAppInfoServer extends BaseServer<SysAppInfoDao,SysAppInfo>{
 
-    @Autowired
-    private SysAppInfoDao dao;
 
     @Autowired
     private SysServiceListDao sysServiceListDao;
 
-    public PageInfo<SysAppInfo> listForPage(int pageCurrent, int pageSize, SysAppInfo sysAppInfo) {
+    public SysAppInfoServer(SysAppInfoDao dao) {
+        super(dao);
+    }
 
-        Page<SysAppInfo> page=this.dao.findAll(((root, query, cb) -> {
-            List<Predicate> list=new ArrayList<>();
+    @Override
+    protected Predicate toPredicate(List<Predicate> list, SysAppInfo sysAppInfo, Root root, CriteriaQuery query, CriteriaBuilder cb) {
 
-            return cb.and(list.toArray(new Predicate[list.size()]));
-        }), PageUtil.getPageable(pageCurrent,pageSize));
+        if (sysAppInfo.getQuery() > 0)
+            if (sysAppInfo.getState() != -1)
+                list.add(cb.equal(root.get("state"), sysAppInfo.getState()));
 
-        return PageUtil.of(page);
+        if (StringUtils.isNotEmpty(sysAppInfo.getName()))
+            list.add(cb.like(root.get("name"), PageUtil.like(sysAppInfo.getName())));
+
+        return this.and(list,cb);
     }
 
     public int save(SysAppInfo sysAppInfo){
@@ -45,37 +50,25 @@ public class SysAppInfoServer {
         return 1;
     }
 
-    public int deleteById(long id){
-        this.dao.deleteById(id);
-        return 1;
-    }
 
-    public SysAppInfo getById(long id){
-        return this.dao.findById(id).get();
-    }
-
-    public Page<SysServiceList> find(SysServiceList sysServiceList, Pageable pageable){
+    public List<SysServiceList> find(SysServiceList sysServiceList){
         return this.sysServiceListDao.findAll((root, query, cb) -> {
             List<Predicate> list=new ArrayList<>();
 
-            if(sysServiceList.getAppId()>0)
+            if(sysServiceList.getAppId()!=null&&sysServiceList.getAppId()>0)
                 list.add(cb.equal(root.get("appId"),sysServiceList.getAppId()));
 
-            if(!SessionUtils.isAdmin()) {
-                list.add(cb.equal(root.get("userInfoId"), SessionUtils.getUserInfoId()));
+            if(sysServiceList.getUserInfoId()!=null&&sysServiceList.getUserInfoId()>0)
+                list.add(cb.equal(root.get("userInfoId"), sysServiceList.getUserInfoId()));
 
-            }else{
-                if(sysServiceList.getUserInfoId()>0)
-                    list.add(cb.equal(root.get("userInfoId"), sysServiceList.getUserInfoId()));
-            }
-
-            if(sysServiceList.getAccountId()>0)
+            if(sysServiceList.getAccountId()!=null&&sysServiceList.getAccountId()>0)
                 list.add(cb.equal(root.get("accountId"),sysServiceList.getAccountId()));
 
             if(sysServiceList.getSysService()!=null && StringUtils.isNotEmpty(sysServiceList.getSysService().getServerNo()))
                 list.add(cb.like(root.join("sysService").get("serverNo"),sysServiceList.getSysService().getServerNo()));
 
             return cb.and(list.toArray(new Predicate[list.size()]));
-        },PageUtil.getPageable(pageable));
+        });
     }
+
 }

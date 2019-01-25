@@ -1,20 +1,12 @@
-package cn.mauth.account.common.domain.settings;
+package cn.mauth.account.common.bean;
 
-import cn.mauth.account.common.base.BaseEntity;
 import cn.mauth.account.enums.PeriodStatus;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * 期间信息表
  */
-@Entity
-public class Period extends BaseEntity{
+public class Period implements Serializable{
 
     private static final long serialVersionUID = 1L;
 

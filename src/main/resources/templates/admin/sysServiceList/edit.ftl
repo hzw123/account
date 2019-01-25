@@ -3,6 +3,7 @@
     <form action="${base}/admin/sysServiceList/update" data-toggle="validate" method="post">
 
         <input type="hidden" name="id" value="${bean.id}"/>
+        <input type="hidden" name="gmtCreate" value="${bean.gmtCreate!}"/>
 
         <div class="form-group">
             <label class="control-label x85">服务列表名称：</label>
@@ -11,17 +12,17 @@
 
         <div class="form-group">
             <label class="control-label x85">应用ID：</label>
-            <input type="number" name="appId" value="${bean.appId}" placeholder="应用ID" size="20" data-rule="required" disabled>
+            <input type="number" name="appId" value="${bean.appId}" placeholder="应用ID" size="20" data-rule="required" readonly>
         </div>
 
         <div class="form-group">
             <label class="control-label x85">账套ID：</label>
-            <input type="number" name="accountId" value="${bean.accountId}" placeholder="账套ID" size="20" data-rule="required" disabled>
+            <input type="number" name="accountId" value="${bean.accountId}" placeholder="账套ID" size="20" data-rule="required" readonly>
         </div>
 
         <div class="form-group">
             <label class="control-label x85">用户Id：</label>
-            <input type="number" name="userInfoId" value="${bean.userInfoId}" placeholder="用户Id" size="20" data-rule="required" disabled>
+            <input type="number" name="userInfoId" value="${bean.userInfoId}" placeholder="用户Id" size="20" data-rule="required" readonly>
         </div>
 
         <div class="form-group">
@@ -36,7 +37,7 @@
 
         <div class="form-group">
             <label class="control-label x85">使用用户数：</label>
-            <input type="number" name="usedUsers" value="${bean.usedUsers}" placeholder="使用用户数" size="20" data-rule="required" disabled>
+            <input type="number" name="usedUsers" value="${bean.usedUsers}" placeholder="使用用户数" size="20" data-rule="required" readonly>
         </div>
 
         <div class="form-group">
@@ -49,7 +50,7 @@
 
         <div class="form-group">
             <label class="control-label x85">版本：</label>
-            <input type="number" name="version" value="${bean.version}" placeholder="版本" size="20" data-rule="required" disabled>
+            <input type="number" name="version" value="${bean.version}" placeholder="版本" size="20" data-rule="required" readonly>
         </div>
 
     </form>

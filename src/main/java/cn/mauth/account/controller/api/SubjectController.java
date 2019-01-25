@@ -1,9 +1,9 @@
 package cn.mauth.account.controller.api;
 
-import cn.mauth.account.common.domain.settings.AccountSubject;
+import cn.mauth.account.common.domain.settings.Subject;
 import cn.mauth.account.common.util.PageUtil;
 import cn.mauth.account.common.util.Result;
-import cn.mauth.account.dao.AccountSubjectDao;
+import cn.mauth.account.dao.SubjectDao;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +17,17 @@ import java.util.List;
 
 @Api("科目信息")
 @RestController
-@RequestMapping("/api/settings/accountSubject")
-public class AccountSubjectController {
+@RequestMapping("/api/settings/subject")
+public class SubjectController {
 
     @Autowired
-    private AccountSubjectDao dao;
+    private SubjectDao dao;
 
     @GetMapping
     @ApiOperation(value = "获取账套下所有科目")
     public Result findByAisId(Long accountId,Long subId,Pageable pageable){
 
-        Page<AccountSubject> page=this.dao.findAll((root, query, cb) -> {
+        Page<Subject> page=this.dao.findAll((root, query, cb) -> {
 
             List<Predicate> list=new ArrayList<>();
 
@@ -46,7 +46,7 @@ public class AccountSubjectController {
 
     @PostMapping
     @ApiOperation(value = "批量添加科目")
-    public Result<String> batchSave(List<AccountSubject> list){
+    public Result<String> batchSave(List<Subject> list){
 
         this.dao.saveAll(list);
 
@@ -55,7 +55,7 @@ public class AccountSubjectController {
 
     @PutMapping
     @ApiOperation(value = "批量修改科目")
-    public Result<String> batchUpdate(List<AccountSubject> list){
+    public Result<String> batchUpdate(List<Subject> list){
 
         this.dao.saveAll(list);
 

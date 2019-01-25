@@ -1,36 +1,40 @@
 package cn.mauth.account.server;
 
+import cn.mauth.account.common.base.BaseServer;
 import cn.mauth.account.common.bean.Parameters;
 import cn.mauth.account.common.bean.VoucherBody;
 import cn.mauth.account.common.domain.settings.Voucher;
 import cn.mauth.account.common.util.DateUtil;
-import cn.mauth.account.common.util.PageUtil;
 import cn.mauth.account.dao.VoucherDao;
 import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class VoucherService {
+public class VoucherService extends BaseServer<VoucherDao,Parameters>{
 
 
-    private static final Logger logger= LoggerFactory.getLogger(VoucherService.class);
-    @Autowired
-    private VoucherDao voucherDao;
+    public VoucherService(VoucherDao dao) {
+        super(dao);
+    }
+
+    @Override
+    protected Predicate toPredicate(List<Predicate> list, Parameters param, Root root, CriteriaQuery query, CriteriaBuilder cb) {
+
+        return this.and(list,cb);
+    }
 
     @Transactional
     public boolean saveVoucher(VoucherBody body){
         try {
-            this.voucherDao.save(null);
+            this.dao.save(null);
         }catch (Exception e){
             logger.debug(e.getMessage());
             return false;
@@ -41,7 +45,7 @@ public class VoucherService {
     @Transactional
     public boolean updateVoucher(){
         try {
-            this.voucherDao.save(null);
+            this.dao.save(null);
         }catch (Exception e){
             logger.debug(e.getMessage());
             return false;
@@ -53,7 +57,7 @@ public class VoucherService {
     public boolean deleteVoucher(VoucherBody body){
 
         try {
-            List<Voucher> list=this.voucherDao.findAll((root, query, cb) -> {
+            List<Voucher> list=this.dao.findAll((root, query, cb) -> {
                 List<Predicate> param=new ArrayList<>();
                 if(StringUtils.isNotEmpty(body.getPeriod()))
                     param.add(cb.equal(root.get("vchDate"), DateUtil.parseYM(body.getPeriod())));
@@ -71,7 +75,7 @@ public class VoucherService {
                 return cb.and(param.toArray(new Predicate[param.size()]));
             });
 
-            this.voucherDao.deleteAll(list);
+            this.dao.deleteAll(list);
         }catch (Exception e){
             logger.debug(e.getMessage());
             return false;
@@ -81,14 +85,4 @@ public class VoucherService {
 
     }
 
-    public Page<Voucher> page(Parameters params,Pageable pageable){
-        return this.voucherDao.findAll(((root, query, cb) -> {
-            List<Predicate> list=new ArrayList<>();
-
-
-
-
-            return cb.and(list.toArray(new Predicate[list.size()]));
-        }),PageUtil.getPageable(pageable));
-    }
 }

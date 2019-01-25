@@ -2,6 +2,7 @@
 <div class="bjui-pageContent">
 	<form action="${base}/admin/sysRoleUser/update" data-toggle="validate" method="post">
 		<input type="hidden" name="id" value="${bean.id}"/>
+        <input type="hidden" name="gmtCreate" value="${bean.gmtCreate!}"/>
 		<div class="form-group">
             <label class="control-label x85">创建时间：</label>
             <input type="text" name="gmtCreate" value="${(bean.gmtCreate?string('yyyy-MM-dd HH:mm:ss'))!}" placeholder="创建时间" size="20">

@@ -4,7 +4,6 @@
 	<form action="${base}/admin/sysMenuRole/save" data-toggle="validate" method="post">
 		<input type="hidden" name="roleId" value="${bean.roleId!}">
 		<input type="hidden" name="ids" value="${ids!}" id="menuIds" >
-		
 		<div class="form-group">
 			<label class="control-label x85">菜单列表：</label>
 			<input type="text" name="menus" id="j_ztree_menus1" data-toggle="selectztree" size="25" data-tree="#j_select_tree1" readonly>

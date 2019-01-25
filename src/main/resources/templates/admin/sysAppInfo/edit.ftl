@@ -1,27 +1,22 @@
 <#assign base=request.contextPath /> 
 <div class="bjui-pageContent">
-    <form action="${base}/admin/SysAppInfo/update" data-toggle="validate" method="post">
+    <form action="${base}/admin/sysAppInfo/update" data-toggle="validate" method="post">
 
         <input type="hidden" name="id" value="${bean.id}"/>
-
+        <input type="hidden" name="gmtCreate" value="${bean.gmtCreate!}"/>
         <div class="form-group">
             <label class="control-label x85">应用名称：</label>
             <input type="text" name="name" value="${bean.name!}" placeholder="应用名称" size="20"  data-rule="required">
         </div>
 
         <div class="form-group">
-            <label class="control-label x85">账套ID：</label>
-            <input type="text" name="accountId" value="${bean.accountId!}" placeholder="账套ID" size="20" data-rule="required" disabled>
-        </div>
-
-        <div class="form-group">
             <label class="control-label x85">秘钥：</label>
-            <input type="text" name="clientSecret" value="${bean.clientSecret!}" placeholder="秘钥" size="20" data-rule="required" disabled>
+            <input type="text" name="clientSecret" value="${bean.clientSecret!}" placeholder="秘钥" size="20" data-rule="required" readonly>
         </div>
 
        <div class="form-group">
             <label class="control-label x85">用户ID：</label>
-            <input type="text" name="userInfoId" value="${bean.userInfoId!}" placeholder="用户ID" size="20" data-rule="required" disabled>
+            <input type="text" name="userInfoId" value="${bean.userInfoId!}" placeholder="用户ID" size="20" data-rule="required" readonly>
         </div>
 
         <div class="form-group">

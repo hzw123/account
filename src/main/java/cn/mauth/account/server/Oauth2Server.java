@@ -22,7 +22,7 @@ public class Oauth2Server {
     @Autowired
     private AccountSetDao accountSetDao;
 
-    public String getToken(AppUserAccessToken token)throws Exception{
+    public String getToken(AppUserAccessToken token) throws Exception{
 
         String username=token.getUsername();
 
@@ -51,17 +51,17 @@ public class Oauth2Server {
         }
 
         if(accountSetDao.findById(appId)==null){
-            throw new Exception("client 没有找到");
+            throw new Exception("clientId 没有找到");
         }
 
-        SysAppInfo app=sysAppInfoDao.findByAccountId(appId);
+        SysAppInfo app=sysAppInfoDao.findById(appId).get();
 
         if(app==null){
-            throw new Exception("没有找到装套为："+appId+"的应用");
+            throw new Exception("没有找到ID为："+appId+"的应用");
         }
 
         if(app.getUserInfoId()!=userInfo.getId()){
-            throw new Exception("用户和应用不匹配");
+            throw new Exception("应用的用户与登录用户和不匹配");
         }
 
         return JwtUtil.token(username,password,clientId);

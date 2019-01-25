@@ -2,9 +2,10 @@
 <div class="bjui-pageContent">
     <form action="${base}/admin/accountSet/update" data-toggle="validate" method="post">
 
+        <input type="hidden" name="gmtCreate" value="${bean.gmtCreate!}"/>
         <div class="form-group">
             <label class="control-label x85">账套ID：</label>
-            <input type="text" name="id" value="${bean.id}" placeholder="账套ID" size="20" data-rule="required" disabled>
+            <input type="text" name="id" value="${bean.id}" placeholder="账套ID" size="20" data-rule="required" readonly>
         </div>
 
         <div class="form-group">
@@ -19,17 +20,17 @@
 
         <div class="form-group">
             <label class="control-label x85">账套起始年份：</label>
-            <input type="text" name="startDateYear" value="${bean.startDateYear!}" placeholder="账套起始年份" size="20" data-rule="required" disabled>
+            <input type="text" name="startDateYear" value="${bean.startDateYear!}" placeholder="账套起始年份" size="20" data-rule="required" readonly>
         </div>
 
         <div class="form-group">
             <label class="control-label x85">账套起始月份：</label>
-            <input type="text" name="startDateMonth" value="${bean.startDateMonth!}" placeholder="账套起始月份" size="20" data-rule="required" disabled>
+            <input type="text" name="startDateMonth" value="${bean.startDateMonth!}" placeholder="账套起始月份" size="20" data-rule="required" readonly>
         </div>
 
         <div class="form-group">
             <label class="control-label x85">统一社会信用码：</label>
-            <input type="text" name="unifiedNumber" value="${bean.unifiedNumber!}" placeholder="统一社会信用码" size="20" data-rule="required" disabled>
+            <input type="text" name="unifiedNumber" value="${bean.unifiedNumber!}" placeholder="统一社会信用码" size="20" data-rule="required" readonly>
         </div>
 
         <div class="form-group">

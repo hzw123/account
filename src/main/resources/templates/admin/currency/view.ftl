@@ -7,28 +7,28 @@
 	</div>
 
     <div class="form-group">
-		<label class="control-label">应用名称：</label>${bean.name!}
-	</div>
+        <label class="control-label">货币编码：</label>${bean.code!}
+    </div>
 
     <div class="form-group">
-		<label class="control-label">货币名称：</label>${bean.name!}
-	</div>
+        <label class="control-label">货币名称：</label>${bean.name!}
+    </div>
 
     <div class="form-group">
-		<label class="control-label">秘钥：</label>${bean.clientSecret!}
-	</div>
-
-	<div class="form-group">
-		<label class="control-label">用户ID：</label>${bean.userInfoId!}
+		<label class="control-label">初始汇率：</label>${bean.rate}
 	</div>
 
     <div class="form-group">
 		<label class="control-label">启用状态：</label>
-		<#if bean.state==0>
+		<#if bean.status==0>
 			停用
 		<#else>
 			启用
 		</#if>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label">是否启用出纳：</label>${(bean.standard?string('YES','NO'))!}
 	</div>
 
 </div>

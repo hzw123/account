@@ -18,7 +18,10 @@ public class Currency extends BaseEntity{
     private String name;//货币名称
     private double rate;//初始汇率
     private int status;//启用状态
-    private int isStandard;//是否本位币;
+    private boolean isStandard;//是否本位币;
+
+    @Transient
+    private int query;
 
     public String getCode() {
         return code;
@@ -52,11 +55,19 @@ public class Currency extends BaseEntity{
         this.status = status;
     }
 
-    public int getIsStandard() {
+    public boolean isStandard() {
         return isStandard;
     }
 
-    public void setIsStandard(int isStandard) {
-        this.isStandard = isStandard;
+    public void setStandard(boolean standard) {
+        isStandard = standard;
+    }
+
+    public int getQuery() {
+        return query;
+    }
+
+    public void setQuery(int query) {
+        this.query = query;
     }
 }

@@ -1,9 +1,8 @@
 package cn.mauth.account.controller.admin;
 
 import cn.mauth.account.common.base.BaseController;
-import cn.mauth.account.common.domain.sys.SysAppInfo;
-import cn.mauth.account.common.domain.sys.SysServiceList;
-import cn.mauth.account.server.SysAppInfoServer;
+import cn.mauth.account.common.domain.settings.Currency;
+import cn.mauth.account.server.CurrencyServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,26 +11,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
-
-/**
- * 应用服务中心
- */
 @Controller
-@RequestMapping("/admin/sysAppInfo")
-public class SysAppInfoController extends BaseController{
+@RequestMapping("/admin/currency")
+public class CurrencyView extends BaseController{
 
-    private final static String TARGETID = "admin-sysAppInfo";
+    private final static String TARGETID = "admin-currency";
 
     @Autowired
-    private SysAppInfoServer service;
+    private CurrencyServer service;
 
     @RequestMapping(value = "/list")
-    public void list(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "10") int pageSize, @ModelAttribute SysAppInfo sysAppInfo, ModelMap modelMap){
-        modelMap.put("page", service.listForPage(pageCurrent, pageSize, sysAppInfo));
+    public void list(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "10") int pageSize, @ModelAttribute Currency currency, ModelMap modelMap){
+        modelMap.put("page", service.listForPage(pageCurrent, pageSize, currency));
         modelMap.put("pageCurrent", pageCurrent);
         modelMap.put("pageSize", pageSize);
-        modelMap.put("bean", sysAppInfo);
+        modelMap.put("bean", currency);
     }
 
     @RequestMapping(value = "/add")
@@ -41,8 +35,8 @@ public class SysAppInfoController extends BaseController{
 
     @ResponseBody
     @RequestMapping(value = "/save")
-    public String save(@ModelAttribute SysAppInfo qo){
-        if (service.save(qo) > 0) {
+    public String save(@ModelAttribute Currency currency){
+        if (service.save(currency) > 0) {
             return success(TARGETID);
         }
         return error("添加失败");
@@ -64,8 +58,8 @@ public class SysAppInfoController extends BaseController{
 
     @ResponseBody
     @RequestMapping(value = "/update")
-    public String update(@ModelAttribute SysAppInfo sysAppInfo){
-        if (service.save(sysAppInfo) > 0) {
+    public String update(@ModelAttribute Currency currency){
+        if (service.save(currency) > 0) {
             return success(TARGETID);
         }
         return error("修改失败");
@@ -73,19 +67,6 @@ public class SysAppInfoController extends BaseController{
 
     @RequestMapping(value = "/view")
     public void view(@RequestParam(value = "id") Long id, ModelMap modelMap){
-
-        SysAppInfo app=service.getById(id);
-
-        SysServiceList param=new SysServiceList();
-
-        param.setAppId(app.getId());
-
-        param.setUserInfoId(app.getUserInfoId());
-
-        List<SysServiceList> list=service.find(param);
-
-        app.setServices(list);
-
-        modelMap.put("bean", app);
+        modelMap.put("bean", service.getById(id));
     }
 }

@@ -1,5 +1,10 @@
 <#include "/macro/base.ftl" />
 <div class="bjui-pageHeader" xmlns="http://www.w3.org/1999/html">
+    <form id="pagerForm" data-toggle="ajaxsearch" action="${base}/admin/sysMenu/list" method="post">
+        <div class="bjui-searchBar">
+            <button type="submit" class="btn-default" data-icon="search">查询</button>&nbsp;
+        </div>
+    </form>
     <div class="bjui-searchBar">
         <br />
         <a href="${base}/admin/sysMenu/add?parentId=0" class="btn btn-default" data-toggle="dialog" data-icon="plus" data-id="sysMenu-add" data-options="{title:'添加', height:320, width:425}">添加一级菜单 </a>

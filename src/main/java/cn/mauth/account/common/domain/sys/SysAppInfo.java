@@ -3,7 +3,7 @@ package cn.mauth.account.common.domain.sys;
 import cn.mauth.account.common.base.BaseEntity;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 /**
  * 应用信息
@@ -13,8 +13,6 @@ public class SysAppInfo extends BaseEntity {
     private static final long serialVersionUID = 1L;
     @Column(unique = true,updatable = false,length = 30)
     private String name;
-    @Column(unique = true,updatable = false,length = 30)
-    private Long accountId;
     @Column(length = 50)
     private String clientSecret;
     @Column(nullable = false)
@@ -23,8 +21,8 @@ public class SysAppInfo extends BaseEntity {
     private int state;
     @Transient
     private int query;
-    @ManyToMany(cascade = CascadeType.MERGE)
-    private Set<SysService> services;
+    @Transient
+    private List<SysServiceList> services;
 
     public String getName() {
         return name;
@@ -32,14 +30,6 @@ public class SysAppInfo extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Long getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
     }
 
     public String getClientSecret() {
@@ -82,11 +72,11 @@ public class SysAppInfo extends BaseEntity {
         this.query = query;
     }
 
-    public Set<SysService> getServices() {
+    public List<SysServiceList> getServices() {
         return services;
     }
 
-    public void setServices(Set<SysService> services) {
+    public void setServices(List<SysServiceList> services) {
         this.services = services;
     }
 }
