@@ -3,8 +3,6 @@ package cn.mauth.account.shiro.filter;
 import cn.mauth.account.common.util.HttpUtils;
 import cn.mauth.account.common.util.JwtUtil;
 import cn.mauth.account.filter.AccountFilter;
-import cn.mauth.account.server.RedisUtil;
-import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,31 +32,28 @@ public class JwtFilter extends AccountFilter {
         }
 
         try {
+            String token = request.getParameter(ACCESS_TOKEN);
 
-            this.verifyToken(request);
+            JwtUtil.verifyToken(token);
+
+            logger.info("token：{}, 验证通过",token);
 
             filterChain.doFilter(request,response);
+
         }catch (Exception e){
 
             String msg = e.getMessage();
 
-            logger.error(e.getMessage());
+            msg=msg==null?"":msg;
 
-            HttpUtils.sendCall(request,response,HttpStatus.UNAUTHORIZED.value(),"无权访问:"+msg);
+            logger.error(msg);
+
+            HttpUtils.sendCall(response,HttpStatus.UNAUTHORIZED.value(),"无权访问"+msg);
 
         }
 
     }
 
-
-    private void verifyToken(ServletRequest request) throws Exception{
-
-        String token = request.getParameter(ACCESS_TOKEN);
-
-        JwtUtil.verifyToken(token);
-
-        logger.info("token：{}, 验证通过",token);
-    }
 
     private boolean isGetToken(ServletRequest request){
 
@@ -68,7 +63,7 @@ public class JwtFilter extends AccountFilter {
 
         String method=req.getMethod();
 
-        if(uri.equals("/api/oauth2/token") && (method.equals("POST")||method.equals("GET"))){
+        if(uri.equals("/api/accounting/auth/token") && (method.equals("POST")||method.equals("GET"))){
             return true;
         }
 

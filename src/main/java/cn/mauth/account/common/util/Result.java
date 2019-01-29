@@ -70,7 +70,7 @@ public class Result<T> implements Serializable {
 		return SUCCESS;
 	}
 
-	public static Result<?>  success(Object data){
+	public static <T> Result<T>  success(T data){
 		return Result.of(data);
 	}
 

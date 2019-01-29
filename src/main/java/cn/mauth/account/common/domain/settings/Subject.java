@@ -26,12 +26,14 @@ public class Subject extends BaseEntity {
     @Column(nullable = false,unique = true,length = 100)
     private String code;
     /** 科目类别*/
+    @Column(nullable = false)
     private SubType subType;
     /** 科目类别名称*/
     private String groupName;
     /** 科目级别*/
     private int level;
     /** 余额方向，借/贷 */
+    @Column(nullable = false)
     private BalanceEnum dc;
     @Transient
     private String dcDesc;//余额方向名称

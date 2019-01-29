@@ -29,7 +29,7 @@
 	</div>
 
     <div class="form-group">
-		<label class="control-label">审核信息：</label
+		<label class="control-label">审核信息：</label>
 		<#if bean.approveStatus==0>
 				未审核
 		<#else>

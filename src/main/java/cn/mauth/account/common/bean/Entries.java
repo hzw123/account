@@ -9,9 +9,9 @@ public class Entries implements Serializable{
     private String subCode;//科目编码
     private String exp;//摘要
     private double amount;//本位币金额
-    private double amountFor;//原币金额
     private String cur;//货币编码
     private double rate;//货币兑换率
+    private int dc;
 
     public String getSubCode() {
         return subCode;
@@ -37,14 +37,6 @@ public class Entries implements Serializable{
         this.amount = amount;
     }
 
-    public double getAmountFor() {
-        return amountFor;
-    }
-
-    public void setAmountFor(double amountFor) {
-        this.amountFor = amountFor;
-    }
-
     public String getCur() {
         return cur;
     }
@@ -59,5 +51,13 @@ public class Entries implements Serializable{
 
     public void setRate(double rate) {
         this.rate = rate;
+    }
+
+    public int getDc() {
+        return dc;
+    }
+
+    public void setDc(int dc) {
+        this.dc = dc;
     }
 }

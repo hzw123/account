@@ -3,6 +3,7 @@ package cn.mauth.account.controller.admin;
 import cn.mauth.account.common.base.BaseController;
 import cn.mauth.account.common.domain.settings.Voucher;
 import cn.mauth.account.server.VoucherServer;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,6 +26,7 @@ public class VoucherView extends BaseController{
 
     @RequestMapping(value = "/list")
     public void list(@RequestParam(value = "pageCurrent", defaultValue = "1") int pageCurrent, @RequestParam(value = "pageSize", defaultValue = "10") int pageSize, @ModelAttribute Voucher voucher, ModelMap modelMap){
+
         modelMap.put("page", service.listForPage(pageCurrent, pageSize, voucher));
         modelMap.put("pageCurrent", pageCurrent);
         modelMap.put("pageSize", pageSize);
@@ -32,16 +34,22 @@ public class VoucherView extends BaseController{
     }
 
     @RequestMapping(value = "/add")
-    public void add(){
-
+    public void add(ModelMap modelMap){
+        modelMap.put("list",this.service.findCode());
     }
 
     @ResponseBody
     @RequestMapping(value = "/save")
     public String save(@ModelAttribute Voucher voucher){
-        if (service.save(voucher) > 0) {
+
+        String message=service.validation(voucher);
+
+        if(StringUtils.isNotEmpty(message))
+            return error(message);
+
+        if (service.save(voucher) > 0)
             return success(TARGETID);
-        }
+
         return error("添加失败");
     }
 
@@ -62,7 +70,7 @@ public class VoucherView extends BaseController{
     @ResponseBody
     @RequestMapping(value = "/update")
     public String update(@ModelAttribute Voucher voucher){
-        if (service.save(voucher) > 0) {
+        if (service.update(voucher) > 0) {
             return success(TARGETID);
         }
         return error("修改失败");

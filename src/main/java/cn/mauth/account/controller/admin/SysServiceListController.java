@@ -31,7 +31,7 @@ public class SysServiceListController extends BaseController{
 
     @RequestMapping(value = "/add")
     public void add(Model model){
-        model.addAttribute("services",this.service.findAllOfSysServicel());
+        model.addAttribute("services",this.service.findAllOfSysService());
     }
 
     @ResponseBody
@@ -55,13 +55,13 @@ public class SysServiceListController extends BaseController{
     @RequestMapping(value = "/edit")
     public void edit(@RequestParam(value = "id") Long id, ModelMap modelMap){
         modelMap.put("bean", service.getById(id));
-        modelMap.put("services",this.service.findAllOfSysServicel());
+        modelMap.put("services",this.service.findAllOfSysService());
     }
 
     @ResponseBody
     @RequestMapping(value = "/update")
     public String update(@ModelAttribute SysServiceList sysServiceList){
-        if (service.save(sysServiceList) > 0) {
+        if (service.update(sysServiceList) > 0) {
             return success(TARGETID);
         }
         return error("修改失败");

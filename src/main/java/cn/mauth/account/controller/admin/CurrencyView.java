@@ -3,6 +3,7 @@ package cn.mauth.account.controller.admin;
 import cn.mauth.account.common.base.BaseController;
 import cn.mauth.account.common.domain.settings.Currency;
 import cn.mauth.account.server.CurrencyServer;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -36,6 +37,10 @@ public class CurrencyView extends BaseController{
     @ResponseBody
     @RequestMapping(value = "/save")
     public String save(@ModelAttribute Currency currency){
+        String message=service.validation(currency);
+        if(StringUtils.isNotEmpty(message))
+            return error(message);
+
         if (service.save(currency) > 0) {
             return success(TARGETID);
         }
@@ -59,7 +64,7 @@ public class CurrencyView extends BaseController{
     @ResponseBody
     @RequestMapping(value = "/update")
     public String update(@ModelAttribute Currency currency){
-        if (service.save(currency) > 0) {
+        if (service.update(currency) > 0) {
             return success(TARGETID);
         }
         return error("修改失败");

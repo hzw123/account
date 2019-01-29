@@ -1,22 +1,16 @@
 package cn.mauth.account.common.bean;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
-/**
- * 凭证信息
- */
-public class VoucherBody implements Serializable {
+public class VoucherParam implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id=0L;
     private String vchGroup;//凭证字（记、收、付、转）
     private int vchNum;//凭证号（1、2、3、4）
     private String vchDate;//凭证日期
-    private int attachments;//附件个数
-    private String note;//凭证备注
-    private List<Entries> entries;//凭证行
-    private String preparedBy;//制单人
+    private Set<Long> idSet;
 
     public Long getId() {
         return id;
@@ -50,36 +44,28 @@ public class VoucherBody implements Serializable {
         this.vchDate = vchDate;
     }
 
-    public int getAttachments() {
-        return attachments;
+    public Set<Long> getIdSet() {
+        return idSet;
     }
 
-    public void setAttachments(int attachments) {
-        this.attachments = attachments;
+    public void setIdSet(Set<Long> idSet) {
+        this.idSet = idSet;
     }
 
-    public String getNote() {
-        return note;
+    public String findIds(){
+        String ids=null;
+        if(this.isIds()){
+            StringBuffer sb=new StringBuffer();
+            idSet.forEach(id->{
+                sb.append(",");
+                sb.append(id);
+            });
+            ids=sb.toString().substring(1);
+        }
+        return ids;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public boolean isIds(){
+        return (idSet!=null&&idSet.size()>0);
     }
-
-    public List<Entries> getEntries() {
-        return entries;
-    }
-
-    public void setEntries(List<Entries> entries) {
-        this.entries = entries;
-    }
-
-    public String getPreparedBy() {
-        return preparedBy;
-    }
-
-    public void setPreparedBy(String preparedBy) {
-        this.preparedBy = preparedBy;
-    }
-
 }

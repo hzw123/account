@@ -3,6 +3,7 @@ package cn.mauth.account.controller.admin;
 import cn.mauth.account.common.base.BaseController;
 import cn.mauth.account.common.domain.settings.Subject;
 import cn.mauth.account.server.SubjectServer;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -36,18 +37,25 @@ public class SubjectView extends BaseController{
     @ResponseBody
     @RequestMapping(value = "/save")
     public String save(@ModelAttribute Subject subject){
-        if (service.save(subject) > 0) {
+
+        String message=service.validation(subject);
+
+        if(StringUtils.isNotEmpty(message))
+            return error(message);
+
+        if (service.save(subject) > 0)
             return success(TARGETID);
-        }
+
         return error("添加失败");
     }
 
     @ResponseBody
     @RequestMapping(value = "/delete")
     public String delete(@RequestParam(value = "id") Long id){
-        if (service.deleteById(id) > 0) {
+
+        if (service.deleteById(id) > 0)
             return delete(TARGETID);
-        }
+
         return error("删除失败");
     }
 
@@ -59,9 +67,10 @@ public class SubjectView extends BaseController{
     @ResponseBody
     @RequestMapping(value = "/update")
     public String update(@ModelAttribute Subject subject){
-        if (service.save(subject) > 0) {
+
+        if (service.update(subject) > 0)
             return success(TARGETID);
-        }
+
         return error("修改失败");
     }
 

@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -31,14 +32,25 @@ public abstract class BaseServer<D extends BaseDao,T> {
         return PageUtil.of(page);
     }
 
-    public Page page(T t, Pageable  pageable){
-        return this.dao.findAll((root, query, cb) -> {
-
-            List<Predicate> list=new ArrayList<>();
-
-            return this.toPredicate(list,t,root,query,cb);
-        },pageable);
+    public Page<T> page(T t, Pageable  pageable){
+        return this.dao.findAll(this.specification(t),pageable);
     }
+
+    public Page<T> page(Pageable  pageable){
+        return this.dao.findAll(pageable);
+    }
+
+    private Specification<T> specification(T t){
+        return ((root, query, cb) -> {
+            List<Predicate> list=new ArrayList<>();
+            return this.toPredicate(list,t,root,query,cb);
+        });
+    }
+
+    public List<T> findAll(T t){
+        return this.dao.findAll(this.specification(t));
+    }
+
 
     protected abstract Predicate toPredicate(List<Predicate> list, T t,Root root, CriteriaQuery query, CriteriaBuilder cb);
 
@@ -50,6 +62,11 @@ public abstract class BaseServer<D extends BaseDao,T> {
 
 
     public int save(T t){
+        this.dao.save(t);
+        return 1;
+    }
+
+    public int update(T t){
         this.dao.save(t);
         return 1;
     }
@@ -67,8 +84,24 @@ public abstract class BaseServer<D extends BaseDao,T> {
         return PageUtil.like(str);
     }
 
-    protected boolean isLong(Long var){
+    public boolean isLong(Long var){
 
         return var!=null&&var>0;
+    }
+
+    public Page<T> findAll(Specification<T> specification,Pageable pageable){
+        return this.dao.findAll(specification,PageUtil.getPageable(pageable));
+    }
+
+    public List<T> findAll(Specification<T> specification){
+        return this.dao.findAll(specification);
+    }
+
+    public List<T> saveAll(List<T> list){
+        return this.dao.saveAll(list);
+    }
+
+    public String validation(T t){
+        return null;
     }
 }

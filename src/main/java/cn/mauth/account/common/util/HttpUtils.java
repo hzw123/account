@@ -50,7 +50,7 @@ public final class HttpUtils {
         return obj!=null?obj.toString():null;
     }
 
-    public static void sendCall(ServletRequest req, ServletResponse res,int httpStatus,String message){
+    public static void sendCall(ServletResponse res,int httpStatus,String message){
         HttpServletResponse response=(HttpServletResponse) res;
 
         response.setStatus(httpStatus);

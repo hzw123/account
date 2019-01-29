@@ -11,6 +11,9 @@
 			<label>科目名称：</label>
 			<input type="text" name="name" value="${bean.name!}" class="form-control" size="10">&nbsp;
 
+			<label>套装ID：</label>
+			<input type="text" name="accountId" value="${bean.accountId}" class="form-control" size="10">&nbsp;
+
 			<label>余额方向：</label>
             <select name="dc" data-toggle="selectpicker" size="20">
                 <option value="">--全部--</option>

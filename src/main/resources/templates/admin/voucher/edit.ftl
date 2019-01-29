@@ -30,16 +30,12 @@
 
         <div class="form-group">
             <label class="control-label x85">附件数量：</label>
-            <input type="number" name="attachments" value="${bean,attachments}" placeholder="附件数量" size="20" data-rule="required"  >
+            <input type="number" name="attachments" value="${bean.attachments}" placeholder="附件数量" size="20" data-rule="required"  >
         </div>
 
-        <div class="form-group">
-            <label class="control-label x85">制单人：</label>
-            <input type="text" name="approvedBy" value="" placeholder="制单人" size="20" data-rule="required" >
-        </div>
 
         <div class="form-group">
-            <label class="control-label x85">制单人：</label>
+            <label class="control-label x85">审核信息：</label>
             <select name="approveStatus" data-toggle="selectpicker" size="20">
                 <option value="1" <#if bean.approveStatus==1 >selected</#if> >被审核</option>
                 <option value="0" <#if bean.approveStatus==0 >selected</#if> >未审核</option>
@@ -48,7 +44,7 @@
 
         <div class="form-group">
             <label class="control-label x85">备注信息：</label>
-            <input type="text" name="note" value="${bean.mote!}" placeholder="备注信息" size="20" data-rule="required">
+            <input type="text" name="note" value="${bean.note!}" placeholder="备注信息" size="20" data-rule="required">
         </div>
 
     </form>

@@ -35,6 +35,9 @@ public class SubjectServer extends BaseServer<SubjectDao,Subject>{
         if(subject.getSubType()!=null)
             list.add(cb.equal(root.get("subType"),subject.getSubType()));
 
+        if(subject.getAccountId()>0)
+            list.add(cb.equal(root.get("accountId"),subject.getAccountId()));
+
         return this.and(list,cb);
     }
 
@@ -45,4 +48,44 @@ public class SubjectServer extends BaseServer<SubjectDao,Subject>{
         }
         return super.save(subject);
     }
+
+    @Override
+    public int update(Subject subject) {
+
+        Subject old=this.dao.getOne(subject.getId());
+
+        subject.setGmtCreate(old.getGmtCreate());
+
+        return super.update(subject);
+    }
+
+    @Override
+    public String validation(Subject subject) {
+        if(StringUtils.isEmpty(subject.getName()))
+            return "科目名称不能为空";
+        if(StringUtils.isEmpty(subject.getCode()))
+            return "科目编码不能为空";
+        if(this.dao.countByCode(subject.getCode())>0)
+            return "科目编码:"+subject.getCode()+"已经使用";
+        if(this.dao.countByName(subject.getName())>0)
+            return "科目名称:"+subject.getName()+"已经使用";
+        if(subject.getSubType()==null)
+            return "科目类别不能为空";
+        if(subject.getDc()==null)
+            return "余额方向不能为空";
+        return super.validation(subject);
+    }
+
+
+    public int deleteByIdAndAccountId(long accountId,long id){
+        this.dao.deleteByIdAndAccountId(accountId,id);
+        return 1;
+    }
+
+
+    public int deleteByAccountId(long accountId){
+        this.dao.deleteByAccountId(accountId);
+        return 1;
+    }
+
 }

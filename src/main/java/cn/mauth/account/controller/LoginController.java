@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cn.mauth.account.common.base.BaseController;
+import cn.mauth.account.common.util.Result;
 import cn.mauth.account.shiro.util.AccountingToken;
 import cn.mauth.account.common.bean.TitleVo;
 import cn.mauth.account.common.util.Bjui;
@@ -116,6 +117,12 @@ public class LoginController extends BaseController {
 		model.addAttribute("message",message);
 
 		return "login";
+	}
+
+	@RequestMapping("/regist")
+	public String regist(Model model){
+		model.addAttribute("message","");
+		return "regist";
 	}
 
 	@RequestMapping(value = "/timeout", method = { RequestMethod.GET, RequestMethod.POST })

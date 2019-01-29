@@ -1,5 +1,6 @@
 package cn.mauth.account.controller.api;
 
+import cn.mauth.account.common.base.BaseApi;
 import cn.mauth.account.common.bean.TitleVo;
 import cn.mauth.account.common.domain.sys.SysUserInfo;
 import cn.mauth.account.common.util.PageUtil;
@@ -19,7 +20,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/api/user")
-public class UserController {
+public class UserController extends BaseApi {
 
     private static final String prefix="/api/user/";
 

@@ -42,7 +42,10 @@ public final class SessionUtils {
     }
 
     public static Long getUserInfoId(){
-        return Long.valueOf(SessionUtils.getAttribute(Constants.Session.USER_ID).toString());
+        Object obj=SessionUtils.getAttribute(Constants.Session.USER_ID);
+        if(obj==null)
+            return null;
+        return Long.valueOf(obj.toString());
     }
 
     public static void setMenu(List<SysMenu> menuList){

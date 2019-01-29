@@ -78,4 +78,12 @@ public class SysAppInfoServer extends BaseServer<SysAppInfoDao,SysAppInfo>{
         this.sysServiceListDao.deleteByAppId(id);
         return super.deleteById(id);
     }
+
+    @Override
+    public int update(SysAppInfo sysAppInfo) {
+        SysAppInfo old=this.dao.getOne(sysAppInfo.getId());
+
+        sysAppInfo.setGmtCreate(old.getGmtCreate());
+        return super.update(sysAppInfo);
+    }
 }

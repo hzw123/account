@@ -65,7 +65,7 @@ public class SysAppInfoController extends BaseController{
     @ResponseBody
     @RequestMapping(value = "/update")
     public String update(@ModelAttribute SysAppInfo sysAppInfo){
-        if (service.save(sysAppInfo) > 0) {
+        if (service.update(sysAppInfo) > 0) {
             return success(TARGETID);
         }
         return error("修改失败");

@@ -37,4 +37,13 @@ public class SysServiceServer extends BaseServer<SysServiceDao,SysService>{
         return this.and(list,cb);
     }
 
+    @Override
+    public int update(SysService sysService) {
+
+        SysService old=this.dao.getOne(sysService.getId());
+
+        sysService.setGmtCreate(old.getGmtCreate());
+
+        return super.update(sysService);
+    }
 }

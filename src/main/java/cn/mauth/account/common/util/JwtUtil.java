@@ -90,13 +90,13 @@ public class JwtUtil {
     public static void verifyToken(String token)throws Exception{
 
         if(StringUtils.isEmpty(token)){
-            throw new Exception("没有找到 access_token:"+token);
+            throw new Exception("没有找到 access_token");
         }
 
         String sign=RedisUtil.getSign(token);
 
         if(StringUtils.isEmpty(sign)){
-            throw new Exception("没有找到token:"+token);
+            throw new Exception("access_token验证错误");
         }
 
         JwtUtil.verify(sign);
@@ -104,11 +104,11 @@ public class JwtUtil {
         String currentTimeMillisRedis= RedisUtil.getCurrentTimeMillis(token);
 
         if(StringUtils.isEmpty(currentTimeMillisRedis)){
-            throw new Exception("access_token 已过期");
+            throw new Exception("access_token:"+token+" 已过期");
         }
 
         if(!currentTimeMillisRedis.equals(JwtUtil.getCurrentTimeMillis(sign))){
-            throw new Exception("access_token 错误");
+            throw new Exception("access_token:"+token+" 验证错误");
         }
 
     }
@@ -163,7 +163,7 @@ public class JwtUtil {
 
             String error="JWTToken加密出现UnsupportedEncodingException异常:";
 
-            log.error(error ,e);
+            log.error(error +e.getMessage());
 
             throw new CustomException(error + e.getMessage());
         }

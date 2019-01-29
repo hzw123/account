@@ -6,7 +6,7 @@ import java.util.Date;
 
 public final class DateUtil {
 
-    private static final SimpleDateFormat sdf=new SimpleDateFormat("yyyyMM");
+    private static final SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
 
     private static final String[] MONTH_VALUE={"01","02","03","04","05","06","07","08","09","10","11","12",};
     private static final String[] WEEK_VALUE={"星期日","星期一","星期二","星期三","星期四","星期五","星期六"};

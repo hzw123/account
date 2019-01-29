@@ -1,6 +1,7 @@
 package cn.mauth.account.common.domain.sys;
 
 import cn.mauth.account.common.base.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,6 +24,7 @@ public class SysUserInfo extends BaseEntity {
     private String mobile;
     private String addr;
     @Column(length = 32)
+    @JsonIgnore
     private String salt;
     @Column(length = 32)
     private String pwd;

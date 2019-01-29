@@ -15,6 +15,10 @@
     </div>
 
     <div class="form-group">
+        <label class="control-label">套装ID：</label>${bean.accountId}
+    </div>
+
+    <div class="form-group">
 		<label class="control-label">科目类别：</label>
 		<#if bean.subType=='ASSETS'>资产
 		<#elseif bean.subType=='LIABILITIES'>负债

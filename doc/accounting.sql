@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2019-01-25 17:33:25
+Date: 2019-01-29 17:29:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,29 +23,17 @@ CREATE TABLE `account_set` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `gmt_create` datetime DEFAULT NULL,
   `gmt_modified` datetime DEFAULT NULL,
-  `accounting_standard` int(11) DEFAULT NULL,
-  `cash_journal` int(11) NOT NULL,
-  `check_needed` int(11) NOT NULL,
-  `create_by` int(11) NOT NULL,
-  `fixedasset` int(11) NOT NULL,
-  `industry` varchar(255) DEFAULT NULL,
-  `level1` int(11) NOT NULL,
-  `level2` int(11) NOT NULL,
-  `level3` int(11) NOT NULL,
+  `create_by` bigint(20) NOT NULL,
+  `expiration_time` datetime DEFAULT NULL,
   `name` varchar(32) DEFAULT NULL,
-  `permission` int(11) NOT NULL,
-  `start_date_month` varchar(255) DEFAULT NULL,
-  `start_date_year` varchar(255) DEFAULT NULL,
-  `tax_numbers` varchar(255) DEFAULT NULL,
-  `tax_type` varchar(255) DEFAULT NULL,
-  `unified_number` varchar(255) DEFAULT NULL,
+  `user_count` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of account_set
 -- ----------------------------
-INSERT INTO `account_set` VALUES ('3', '2019-01-25 11:28:04', '2019-01-25 11:28:16', '0', '1', '1', '1', '1', '贸易', '0', '0', '0', 'accounting', '1', '01月', '2019年', '1', '1', '1000001');
+INSERT INTO `account_set` VALUES ('1', '2019-01-28 11:33:26', '2019-01-28 11:45:05', '1', '2020-01-24 13:03:52', 'mauth', '2');
 
 -- ----------------------------
 -- Table structure for assist_accounting
@@ -162,12 +150,13 @@ CREATE TABLE `subject` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_db5g1rfeug7aywnpb6gab85ep` (`code`),
   UNIQUE KEY `UK_p1jgir6qcpmqnxt4a8105wsot` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of subject
 -- ----------------------------
-INSERT INTO `subject` VALUES ('2', '2019-01-25 12:29:52', '2019-01-25 12:29:52', null, '0', '\0', '0001', 'CNY', '1', null, '不动产投资', '', '\0', '\0', '\0', '0', '投资房产', null, '0', null, '4', '\0');
+INSERT INTO `subject` VALUES ('2', '2019-01-25 12:29:52', '2019-01-29 13:46:43', null, '1', '\0', '0001', 'CNY', '1', null, '不动产投资', '', '\0', '\0', '\0', '0', '投资房产', null, '0', null, '4', '\0');
+INSERT INTO `subject` VALUES ('3', '2019-01-29 13:46:16', '2019-01-29 13:46:16', null, '1', '\0', '0002', 'CHY', '0', null, '定期存款', '', '\0', '\0', '\0', '0', '定期存款', null, '0', null, '0', '\0');
 
 -- ----------------------------
 -- Table structure for sys_app_info
@@ -184,7 +173,7 @@ CREATE TABLE `sys_app_info` (
   `state` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_7n2tiqn6uhaoygcwnx89n3vx3` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_app_info
@@ -206,7 +195,7 @@ CREATE TABLE `sys_log_login` (
   `single_name` varchar(255) DEFAULT NULL,
   `user_info_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_log_login
@@ -221,6 +210,19 @@ INSERT INTO `sys_log_login` VALUES ('8', '2019-01-25 14:21:52', '2019-01-25 14:2
 INSERT INTO `sys_log_login` VALUES ('9', '2019-01-25 16:41:45', '2019-01-25 16:41:45', '0:0:0:0:0:0:0:1', '2019-01-25 14:21:52', '0:0:0:0:0:0:0:1', 'admin', null, '1');
 INSERT INTO `sys_log_login` VALUES ('10', '2019-01-25 16:42:00', '2019-01-25 16:42:00', '0:0:0:0:0:0:0:1', '2019-01-25 16:41:45', '0:0:0:0:0:0:0:1', 'admin', null, '1');
 INSERT INTO `sys_log_login` VALUES ('11', '2019-01-25 16:42:42', '2019-01-25 16:42:42', '0:0:0:0:0:0:0:1', '2019-01-25 16:42:00', '0:0:0:0:0:0:0:1', 'admin', null, '1');
+INSERT INTO `sys_log_login` VALUES ('12', '2019-01-28 10:27:09', '2019-01-28 10:27:09', '0:0:0:0:0:0:0:1', '2019-01-25 16:42:42', '0:0:0:0:0:0:0:1', 'admin', null, '1');
+INSERT INTO `sys_log_login` VALUES ('13', '2019-01-28 11:43:28', '2019-01-28 11:43:28', '0:0:0:0:0:0:0:1', '2019-01-28 10:27:09', '0:0:0:0:0:0:0:1', 'admin', null, '1');
+INSERT INTO `sys_log_login` VALUES ('14', '2019-01-28 11:43:28', '2019-01-28 11:43:28', '0:0:0:0:0:0:0:1', '2019-01-28 11:43:28', '0:0:0:0:0:0:0:1', 'admin', null, '1');
+INSERT INTO `sys_log_login` VALUES ('15', '2019-01-28 15:11:26', '2019-01-28 15:11:26', '0:0:0:0:0:0:0:1', '2019-01-28 11:43:28', '0:0:0:0:0:0:0:1', 'admin', null, '1');
+INSERT INTO `sys_log_login` VALUES ('16', '2019-01-28 15:17:43', '2019-01-28 15:17:43', '0:0:0:0:0:0:0:1', '2019-01-28 15:11:26', '0:0:0:0:0:0:0:1', 'admin', null, '1');
+INSERT INTO `sys_log_login` VALUES ('17', '2019-01-28 15:20:00', '2019-01-28 15:20:00', '0:0:0:0:0:0:0:1', '2019-01-28 15:17:43', '0:0:0:0:0:0:0:1', 'admin', null, '1');
+INSERT INTO `sys_log_login` VALUES ('18', '2019-01-28 15:20:07', '2019-01-28 15:20:07', '0:0:0:0:0:0:0:1', '2019-01-28 15:20:00', '0:0:0:0:0:0:0:1', 'admin', null, '1');
+INSERT INTO `sys_log_login` VALUES ('19', '2019-01-28 15:49:23', '2019-01-28 15:49:23', '0:0:0:0:0:0:0:1', '2019-01-28 15:20:07', '0:0:0:0:0:0:0:1', 'admin', null, '1');
+INSERT INTO `sys_log_login` VALUES ('20', '2019-01-28 16:17:13', '2019-01-28 16:17:13', '0:0:0:0:0:0:0:1', '2019-01-28 15:49:23', '0:0:0:0:0:0:0:1', 'admin', null, '1');
+INSERT INTO `sys_log_login` VALUES ('21', '2019-01-28 16:57:10', '2019-01-28 16:57:10', '0:0:0:0:0:0:0:1', '2019-01-28 16:17:13', '0:0:0:0:0:0:0:1', 'admin', null, '1');
+INSERT INTO `sys_log_login` VALUES ('22', '2019-01-28 17:12:44', '2019-01-28 17:12:44', '0:0:0:0:0:0:0:1', '2019-01-28 16:57:10', '0:0:0:0:0:0:0:1', 'admin', null, '1');
+INSERT INTO `sys_log_login` VALUES ('23', '2019-01-29 12:00:40', '2019-01-29 12:00:40', '0:0:0:0:0:0:0:1', '2019-01-28 17:12:44', '0:0:0:0:0:0:0:1', 'admin', null, '1');
+INSERT INTO `sys_log_login` VALUES ('24', '2019-01-29 15:22:38', '2019-01-29 15:22:38', '0:0:0:0:0:0:0:1', '2019-01-29 12:00:40', '0:0:0:0:0:0:0:1', 'admin', null, '1');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -574,12 +576,13 @@ CREATE TABLE `voucher` (
   `vch_date` datetime DEFAULT NULL,
   `account_id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of voucher
 -- ----------------------------
-INSERT INTO `voucher` VALUES ('1', '0', '1', '1', '记', '1', '1', '1', '2019-01-25 16:43:49', '1');
+INSERT INTO `voucher` VALUES ('2', '0', '', '5', '记', '1', '3', '111313', '2019-01-29 16:19:23', '1');
+INSERT INTO `voucher` VALUES ('3', '0', '', '5', '记', '', '5', '3131', '2019-01-29 17:16:46', '1');
 
 -- ----------------------------
 -- Table structure for voucher_entries
@@ -597,6 +600,10 @@ CREATE TABLE `voucher_entries` (
 -- ----------------------------
 -- Records of voucher_entries
 -- ----------------------------
+INSERT INTO `voucher_entries` VALUES ('2', '1');
+INSERT INTO `voucher_entries` VALUES ('2', '2');
+INSERT INTO `voucher_entries` VALUES ('3', '3');
+INSERT INTO `voucher_entries` VALUES ('3', '4');
 
 -- ----------------------------
 -- Table structure for voucher_line
@@ -605,16 +612,19 @@ DROP TABLE IF EXISTS `voucher_line`;
 CREATE TABLE `voucher_line` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `amount` double NOT NULL,
-  `amount_for` double NOT NULL,
   `cur` varchar(255) DEFAULT NULL,
   `dc` int(11) DEFAULT NULL,
   `exp` varchar(255) DEFAULT NULL,
   `rate` double NOT NULL,
   `sub_code` varchar(255) DEFAULT NULL,
-  `sub_name` varchar(255) DEFAULT NULL,
+  `sub_name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of voucher_line
 -- ----------------------------
+INSERT INTO `voucher_line` VALUES ('1', '11111', 'CNY', '0', '不动产投资1', '1', '0001', '');
+INSERT INTO `voucher_line` VALUES ('2', '11111', 'CHY', '1', '定期存款额', '1', '0002', '');
+INSERT INTO `voucher_line` VALUES ('3', '1111', 'CNY', '0', 'dfd', '1', '0001', '投资房产');
+INSERT INTO `voucher_line` VALUES ('4', '1111', 'CNY', '1', '342424', '1', '0002', '定期存款');

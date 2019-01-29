@@ -2,10 +2,7 @@ package cn.mauth.account.common.domain.settings;
 
 import cn.mauth.account.enums.BalanceEnum;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -16,11 +13,14 @@ public class VoucherLine implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     /** 摘要*/
+    @Column(nullable = false)
     private String exp;
+    @Column(nullable = false)
     private String subCode;//科目编码
+    @Column(nullable = false)
     private String subName;//科目名称
     private double amount;//本位币金额
-    private double amountFor;//原币金额
+    @Column(nullable = false)
     private BalanceEnum dc;
     private String cur;//货币编码
     private double rate;//货币兑换率
@@ -63,14 +63,6 @@ public class VoucherLine implements Serializable {
 
     public void setAmount(double amount) {
         this.amount = amount;
-    }
-
-    public double getAmountFor() {
-        return amountFor;
-    }
-
-    public void setAmountFor(double amountFor) {
-        this.amountFor = amountFor;
     }
 
     public BalanceEnum getDc() {

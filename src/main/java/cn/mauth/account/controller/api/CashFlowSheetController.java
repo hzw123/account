@@ -1,5 +1,6 @@
 package cn.mauth.account.controller.api;
 
+import cn.mauth.account.common.base.BaseApi;
 import cn.mauth.account.common.bean.QuarterlyProfit;
 import cn.mauth.account.common.bean.SheetBody;
 import cn.mauth.account.common.bean.TaxReport;
@@ -14,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/statements")
-public class CashFlowSheetController {
+@RequestMapping("/api/accounting/statements")
+public class CashFlowSheetController extends BaseApi {
 
     @Autowired
     private CashFlowSheetDao dao;

@@ -3,7 +3,6 @@
     <form action="${base}/admin/sysAppInfo/update" data-toggle="validate" method="post">
 
         <input type="hidden" name="id" value="${bean.id}"/>
-        <input type="hidden" name="gmtCreate" value="${bean.gmtCreate!}"/>
         <div class="form-group">
             <label class="control-label x85">应用名称：</label>
             <input type="text" name="name" value="${bean.name!}" placeholder="应用名称" size="20"  data-rule="required">

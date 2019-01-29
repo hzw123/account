@@ -24,4 +24,12 @@ public class AssistAccountingServer extends BaseServer<AssistAccountingDao,Assis
 
         return this.and(list,cb);
     }
+
+
+    @Override
+    public int update(AssistAccounting assistAccounting) {
+        AssistAccounting old=this.dao.getOne(assistAccounting.getId());
+        assistAccounting.setGmtCreate(old.getGmtCreate());
+        return super.update(assistAccounting);
+    }
 }

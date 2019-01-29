@@ -42,10 +42,14 @@ public class SysServiceListServer extends BaseServer<SysServiceListDao,SysServic
             list.add(cb.equal(root.get("accountId"),sysServiceList.getAccountId()));
 
         if(!SessionUtils.isAdmin()){
-            list.add(cb.equal(root.get("userInfoId"),SessionUtils.getUserInfoId()));
-        }else{
-            if(sysServiceList.getUserInfoId()!=null&&sysServiceList.getUserInfoId()>0)
-                list.add(cb.equal(root.get("userInfoId"),sysServiceList.getUserInfoId()));
+            if(SessionUtils.getUserInfoId()==null){
+                if(sysServiceList.getUserInfoId()!=null&&sysServiceList.getUserInfoId()>0)
+                    list.add(cb.equal(root.get("userInfoId"),sysServiceList.getUserInfoId()));
+
+            }else{
+                list.add(cb.equal(root.get("userInfoId"),SessionUtils.getUserInfoId()));
+            }
+
         }
 
         return this.and(list,cb);
@@ -53,9 +57,6 @@ public class SysServiceListServer extends BaseServer<SysServiceListDao,SysServic
 
 
     public int save(SysServiceList sysServiceList){
-        sysServiceList.setGmtCreate(new Date());
-        sysServiceList.setGmtModified(new Date());
-
         if(sysServiceList.getServiceId()>0){
             SysService sysService=sysServiceDao.findById(sysServiceList.getServiceId()).get();
 
@@ -63,12 +64,25 @@ public class SysServiceListServer extends BaseServer<SysServiceListDao,SysServic
         }
 
         sysServiceList.setUserInfoId(SessionUtils.getUserInfoId());
-        this.dao.save(sysServiceList);
+        super.save(sysServiceList);
         return 1;
     }
 
+    @Override
+    public int update(SysServiceList sysServiceList) {
+        SysServiceList old=this.dao.getOne(sysServiceList.getId());
+        sysServiceList.setGmtCreate(old.getGmtCreate());
 
-    public List<SysService> findAllOfSysServicel(){
+        if(sysServiceList.getServiceId()>0){
+            SysService sysService=sysServiceDao.findById(sysServiceList.getServiceId()).get();
+
+            sysServiceList.setSysService(sysService);
+        }
+
+        return super.update(sysServiceList);
+    }
+
+    public List<SysService> findAllOfSysService(){
         return this.sysServiceDao.findAll();
     }
 }

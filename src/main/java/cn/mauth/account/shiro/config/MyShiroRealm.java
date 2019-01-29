@@ -9,7 +9,6 @@ import cn.mauth.account.common.util.SessionUtils;
 import cn.mauth.account.dao.SysLogLoginDao;
 import cn.mauth.account.dao.SysRoleDao;
 import cn.mauth.account.dao.SysUserInfoDao;
-import com.alibaba.fastjson.JSON;
 import com.xiaoleilu.hutool.crypto.DigestUtil;
 import com.xiaoleilu.hutool.http.HttpUtil;
 import org.apache.commons.lang.StringUtils;
@@ -152,7 +151,7 @@ public class MyShiroRealm extends AuthorizingRealm {
 		log.info(sysUserInfo.getNickName()+"登陆成功！");
 		SessionUtils.setAttribute(Constants.Session.USER_TYPE, sysUserInfo.getUserType());
 		SessionUtils.setAttribute(Constants.Session.USER_ID, sysUserInfo.getId());
-		SessionUtils.setAttribute(Constants.Session.USER, JSON.toJSONString(sysUserInfo));
+		SessionUtils.setAttribute(Constants.Session.USER, sysUserInfo);
 
 		if(sysRoleDao.loadByUid(sysUserInfo.getId(),Constants.ADMIN)>0){
 			SessionUtils.setAttribute(false,Constants.Session.ROLE,Constants.ADMIN);

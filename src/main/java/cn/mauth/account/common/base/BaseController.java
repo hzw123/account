@@ -27,6 +27,7 @@ public class BaseController{
 	public static final String JSON_UTF8 = "application/json;charset=UTF-8";
 	public static final String XML_UTF8 = "application/xml;charset=UTF-8";
 
+
 	/**
 	 * 将前台传递过来的日期格式的字符串，自动转化为Date类型
 	 */
@@ -104,6 +105,7 @@ public class BaseController{
 	protected static String ties(String targetId) {
 		return bjui(Bjui.OK, Bjui.OPEN, targetId, "");
 	}
+
 	protected static String ties(String targetId, String message) {
 		return bjui(Bjui.OK, Bjui.OPEN, targetId, message);
 	}
@@ -196,16 +198,7 @@ public class BaseController{
 	 * @param modelMap
 	 */
 	public void setTitle(ModelMap modelMap, TitleVo titleVo){
-		//标题
 		modelMap.put("titleVo",titleVo);
-//		model.addAttribute("parenttitle",titleVo.getParenttitle());
-//		//是否打开欢迎语
-//		model.addAttribute("isMsg",titleVo.isMsg());
-//		//欢迎语
-//		model.addAttribute("msgHTML",titleVo.getMsgHtml());
-//		//小控件
-//		model.addAttribute("isControl",titleVo.isControl());
-//		model.addAttribute("isribbon", titleVo.isIsribbon());
 	}
 
 }

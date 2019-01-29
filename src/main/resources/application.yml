@@ -73,7 +73,7 @@ spring:
     success-url: /
     unauthorized-url: /error/403
     filter-chain-definition-map:
-      anon: /static/**,/login,/BJUI/**,/timeout,/login/**,/js/**,/captcha/captchaImage,/plug/**,/swagger*/**,/v2/api-docs,/error/**,/api/**
+      anon: /static/**,/login,/BJUI/**,/timeout,/login/**,/js/**,/captcha/captchaImage,/plug/**,/swagger*/**,/v2/api-docs,/error/**,/api/**,/regist
       logout: /logout #退出
       #需要认证的路径
       authc: /authc

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * 应用服务中心
+ *
  */
 @Controller
 @RequestMapping("/admin/accountSet")
@@ -63,7 +63,7 @@ public class AccountSetView extends BaseController{
     @ResponseBody
     @RequestMapping(value = "/update")
     public String update(@ModelAttribute AccountSet accountSet){
-        if (service.save(accountSet) > 0) {
+        if (service.update(accountSet) > 0) {
             return success(TARGETID);
         }
         return error("修改失败");

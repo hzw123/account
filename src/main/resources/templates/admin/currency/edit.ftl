@@ -2,7 +2,6 @@
 <div class="bjui-pageContent">
     <form action="${base}/admin/currency/update" data-toggle="validate" method="post">
         <input type="hidden" name="id" value="${bean.id}"/>
-        <input type="hidden" name="gmtCreate" value="${bean.gmtCreate!}"/>
 
         <div class="form-group">
             <label class="control-label x85">货币编码：</label>

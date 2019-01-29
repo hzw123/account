@@ -8,6 +8,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
+
 @Repository
 public interface SubjectDao extends BaseDao<Subject,Long>{
 
@@ -21,4 +24,14 @@ public interface SubjectDao extends BaseDao<Subject,Long>{
     @Transactional
     int deleteByAccountId(@Param("accountId") long accountId);
 
+
+    @Query(value = "select name from subject where code=:code",nativeQuery = true)
+    String findNameByCode(@Param("code") String code);
+
+    int countByCode(String code);
+
+    int countByName(String name);
+
+    @Query(value = "select code from subject",nativeQuery = true)
+    List<String> findCode();
 }

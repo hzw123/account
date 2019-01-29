@@ -13,6 +13,11 @@
         </div>
 
         <div class="form-group">
+            <label class="control-label x85">套装ID：</label>
+            <input type="text" name="accountId" value="" placeholder="套装ID" size="20"  data-rule="required">
+        </div>
+
+        <div class="form-group">
             <label class="control-label x85">上级科目：</label>
             <select name="parentId" data-toggle="selectpicker" size="20">
                 <option value="0">无上级科目</option>

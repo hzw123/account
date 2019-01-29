@@ -1,5 +1,6 @@
 package cn.mauth.account.controller.api;
 
+import cn.mauth.account.common.base.BaseApi;
 import cn.mauth.account.common.bean.Parameters;
 import cn.mauth.account.common.domain.settings.AssistAccounting;
 import cn.mauth.account.common.util.Result;
@@ -9,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/setting/assistAccounting")
-public class AssistingAccountingController {
+@RequestMapping("/api/accounting/assistAccounting")
+public class AssistingAccountingController extends BaseApi {
 
     @Autowired
     private AssistAccountingDao dao;
@@ -38,6 +39,9 @@ public class AssistingAccountingController {
     @ApiOperation(value = "修改辅助核算信息")
     public Result update(AssistAccounting assistAccounting){
 
+        AssistAccounting old=this.dao.getOne(assistAccounting.getId());
+
+        assistAccounting.setGmtCreate(old.getGmtCreate());
         this.dao.save(assistAccounting);
 
         return Result.success();

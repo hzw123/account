@@ -42,7 +42,7 @@ public class SysLogLoginController extends BaseController {
 	@ResponseBody
 	@RequestMapping(value = "/save")
 	public String save(@ModelAttribute SysLogLogin qo){
-		if (service.save(qo) > 0) {
+		if (service.update(qo) > 0) {
 			return success(TARGETID);
 		}
 		return error("添加失败");

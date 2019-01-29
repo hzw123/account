@@ -13,4 +13,7 @@ public interface SysUserInfoDao extends BaseDao<SysUserInfo,Long> {
     String findLoginNameById(@Param("id") long id);
 
     SysUserInfo findByLoginName(String loginName);
+
+    @Query(value = "select id from sys_user_info where login_name=:userName",nativeQuery = true)
+    Long findIdByuserName(@Param("userName") String userName);
 }

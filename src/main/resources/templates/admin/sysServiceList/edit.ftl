@@ -3,8 +3,6 @@
     <form action="${base}/admin/sysServiceList/update" data-toggle="validate" method="post">
 
         <input type="hidden" name="id" value="${bean.id}"/>
-        <input type="hidden" name="gmtCreate" value="${bean.gmtCreate!}"/>
-
         <div class="form-group">
             <label class="control-label x85">服务列表名称：</label>
             <input type="text" name="name" value="${bean.name!}" placeholder="服务列表名称" size="20"  data-rule="required">

@@ -3,8 +3,6 @@
     <form action="${base}/admin/subject/update" data-toggle="validate" method="post">
         <input type="hidden" name="id" value="${bean.id}"/>
 
-        <input type="hidden" name="gmtCreate" value="${bean.gmtCreate!}"/>
-
         <div class="form-group">
             <label class="control-label x85">科目编码：</label>
             <input type="text" name="code" value="${bean.code!}" placeholder="科目编码" size="20" data-rule="required" readonly >
@@ -13,6 +11,11 @@
         <div class="form-group">
             <label class="control-label x85">科目名称：</label>
             <input type="text" name="name" value="${bean.name!}" placeholder="科目名称" size="20" data-rule="required" >
+        </div>
+
+        <div class="form-group">
+            <label class="control-label x85">套装ID：</label>
+            <input type="text" name="accountId" value="${bean.accountId}" placeholder="套装ID" size="20" data-rule="required" >
         </div>
 
         <div class="form-group">
