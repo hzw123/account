@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AccountSetDao extends BaseDao<AccountSet,Long>{
 
-
+    int countById(Long id);
 }

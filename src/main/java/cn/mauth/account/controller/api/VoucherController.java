@@ -1,10 +1,7 @@
 package cn.mauth.account.controller.api;
 
 import cn.mauth.account.common.base.BaseApi;
-import cn.mauth.account.common.bean.Entries;
-import cn.mauth.account.common.bean.Parameters;
-import cn.mauth.account.common.bean.VoucherBody;
-import cn.mauth.account.common.bean.VoucherParam;
+import cn.mauth.account.common.bean.*;
 import cn.mauth.account.common.domain.settings.Voucher;
 import cn.mauth.account.common.domain.settings.VoucherLine;
 import cn.mauth.account.common.util.DateUtil;
@@ -20,8 +17,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.criteria.Predicate;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -189,39 +184,6 @@ public class VoucherController extends BaseApi {
         return true;
     }
 
-    @DeleteMapping
-    @ApiOperation(value = "删除凭证")
-    public Result delete(Long accountId, VoucherParam body){
-
-        String message=null;
-
-        if(!accountSetServer.verifyAccountId(accountId)){
-
-            message="账套ID:"+accountId+"错误!";
-
-            logger.error(message);
-
-            return Result.error(message);
-        }
-
-
-        if(this.server.deleteVoucher(body)){
-
-            message="凭证删除成功!";
-            logger.info(message);
-
-            return Result.success(message);
-        }else{
-            message="凭证删除失败!";
-
-            logger.error(message);
-
-            return Result.error(message);
-        }
-
-    }
-
-
     @PutMapping
     @ApiOperation(value = "更新凭证")
     public Result update(Long accountId,Voucher voucher){
@@ -256,36 +218,55 @@ public class VoucherController extends BaseApi {
         return Result.success(message);
     }
 
-
-    @DeleteMapping("/voucherExtra")
+    @DeleteMapping
     @ApiOperation(value = "删除凭证")
-    public Result voucherExtra(Long accountId,VoucherParam body){
+    public Result delete(Long accountId, VoucherParam body){
 
         String message=null;
 
         if(!accountSetServer.verifyAccountId(accountId)){
-            message="账套ID:"+accountId+"错误";
+
+            message="账套ID:"+accountId+"错误!";
 
             logger.error(message);
 
             return Result.error(message);
         }
 
-        if(this.server.deleteVoucher(body)){
-            message="凭证删除成功";
+        if(this.server.deleteVoucher(accountId,body)){
+
+            message="凭证删除成功!";
 
             logger.info(message);
 
             return Result.success(message);
-        }else {
-            message="凭证删除失败";
+        }else{
+            message="凭证删除失败!";
 
             logger.error(message);
 
             return Result.error(message);
         }
 
+    }
 
+
+    @GetMapping("/statistics")
+    @ApiOperation(value = "统计")
+    public Result statistics(Long accountId,String start,String end){
+
+        if(!accountSetServer.verifyAccountId(accountId)){
+
+            String message="账套ID:"+accountId+"错误";
+
+            logger.error(message);
+
+            return Result.error(message);
+        }
+
+        List<VoucherData> data=server.statisticalData(accountId,start,end);
+
+        return Result.success(data);
     }
 
 }

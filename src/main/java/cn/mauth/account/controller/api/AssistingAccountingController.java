@@ -42,6 +42,7 @@ public class AssistingAccountingController extends BaseApi {
         AssistAccounting old=this.dao.getOne(assistAccounting.getId());
 
         assistAccounting.setGmtCreate(old.getGmtCreate());
+
         this.dao.save(assistAccounting);
 
         return Result.success();

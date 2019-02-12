@@ -76,15 +76,15 @@ public class SysAppInfoController extends BaseController{
 
         SysAppInfo app=service.getById(id);
 
-        SysServiceList param=new SysServiceList();
+//        SysServiceList param=new SysServiceList();
 
-        param.setAppId(app.getId());
-
-        param.setUserInfoId(app.getUserInfoId());
-
-        List<SysServiceList> list=service.find(param);
-
-        app.setServices(list);
+//        param.setAppId(app.getId());
+//
+//        param.setUserInfoId(app.getUserInfoId());
+//
+//        List<SysServiceList> list=service.find(param);
+//
+//        app.setServices(list);
 
         modelMap.put("bean", app);
     }

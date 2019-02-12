@@ -42,15 +42,22 @@ public class AccountSetServer extends BaseServer<AccountSetDao,AccountSet>{
     public int update(AccountSet accountSet) {
 
         AccountSet old=this.dao.getOne(accountSet.getId());
+
         accountSet.setGmtCreate(old.getGmtCreate());
+
+        accountSet.setCreateBy(old.getCreateBy());
+
         return super.update(accountSet);
     }
 
     public boolean verifyAccountId(Long id){
         boolean flag=false;
-        if(id!=null&&id>0){
-            if(this.dao.getOne(id)!=null)
+
+        if(id!=null && id>0){
+
+            if(this.dao.countById(id)>0)
                 flag=true;
+
         }
 
         return flag;

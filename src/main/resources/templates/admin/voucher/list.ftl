@@ -44,7 +44,7 @@
 			<tr>
 				<td align="center">${bean_index+1}</td>
                 <td>${(bean.vchDate?string('yyyy-MM-dd'))!}</td>
-				<td>${bean.name!}-${bean.num}</td>
+				<td>${bean.name!}-${bean.num?c}</td>
 				<td>
 					<#if bean.entries??>
 					    <#list bean.entries as line>

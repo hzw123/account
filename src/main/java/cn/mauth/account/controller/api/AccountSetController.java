@@ -5,7 +5,10 @@ import cn.mauth.account.common.domain.settings.AccountSet;
 import cn.mauth.account.common.util.PageUtil;
 import cn.mauth.account.common.util.Result;
 import cn.mauth.account.server.AccountSetServer;
+import cn.mauth.account.server.RedisUtil;
+import cn.mauth.account.server.SysUserInfoService;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +19,9 @@ public class AccountSetController extends BaseApi{
 
     @Autowired
     private AccountSetServer server;
+
+    @Autowired
+    private SysUserInfoService sysUserInfoService;
 
     @GetMapping("/page")
     @ApiOperation(value = "分页获取账套信息")
@@ -39,7 +45,16 @@ public class AccountSetController extends BaseApi{
 
     @PostMapping
     @ApiOperation(value = "创建账套")
-    public Result save(AccountSet accountSet){
+    public Result save(AccountSet accountSet,String access_token){
+
+        if(!SecurityUtils.getSubject().isAuthenticated()){
+            String sign= RedisUtil.getSign(access_token);
+
+            Long id=sysUserInfoService.getId(sign);
+
+            accountSet.setCreateBy(id);
+
+        }
 
         this.server.save(accountSet);
 
@@ -50,7 +65,7 @@ public class AccountSetController extends BaseApi{
     @ApiOperation(value = "修改账套信息")
     public Result update(AccountSet accountSet){
 
-        this.server.save(accountSet);
+        this.server.update(accountSet);
 
         String message="账套Id:"+accountSet.getId()+"更新成功";
 

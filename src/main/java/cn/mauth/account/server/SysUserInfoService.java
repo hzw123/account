@@ -5,10 +5,7 @@ import java.util.List;
 
 import cn.mauth.account.common.domain.sys.SysAppInfo;
 import cn.mauth.account.common.domain.sys.SysUserInfo;
-import cn.mauth.account.common.util.Constants;
-import cn.mauth.account.common.util.PageInfo;
-import cn.mauth.account.common.util.PageUtil;
-import cn.mauth.account.common.util.SessionUtils;
+import cn.mauth.account.common.util.*;
 import cn.mauth.account.dao.SysAppInfoDao;
 import cn.mauth.account.dao.SysUserInfoDao;
 import cn.mauth.account.enums.StatusIdEnum;
@@ -141,6 +138,13 @@ public class SysUserInfoService {
 			return 1;
 		}
 		return -1;
+	}
+
+	public Long getId(String sign){
+
+		String account= JwtUtil.getAccount(sign);
+
+		return dao.findIdByUserName(account);
 	}
 
 }

@@ -2,6 +2,7 @@ package cn.mauth.account.server;
 
 import cn.mauth.account.common.base.BaseServer;
 import cn.mauth.account.common.bean.Parameters;
+import cn.mauth.account.common.bean.VoucherData;
 import cn.mauth.account.common.bean.VoucherParam;
 import cn.mauth.account.common.domain.settings.Voucher;
 import cn.mauth.account.common.domain.settings.VoucherLine;
@@ -133,11 +134,15 @@ public class VoucherServer extends BaseServer<VoucherDao,Voucher>{
     }
 
     @Transactional
-    public boolean deleteVoucher(VoucherParam body){
+    public boolean deleteVoucher(Long accountId,VoucherParam body){
 
         try {
             List<Voucher> list=this.dao.findAll((root, query, cb) -> {
                 List<Predicate> param=new ArrayList<>();
+
+                if(accountId!=null && accountId>0)
+                    param.add(cb.equal(root.get("accountId"),accountId));
+
                 if(StringUtils.isNotEmpty(body.getVchDate()))
                     param.add(cb.equal(root.get("vchDate"), DateUtil.parseYM(body.getVchDate())));
 
@@ -150,6 +155,9 @@ public class VoucherServer extends BaseServer<VoucherDao,Voucher>{
 
                 if(body.isIds())
                     param.add(cb.in(root.get("id")).value(body.getIdSet()));
+
+                if(body.getId()!=null&&body.getId()>0)
+                    param.add(cb.equal(root.get("id"),body.getId()));
 
                 return cb.and(param.toArray(new Predicate[param.size()]));
             });
@@ -251,5 +259,41 @@ public class VoucherServer extends BaseServer<VoucherDao,Voucher>{
 
     public List<String> findCode(){
         return this.subjectDao.findCode();
+    }
+
+    public List<VoucherData> statisticalData(Long accountId,String start,String end){
+        List<Object[]> list=null;
+
+        if(accountId==null || accountId==0){
+            list=this.dao.statisticalData();
+        }else{
+            list=this.dao.statisticalData(accountId);
+        }
+
+        Object[] objs=new Object[]{"","合计",0.00,0.00};
+
+        list.forEach(r->{
+            objs[2]=(double)objs[2]+(double)r[2];
+            objs[3]=(double)objs[3]+(double)r[3];
+        });
+
+        if(list==null){
+            list=new ArrayList<>();
+        }
+
+        list.add(objs);
+
+        return this.toData(list);
+
+    }
+
+    private List<VoucherData> toData(List<Object[]> list){
+        List<VoucherData> vList=new ArrayList<>();
+
+        list.forEach(r->{
+            vList.add(new VoucherData(r[0].toString(),r[1].toString(),(double)r[2],(double)r[3]));
+        });
+
+        return vList;
     }
 }
